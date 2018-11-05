@@ -18,8 +18,19 @@
 		E558546C210925D6007E5B37 /* PasswordAttributeSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E558546B210925D6007E5B37 /* PasswordAttributeSwitch.swift */; };
 		E5621193218B6DE100F2928F /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5621192218B6DE100F2928F /* UIView+Utils.swift */; };
 		E56276D52103D8EB00C45F6B /* PasswordLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56276D42103D8EB00C45F6B /* PasswordLabel.swift */; };
+		E56DBC3C21901641001D66AD /* NewPassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56DBC3B21901641001D66AD /* NewPassTests.swift */; };
 		E5F04346211F8D9100952E72 /* PasswordCharacterSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F04345211F8D9100952E72 /* PasswordCharacterSet.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E56DBC3E21901641001D66AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E512150D20FE74940073D4E4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E512151420FE74940073D4E4;
+			remoteInfo = NewPass;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		E507AB9421333B3E000D5E4D /* HapticEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticEngine.swift; sourceTree = "<group>"; };
@@ -35,11 +46,21 @@
 		E558546B210925D6007E5B37 /* PasswordAttributeSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordAttributeSwitch.swift; sourceTree = "<group>"; };
 		E5621192218B6DE100F2928F /* UIView+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
 		E56276D42103D8EB00C45F6B /* PasswordLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordLabel.swift; sourceTree = "<group>"; };
+		E56DBC3921901641001D66AD /* NewPassTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewPassTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E56DBC3B21901641001D66AD /* NewPassTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPassTests.swift; sourceTree = "<group>"; };
+		E56DBC3D21901641001D66AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5F04345211F8D9100952E72 /* PasswordCharacterSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordCharacterSet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		E512151220FE74940073D4E4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E56DBC3621901641001D66AD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -53,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				E512151720FE74940073D4E4 /* NewPass */,
+				E56DBC3A21901641001D66AD /* NewPassTests */,
 				E512151620FE74940073D4E4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -61,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				E512151520FE74940073D4E4 /* NewPass.app */,
+				E56DBC3921901641001D66AD /* NewPassTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -93,6 +116,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		E56DBC3A21901641001D66AD /* NewPassTests */ = {
+			isa = PBXGroup;
+			children = (
+				E56DBC3B21901641001D66AD /* NewPassTests.swift */,
+				E56DBC3D21901641001D66AD /* Info.plist */,
+			);
+			path = NewPassTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -113,19 +145,41 @@
 			productReference = E512151520FE74940073D4E4 /* NewPass.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E56DBC3821901641001D66AD /* NewPassTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E56DBC4221901641001D66AD /* Build configuration list for PBXNativeTarget "NewPassTests" */;
+			buildPhases = (
+				E56DBC3521901641001D66AD /* Sources */,
+				E56DBC3621901641001D66AD /* Frameworks */,
+				E56DBC3721901641001D66AD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E56DBC3F21901641001D66AD /* PBXTargetDependency */,
+			);
+			name = NewPassTests;
+			productName = NewPassTests;
+			productReference = E56DBC3921901641001D66AD /* NewPassTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		E512150D20FE74940073D4E4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Addison Francisco";
 				TargetAttributes = {
 					E512151420FE74940073D4E4 = {
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 1000;
+					};
+					E56DBC3821901641001D66AD = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = E512151420FE74940073D4E4;
 					};
 				};
 			};
@@ -143,6 +197,7 @@
 			projectRoot = "";
 			targets = (
 				E512151420FE74940073D4E4 /* NewPass */,
+				E56DBC3821901641001D66AD /* NewPassTests */,
 			);
 		};
 /* End PBXProject section */
@@ -155,6 +210,13 @@
 				E512152320FE74950073D4E4 /* LaunchScreen.storyboard in Resources */,
 				E512152020FE74950073D4E4 /* Assets.xcassets in Resources */,
 				E512151E20FE74940073D4E4 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E56DBC3721901641001D66AD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,7 +239,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E56DBC3521901641001D66AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E56DBC3C21901641001D66AD /* NewPassTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E56DBC3F21901641001D66AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E512151420FE74940073D4E4 /* NewPass */;
+			targetProxy = E56DBC3E21901641001D66AD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E512151C20FE74940073D4E4 /* Main.storyboard */ = {
@@ -354,6 +432,51 @@
 			};
 			name = Release;
 		};
+		E56DBC4021901641001D66AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FK4RW7EF3V;
+				INFOPLIST_FILE = NewPassTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.addman.NewPassTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NewPass.app/NewPass";
+			};
+			name = Debug;
+		};
+		E56DBC4121901641001D66AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FK4RW7EF3V;
+				INFOPLIST_FILE = NewPassTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.addman.NewPassTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NewPass.app/NewPass";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -371,6 +494,15 @@
 			buildConfigurations = (
 				E512152820FE74950073D4E4 /* Debug */,
 				E512152920FE74950073D4E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E56DBC4221901641001D66AD /* Build configuration list for PBXNativeTarget "NewPassTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E56DBC4021901641001D66AD /* Debug */,
+				E56DBC4121901641001D66AD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
