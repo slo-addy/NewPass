@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,13 +22,13 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Password Length: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Co-qg-iHb">
-                                        <rect key="frame" x="8" y="535.66666666666663" width="359" height="16.333333333333371"/>
+                                        <rect key="frame" x="8" y="567.66666666666663" width="359" height="16.333333333333371"/>
                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="8" minValue="8" maxValue="32" translatesAutoresizingMaskIntoConstraints="NO" id="dVw-3Y-dlB">
-                                        <rect key="frame" x="85" y="560" width="205" height="31"/>
+                                        <rect key="frame" x="85" y="592" width="205" height="31"/>
                                         <color key="minimumTrackTintColor" red="0.12549019607843137" green="0.78431372549019607" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="passwordLengthSliderDidMove:" destination="BYZ-38-t0r" eventType="valueChanged" id="uEv-sa-qef"/>
@@ -75,13 +76,13 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sNl-OK-RZN">
-                                        <rect key="frame" x="90.000000000000014" y="323.66666666666669" width="195.33333333333337" height="148"/>
+                                        <rect key="frame" x="93.666666666666686" y="309.66666666666669" width="188" height="148"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="V8r-If-vMN">
-                                                <rect key="frame" x="0.0" y="0.0" width="195.33333333333334" height="31"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="188" height="31"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Lowercase Alphabet" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N30-r4-DB3">
-                                                        <rect key="frame" x="0.0" y="0.0" width="130.33333333333334" height="31"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Lowercase Letters" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N30-r4-DB3">
+                                                        <rect key="frame" x="0.0" y="0.0" width="123" height="31"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="31" id="Hxm-cR-uXM"/>
                                                         </constraints>
@@ -90,7 +91,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OA6-SW-Lwf" customClass="PasswordAttributeSwitch" customModule="NewPass" customModuleProvider="target">
-                                                        <rect key="frame" x="146.33333333333334" y="0.0" width="51" height="31"/>
+                                                        <rect key="frame" x="139" y="0.0" width="51" height="31"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="31" id="e1a-2n-Vzx"/>
                                                         </constraints>
@@ -102,10 +103,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="BzC-jb-riE">
-                                                <rect key="frame" x="0.0" y="39" width="195.33333333333334" height="31"/>
+                                                <rect key="frame" x="0.0" y="39" width="188" height="31"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Uppercase Alphabet" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mnT-nl-GRu">
-                                                        <rect key="frame" x="0.0" y="0.0" width="130.33333333333334" height="31"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Uppercase Letters" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mnT-nl-GRu">
+                                                        <rect key="frame" x="0.0" y="0.0" width="123" height="31"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="31" id="TVG-Uk-4dL"/>
                                                         </constraints>
@@ -114,7 +115,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CRv-EU-PEt" customClass="PasswordAttributeSwitch" customModule="NewPass" customModuleProvider="target">
-                                                        <rect key="frame" x="146.33333333333334" y="0.0" width="51" height="31"/>
+                                                        <rect key="frame" x="139" y="0.0" width="51" height="31"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="31" id="TCs-Ho-Xuj"/>
                                                         </constraints>
@@ -126,10 +127,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="6qT-xO-QgX">
-                                                <rect key="frame" x="0.0" y="78" width="195.33333333333334" height="31"/>
+                                                <rect key="frame" x="0.0" y="78" width="188" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Include Numbers" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pp2-JH-nB8">
-                                                        <rect key="frame" x="0.0" y="0.0" width="130.33333333333334" height="31"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="123" height="31"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="31" id="tc0-0k-DOs"/>
                                                         </constraints>
@@ -138,7 +139,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MFm-Ve-8Vl" customClass="PasswordAttributeSwitch" customModule="NewPass" customModuleProvider="target">
-                                                        <rect key="frame" x="146.33333333333334" y="0.0" width="51" height="31"/>
+                                                        <rect key="frame" x="139" y="0.0" width="51" height="31"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="31" id="Hqw-0N-9vb"/>
                                                         </constraints>
@@ -150,10 +151,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="za1-H9-2k0">
-                                                <rect key="frame" x="0.0" y="117" width="195.33333333333334" height="31"/>
+                                                <rect key="frame" x="0.0" y="117" width="188" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Include Symbols" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Tg-Xw-NO0">
-                                                        <rect key="frame" x="0.0" y="0.0" width="130.33333333333334" height="31"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="123" height="31"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="31" id="nFK-ln-ywp"/>
                                                         </constraints>
@@ -162,7 +163,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IVY-5G-hkH" customClass="PasswordAttributeSwitch" customModule="NewPass" customModuleProvider="target">
-                                                        <rect key="frame" x="146.33333333333334" y="0.0" width="51" height="31"/>
+                                                        <rect key="frame" x="139" y="0.0" width="51" height="31"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="31" id="Ymt-Xt-tSc"/>
                                                         </constraints>
@@ -191,22 +192,28 @@
                                 <color key="backgroundColor" red="0.19215686274509802" green="0.19215686274509802" blue="0.19215686274509802" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="exQ-vP-uMc" secondAttribute="trailing" constant="24" id="3Gb-hR-79X"/>
-                                    <constraint firstItem="sNl-OK-RZN" firstAttribute="top" secondItem="exQ-vP-uMc" secondAttribute="bottom" constant="70" id="5Sm-tr-mp8"/>
+                                    <constraint firstItem="sNl-OK-RZN" firstAttribute="top" relation="greaterThanOrEqual" secondItem="exQ-vP-uMc" secondAttribute="bottom" constant="16" id="5Sm-tr-mp8"/>
                                     <constraint firstItem="sNl-OK-RZN" firstAttribute="centerX" secondItem="szE-6Y-gZ0" secondAttribute="centerX" id="6CO-qz-81X"/>
-                                    <constraint firstItem="exQ-vP-uMc" firstAttribute="top" relation="greaterThanOrEqual" secondItem="zZw-Ph-LnC" secondAttribute="bottom" constant="8" id="E9B-RX-He7"/>
+                                    <constraint firstItem="exQ-vP-uMc" firstAttribute="top" relation="greaterThanOrEqual" secondItem="zZw-Ph-LnC" secondAttribute="bottom" constant="16" id="E9B-RX-He7"/>
                                     <constraint firstItem="zZw-Ph-LnC" firstAttribute="top" secondItem="szE-6Y-gZ0" secondAttribute="top" constant="24" id="EgR-Lz-6be"/>
                                     <constraint firstItem="zZw-Ph-LnC" firstAttribute="centerX" secondItem="szE-6Y-gZ0" secondAttribute="centerX" id="H8n-gY-Pyc"/>
                                     <constraint firstAttribute="trailing" secondItem="BwI-5b-HoJ" secondAttribute="trailing" constant="20" id="Jfp-Xi-SO1"/>
+                                    <constraint firstItem="sNl-OK-RZN" firstAttribute="top" relation="lessThanOrEqual" secondItem="exQ-vP-uMc" secondAttribute="bottom" constant="56" id="LfV-If-hUi"/>
                                     <constraint firstItem="dVw-3Y-dlB" firstAttribute="top" secondItem="1Co-qg-iHb" secondAttribute="bottom" constant="8" id="M5E-8a-gE5"/>
+                                    <constraint firstItem="exQ-vP-uMc" firstAttribute="top" secondItem="zZw-Ph-LnC" secondAttribute="bottom" priority="249" constant="86" id="Nig-Ob-BOZ"/>
+                                    <constraint firstItem="1Co-qg-iHb" firstAttribute="top" relation="lessThanOrEqual" secondItem="sNl-OK-RZN" secondAttribute="bottom" priority="250" constant="24" id="PbI-vH-61z"/>
                                     <constraint firstItem="1Co-qg-iHb" firstAttribute="leading" secondItem="szE-6Y-gZ0" secondAttribute="leading" constant="8" id="QWw-2c-SsI"/>
+                                    <constraint firstItem="BwI-5b-HoJ" firstAttribute="top" secondItem="dVw-3Y-dlB" secondAttribute="bottom" priority="250" constant="56" id="S3r-q9-Z1y"/>
+                                    <constraint firstItem="exQ-vP-uMc" firstAttribute="top" relation="lessThanOrEqual" secondItem="zZw-Ph-LnC" secondAttribute="bottom" constant="169.66666666666669" id="W8O-RV-tlf"/>
                                     <constraint firstAttribute="trailing" secondItem="dVw-3Y-dlB" secondAttribute="trailing" constant="87" id="cJa-cP-4ae"/>
                                     <constraint firstAttribute="bottom" secondItem="BwI-5b-HoJ" secondAttribute="bottom" constant="40" id="fLP-sF-7he"/>
-                                    <constraint firstItem="1Co-qg-iHb" firstAttribute="top" secondItem="sNl-OK-RZN" secondAttribute="bottom" constant="64" id="hSi-Iu-UdG"/>
+                                    <constraint firstItem="1Co-qg-iHb" firstAttribute="top" relation="greaterThanOrEqual" secondItem="sNl-OK-RZN" secondAttribute="bottom" constant="24" id="hSi-Iu-UdG"/>
                                     <constraint firstAttribute="trailing" secondItem="1Co-qg-iHb" secondAttribute="trailing" constant="8" id="i0h-Qp-ljq"/>
                                     <constraint firstItem="BwI-5b-HoJ" firstAttribute="leading" secondItem="szE-6Y-gZ0" secondAttribute="leading" constant="20" id="iZY-xJ-WG7"/>
                                     <constraint firstItem="dVw-3Y-dlB" firstAttribute="leading" secondItem="szE-6Y-gZ0" secondAttribute="leading" constant="87" id="jAI-8s-IM1"/>
+                                    <constraint firstItem="1Co-qg-iHb" firstAttribute="top" secondItem="sNl-OK-RZN" secondAttribute="bottom" priority="250" constant="63.999999999999886" id="mMQ-sk-yoH"/>
                                     <constraint firstItem="exQ-vP-uMc" firstAttribute="leading" secondItem="szE-6Y-gZ0" secondAttribute="leading" constant="24" id="nnP-NL-U8Q"/>
-                                    <constraint firstItem="BwI-5b-HoJ" firstAttribute="top" secondItem="dVw-3Y-dlB" secondAttribute="bottom" constant="56" id="ntw-rH-B9d"/>
+                                    <constraint firstItem="BwI-5b-HoJ" firstAttribute="top" relation="lessThanOrEqual" secondItem="dVw-3Y-dlB" secondAttribute="bottom" constant="24" id="ntw-rH-B9d"/>
                                 </constraints>
                             </view>
                         </subviews>
