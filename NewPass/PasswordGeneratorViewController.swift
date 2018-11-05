@@ -30,10 +30,10 @@ class PasswordGeneratorViewController: UIViewController {
     @IBOutlet weak var passwordLabel2BottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var passwordLengthLabel: UILabel!
     @IBOutlet weak var passwordLengthSlider: UISlider!
-    @IBOutlet weak var alphabetSwitch: PasswordAttributeSwitch!
+    @IBOutlet weak var lowercaseLetterSwitch: PasswordAttributeSwitch!
+    @IBOutlet weak var uppercaseLetterSwitch: PasswordAttributeSwitch!
     @IBOutlet weak var numberSwitch: PasswordAttributeSwitch!
     @IBOutlet weak var symbolSwitch: PasswordAttributeSwitch!
-    @IBOutlet weak var uppercaseSwitch: PasswordAttributeSwitch!
     @IBOutlet weak var generatePasswordButton: UIButton!
     
     // Change status bar to light color for app's dark background
@@ -46,13 +46,13 @@ class PasswordGeneratorViewController: UIViewController {
         
         generatePasswordButton.addTarget(self, action: #selector(generatePasswordTouchBegan(_:)), for: .touchDown)
         
-        passwordSwitches = [alphabetSwitch, numberSwitch, symbolSwitch, uppercaseSwitch]
+        passwordSwitches = [lowercaseLetterSwitch, numberSwitch, symbolSwitch, uppercaseLetterSwitch]
         
         // Assign attributes to password switches
-        alphabetSwitch.attributeType = .containsAlphabet
+        lowercaseLetterSwitch.attributeType = .containsLowercaseLetters
+        uppercaseLetterSwitch.attributeType = .containsUppercaseLetters
         numberSwitch.attributeType = .containsNumbers
         symbolSwitch.attributeType = .containsSymbols
-        uppercaseSwitch.attributeType = .containsUppercaseLetters
         
         // Roundify view corners
         passwordLabelViewContainer.roundify(cornerRadius: 6)
@@ -185,10 +185,10 @@ class PasswordGeneratorViewController: UIViewController {
     private func updateSwitchesToInitialState() {
         for attribute in viewModel.passwordAttributes {
             switch attribute {
-            case .containsAlphabet:
-                alphabetSwitch.setOn(true, animated: false)
+            case .containsLowercaseLetters:
+                lowercaseLetterSwitch.setOn(true, animated: false)
             case .containsUppercaseLetters:
-                uppercaseSwitch.setOn(true, animated: false)
+                uppercaseLetterSwitch.setOn(true, animated: false)
             case .containsNumbers:
                 numberSwitch.setOn(true, animated: false)
             case .containsSymbols:

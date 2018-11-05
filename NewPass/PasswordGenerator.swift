@@ -21,7 +21,7 @@ struct Password {
     private static func constructedPasswordString(using attributes: [PasswordAttribute]) -> String {
         var constructedPasswordString = ""
         for attribute in attributes {
-            let alphabet = PasswordAttribute.containsAlphabet.rawValue
+            let lowercasedAlphabet = PasswordAttribute.containsLowercaseLetters.rawValue
             let uppercasedAlphabet = PasswordAttribute.containsUppercaseLetters.rawValue
             let numbers = PasswordAttribute.containsNumbers.rawValue
             let symbols = PasswordAttribute.containsSymbols.rawValue
@@ -31,8 +31,8 @@ struct Password {
                 constructedPasswordString += randomize(string: numbers)
             case .containsSymbols:
                 constructedPasswordString += randomize(string: symbols)
-            case .containsAlphabet:
-                constructedPasswordString += randomize(string: alphabet)
+            case .containsLowercaseLetters:
+                constructedPasswordString += randomize(string: lowercasedAlphabet)
             case .containsUppercaseLetters:
                 constructedPasswordString += randomize(string: uppercasedAlphabet)
             }
@@ -57,7 +57,7 @@ struct Password {
     private static func allAttributeCharsPresent(for passwordString: String, attributes: [PasswordAttribute]) -> Bool {
         for attribute in attributes {
             switch attribute {
-            case .containsAlphabet:
+            case .containsLowercaseLetters:
                 if passwordString.rangeOfCharacter(from: PasswordCharacterSet.alphabet) != nil {
                     continue
                 } else { return false }
