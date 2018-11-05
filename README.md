@@ -3,7 +3,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/LFAlertController.svg?style=flat)](http://cocoapods.org/pods/LFAlertController)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-Easy to use password generator for creating secure passwords
+A simple iOS app for quickly creating secure passwords.
 
 <img src="https://i.imgur.com/IYz8RCe.png" width="358" heigth="640" />
 
