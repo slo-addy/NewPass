@@ -18,7 +18,7 @@ class PasswordGeneratorViewModel {
         return passwordAttributes != []
     }
     
-    init(passwordLength: Int = Constants.DEFAULT_PASSWORD_LENGTH, passwordAttributes: [PasswordAttribute] = [.containsUppercaseLetters, .containsUppercaseLetters, .containsNumbers]) {
+    init(passwordLength: Int = Constants.DEFAULT_PASSWORD_LENGTH, passwordAttributes: [PasswordAttribute] = [.containsLowercaseLetters, .containsUppercaseLetters, .containsNumbers]) {
         self.passwordLength = passwordLength
         self.passwordAttributes = passwordAttributes
     }
