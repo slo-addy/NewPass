@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -75,13 +76,13 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sNl-OK-RZN">
-                                        <rect key="frame" x="90.000000000000014" y="323.66666666666669" width="195.33333333333337" height="148"/>
+                                        <rect key="frame" x="93.666666666666686" y="323.66666666666669" width="188" height="148"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="V8r-If-vMN">
-                                                <rect key="frame" x="0.0" y="0.0" width="195.33333333333334" height="31"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="188" height="31"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Lowercase Alphabet" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N30-r4-DB3">
-                                                        <rect key="frame" x="0.0" y="0.0" width="130.33333333333334" height="31"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Lowercase Letters" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N30-r4-DB3">
+                                                        <rect key="frame" x="0.0" y="0.0" width="123" height="31"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="31" id="Hxm-cR-uXM"/>
                                                         </constraints>
@@ -90,7 +91,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OA6-SW-Lwf" customClass="PasswordAttributeSwitch" customModule="NewPass" customModuleProvider="target">
-                                                        <rect key="frame" x="146.33333333333334" y="0.0" width="51" height="31"/>
+                                                        <rect key="frame" x="139" y="0.0" width="51" height="31"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="31" id="e1a-2n-Vzx"/>
                                                         </constraints>
@@ -102,10 +103,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="BzC-jb-riE">
-                                                <rect key="frame" x="0.0" y="39" width="195.33333333333334" height="31"/>
+                                                <rect key="frame" x="0.0" y="39" width="188" height="31"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Uppercase Alphabet" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mnT-nl-GRu">
-                                                        <rect key="frame" x="0.0" y="0.0" width="130.33333333333334" height="31"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Uppercase Letters" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mnT-nl-GRu">
+                                                        <rect key="frame" x="0.0" y="0.0" width="123" height="31"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="31" id="TVG-Uk-4dL"/>
                                                         </constraints>
@@ -114,7 +115,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CRv-EU-PEt" customClass="PasswordAttributeSwitch" customModule="NewPass" customModuleProvider="target">
-                                                        <rect key="frame" x="146.33333333333334" y="0.0" width="51" height="31"/>
+                                                        <rect key="frame" x="139" y="0.0" width="51" height="31"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="31" id="TCs-Ho-Xuj"/>
                                                         </constraints>
@@ -126,10 +127,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="6qT-xO-QgX">
-                                                <rect key="frame" x="0.0" y="78" width="195.33333333333334" height="31"/>
+                                                <rect key="frame" x="0.0" y="78" width="188" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Include Numbers" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pp2-JH-nB8">
-                                                        <rect key="frame" x="0.0" y="0.0" width="130.33333333333334" height="31"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="123" height="31"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="31" id="tc0-0k-DOs"/>
                                                         </constraints>
@@ -138,7 +139,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MFm-Ve-8Vl" customClass="PasswordAttributeSwitch" customModule="NewPass" customModuleProvider="target">
-                                                        <rect key="frame" x="146.33333333333334" y="0.0" width="51" height="31"/>
+                                                        <rect key="frame" x="139" y="0.0" width="51" height="31"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="31" id="Hqw-0N-9vb"/>
                                                         </constraints>
@@ -150,10 +151,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="za1-H9-2k0">
-                                                <rect key="frame" x="0.0" y="117" width="195.33333333333334" height="31"/>
+                                                <rect key="frame" x="0.0" y="117" width="188" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Include Symbols" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Tg-Xw-NO0">
-                                                        <rect key="frame" x="0.0" y="0.0" width="130.33333333333334" height="31"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="123" height="31"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="31" id="nFK-ln-ywp"/>
                                                         </constraints>
@@ -162,7 +163,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IVY-5G-hkH" customClass="PasswordAttributeSwitch" customModule="NewPass" customModuleProvider="target">
-                                                        <rect key="frame" x="146.33333333333334" y="0.0" width="51" height="31"/>
+                                                        <rect key="frame" x="139" y="0.0" width="51" height="31"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="31" id="Ymt-Xt-tSc"/>
                                                         </constraints>
