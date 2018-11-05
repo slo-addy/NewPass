@@ -133,7 +133,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.19210790134151781" green="0.19117984384711437" blue="0.19303595883592128" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.19215686274509802" green="0.19215686274509802" blue="0.19215686274509802" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstItem="xho-UB-5od" firstAttribute="top" secondItem="JAc-6t-WSv" secondAttribute="bottom" constant="8" id="18E-14-2pi"/>
                                     <constraint firstAttribute="trailing" secondItem="exQ-vP-uMc" secondAttribute="trailing" constant="24" id="3Gb-hR-79X"/>
