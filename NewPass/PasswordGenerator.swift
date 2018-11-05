@@ -56,7 +56,6 @@ struct Password {
     
     private static func allAttributeCharsPresent(for passwordString: String, attributes: [PasswordAttribute]) -> Bool {
         for attribute in attributes {
-            // TODO: This is repetative. Maybe can clean this up a little
             switch attribute {
             case .containsAlphabet:
                 if passwordString.rangeOfCharacter(from: PasswordCharacterSet.alphabet) != nil {

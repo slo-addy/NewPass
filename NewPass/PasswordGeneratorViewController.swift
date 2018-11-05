@@ -210,7 +210,6 @@ class PasswordGeneratorViewController: UIViewController {
     }
 }
 
-// TODO: Fix this. Not working
 extension PasswordGeneratorViewController {
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
