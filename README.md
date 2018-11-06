@@ -17,8 +17,8 @@ A simple iOS app for quickly creating secure passwords.
 
 ## Requirements
 
-- iOS 11.4+
-- Xcode 9.3+
+- iOS 11.0+
+- Xcode 9.0+
 
 ## Meta
 
