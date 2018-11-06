@@ -396,7 +396,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Addison Francisco (RXSU9NYHLN)";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = FK4RW7EF3V;
 				INFOPLIST_FILE = NewPass/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
@@ -406,6 +407,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.addmancorp.NewPass;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = NewPassDevelopmentProfile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -417,7 +419,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Addison Francisco (FK4RW7EF3V)";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = FK4RW7EF3V;
 				INFOPLIST_FILE = NewPass/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
@@ -427,6 +430,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.addmancorp.NewPass;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = NewPassDistributionProfile;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
