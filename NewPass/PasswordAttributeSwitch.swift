@@ -9,14 +9,15 @@
 import UIKit
 
 class PasswordAttributeSwitch: UISwitch {
-    
-    var attributeType: PasswordAttribute?
+
+    // all `PasswordAttributeSwitch` must have an attributeType, so this does not need to be optional.
+    // We just have to be certain that we set this value before we need it (e.g. in viewDidLoad) or we'll crash.
+    var attributeType: PasswordAttribute!
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
+
         // All switches need to be off initially
         self.isOn = false
     }
 }
-
