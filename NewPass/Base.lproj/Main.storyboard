@@ -31,16 +31,16 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="exQ-vP-uMc">
-                                                <rect key="frame" x="16" y="20" width="288" height="32"/>
+                                                <rect key="frame" x="16" y="20" width="288" height="48"/>
                                                 <subviews>
                                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Qya-PP-pYb" customClass="PasswordLabel" customModule="NewPass" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="37" width="288" height="19"/>
+                                                        <rect key="frame" x="0.0" y="48" width="288" height="48"/>
                                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="16"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="a8i-8p-u4X" customClass="PasswordLabel" customModule="NewPass" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="5" width="288" height="19"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="288" height="48"/>
                                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="16"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -48,11 +48,13 @@
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="32" id="DMh-Jq-LdS"/>
+                                                    <constraint firstAttribute="height" constant="48" id="DMh-Jq-LdS"/>
                                                     <constraint firstItem="a8i-8p-u4X" firstAttribute="leading" secondItem="exQ-vP-uMc" secondAttribute="leading" id="Eof-7K-SCM"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Qya-PP-pYb" secondAttribute="bottom" constant="-24" id="IGi-m1-u48"/>
-                                                    <constraint firstAttribute="bottom" secondItem="a8i-8p-u4X" secondAttribute="bottom" constant="8" id="Lsk-pD-qzb"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Qya-PP-pYb" secondAttribute="bottom" constant="-48" id="IGi-m1-u48"/>
+                                                    <constraint firstAttribute="bottom" secondItem="a8i-8p-u4X" secondAttribute="bottom" id="Md8-zz-JNw"/>
+                                                    <constraint firstItem="Qya-PP-pYb" firstAttribute="height" secondItem="exQ-vP-uMc" secondAttribute="height" id="YUB-P4-61h"/>
                                                     <constraint firstItem="Qya-PP-pYb" firstAttribute="centerX" secondItem="exQ-vP-uMc" secondAttribute="centerX" id="hHl-X1-Qk6"/>
+                                                    <constraint firstItem="a8i-8p-u4X" firstAttribute="height" secondItem="exQ-vP-uMc" secondAttribute="height" id="hap-5M-pyG"/>
                                                     <constraint firstItem="Qya-PP-pYb" firstAttribute="width" secondItem="exQ-vP-uMc" secondAttribute="width" id="qiq-gQ-k6c"/>
                                                     <constraint firstAttribute="trailing" secondItem="a8i-8p-u4X" secondAttribute="trailing" id="xtu-Tc-W76"/>
                                                 </constraints>
@@ -244,7 +246,7 @@
                         <outlet property="lowercaseLetterSwitch" destination="OA6-SW-Lwf" id="00u-fG-eC0"/>
                         <outlet property="numberSwitch" destination="MFm-Ve-8Vl" id="z8s-xC-mgD"/>
                         <outlet property="passwordLabel1" destination="a8i-8p-u4X" id="rFL-ug-oWh"/>
-                        <outlet property="passwordLabel1BottomConstraint" destination="Lsk-pD-qzb" id="Gv5-fW-gqv"/>
+                        <outlet property="passwordLabel1BottomConstraint" destination="Md8-zz-JNw" id="nP6-dz-ywx"/>
                         <outlet property="passwordLabel2" destination="Qya-PP-pYb" id="eXh-BE-VPg"/>
                         <outlet property="passwordLabel2BottomConstraint" destination="IGi-m1-u48" id="oTu-ca-yJ0"/>
                         <outlet property="passwordLabelViewContainer" destination="exQ-vP-uMc" id="cHb-qb-gmU"/>

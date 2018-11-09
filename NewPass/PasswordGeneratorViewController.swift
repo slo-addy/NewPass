@@ -168,15 +168,15 @@ class PasswordGeneratorViewController: UIViewController {
             self.passwordLabel1.alpha = 0
             self.passwordLabel1BottomConstraint.constant = 32
             self.passwordLabel2.alpha = 1
-            self.passwordLabel2BottomConstraint.constant = 8
+            self.passwordLabel2BottomConstraint.constant = 0
             self.view.layoutIfNeeded()
         }
         
         func performLayoutUpdatesForCompletion() {
             self.passwordLabel1.alpha = 1
-            self.passwordLabel1BottomConstraint.constant = 8
+            self.passwordLabel1BottomConstraint.constant = 0
             self.passwordLabel2.alpha = 0
-            self.passwordLabel2BottomConstraint.constant = -16
+            self.passwordLabel2BottomConstraint.constant = -48
             self.view.layoutIfNeeded()
         }
     }
