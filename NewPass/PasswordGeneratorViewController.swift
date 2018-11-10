@@ -53,6 +53,7 @@ class PasswordGeneratorViewController: UIViewController {
         uppercaseLetterSwitch.attributeType = .containsUppercaseLetters
         numberSwitch.attributeType = .containsNumbers
         symbolSwitch.attributeType = .containsSymbols
+        symbolSwitch.initialState = false // only this one should start off.
 
         // Roundify view corners
         passwordLabelViewContainer.roundify(cornerRadius: 6)
@@ -165,50 +166,12 @@ class PasswordGeneratorViewController: UIViewController {
                         self.passwordLabel1.attributedText = self.passwordLabel2.attributedText
                         performLayoutUpdatesForCompletion()
 
-                        // I thought this part was a little confusing because it took me a moment to realise that ".highlighted" implies that the button
-                        // is still being held down. Take a look below to see how I improved it to make it easier for others to
-                        // more quickly understand what you are trying to acomplish here.
-
-                        // asside from my comment below, here is a quick syntax fix that also avoids using == to compare this enum:
                         if self.generatePasswordButton.isHighlighted {
                             // if we are still holding down the button, call this function again, but this time with less duration.
                             self.updateLabels(with: self.randomPasswordFromViewModel(), animationDuration: 0.07)
                         }
         })
 
-
-        // we don't need this anymore, because updateLabels can simply call the updateLabels from itself.
-        // I left animateWithReducedDuration here, commented out, so you could see some other comments I wrote before I realised we could delete it and just use recursion.
-
-        //        func animateWithReducedDuration(newPassword: NSAttributedString) {
-        //            self.passwordString = newPassword
-        //            updateLabelsForPassword()
-        //            UIView.animate(withDuration: 0.07,
-        //                           delay: 0,
-        //                           options: [],
-        //                           animations: {
-        //                            performLayoutUpdatesForAnimation()
-        //            },
-        //                           completion: { _ in
-        //                            self.generatePasswordButton.isEnabled = true
-        //                            self.passwordLabel1.attributedText = self.passwordLabel2.attributedText
-        //                            performLayoutUpdatesForCompletion()
-        //
-        //                            guard self.viewModel.hasSelectedPasswordAttributes else {     // <-- we don't really need this anymore either, since we check in one spot now.
-        //                                self.presentAlertForEmptyAttributes()
-        //                                return
-        //                            }
-        //
-        //                            // I have a comment below (near motionShake) about how I prefer using switch statements for comparing enums.
-        //                            // you can use swift extensions - even on things you didn't author - to make this super easy to read.
-        //                            // (by the way, I saw you use extensions really well with roundify 🎉 ... so you may already know some of this stuff. 😀)
-        //                            // I wrote a simple extention on UIButton at the bottom of this file.
-        //
-        //                            if self.generatePasswordButton.shouldKeepGoing() {
-        //                                animateWithReducedDuration(newPassword: self.randomPasswordFromViewModel())
-        //                            }
-        //            })
-        //        }
 
         func performLayoutUpdatesForAnimation() {
             self.passwordLabel1.alpha = 0
@@ -230,7 +193,8 @@ class PasswordGeneratorViewController: UIViewController {
     /// This function is used only for updating the switches to the initial default state
     private func updateSwitchesToInitialState() {
         passwordSwitches.forEach { passwordSwitch in
-            passwordSwitch.setOn(true, animated: false)
+
+            passwordSwitch.setToInitialState()
         }
     }
 
@@ -256,24 +220,6 @@ extension PasswordGeneratorViewController {
             // do nothing for other cases.
             // sort of a style thing, but I highly recommend using switches for all enums. using == can get messy and confusing fast.
             break
-        }
-    }
-}
-
-
-// NOTE: while this demonstrates my point from ealier, this is actually a pretty bad idea to do here. this would allow ALL users of UIButton to
-// use this function, which probably isn't what you want. On the one hand, it is easer to understand you intend with something
-// like this (e.g. ".shouldKeepGoing" means that we should keep going, instead of having to infer that based on the highlight state of the button.)
-// But on the other hand, there are other considerations asside from readability. For example, probably not all UIButtons need this function.
-// A better way to do this would be to subclass UIButton and only extend your subclass to include this extra function.
-
-fileprivate extension UIButton { // until we write a proper subclass, for now we can at least we can make it fileprivate to isolate it to this one file.
-    func shouldKeepGoing() -> Bool {
-        switch self.state {
-        case UIControl.State.highlighted:
-            return true
-        default:
-            return false
         }
     }
 }

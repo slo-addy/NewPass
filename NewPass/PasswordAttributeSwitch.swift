@@ -14,10 +14,16 @@ class PasswordAttributeSwitch: UISwitch {
     // We just have to be certain that we set this value before we need it (e.g. in viewDidLoad) or we'll crash.
     var attributeType: PasswordAttribute!
 
+    /// The state of the switch the first time the user launches the app 
+    var initialState: Bool = true
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        setToInitialState()
+    }
 
-        // All switches need to be off initially
-        self.isOn = false
+    public func setToInitialState() {
+        self.isOn = initialState
+        self.setOn(initialState, animated: false)
     }
 }
