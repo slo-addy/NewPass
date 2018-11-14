@@ -35,33 +35,33 @@ class PasswordGeneratorViewController: UIViewController {
     @IBOutlet weak var numberSwitch: PasswordAttributeSwitch!
     @IBOutlet weak var symbolSwitch: PasswordAttributeSwitch!
     @IBOutlet weak var generatePasswordButton: UIButton!
-    
+
     // Change status bar to light color for app's dark background
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         generatePasswordButton.addTarget(self, action: #selector(generatePasswordTouchBegan(_:)), for: .touchDown)
-        
+
         passwordSwitches = [lowercaseLetterSwitch, numberSwitch, symbolSwitch, uppercaseLetterSwitch]
-        
+
         // Assign attributes to password switches
         lowercaseLetterSwitch.attributeType = .containsLowercaseLetters
         uppercaseLetterSwitch.attributeType = .containsUppercaseLetters
         numberSwitch.attributeType = .containsNumbers
         symbolSwitch.attributeType = .containsSymbols
-        
+
         // Roundify view corners
         passwordLabelViewContainer.roundify(cornerRadius: 6)
         generatePasswordButton.roundify(cornerRadius: 6)
-        
+
         // Configure default password and update views
         defaultPasswordSetup()
     }
-    
+
     @IBAction func attributeSwitchDidChange(_ attributeSwitch: PasswordAttributeSwitch) {
         viewModel.passwordAttributes.removeAll()
         var array = [PasswordAttributeSwitch]()
@@ -74,12 +74,12 @@ class PasswordGeneratorViewController: UIViewController {
             }
         }
     }
-    
+
     @IBAction func passwordLengthSliderDidMove(_ sender: Any) {
         passwordLength = Int(passwordLengthSlider.value)
         passwordLengthLabel.text = "Password Length: \(passwordLength)"
     }
-    
+
     @IBAction @objc func generatePasswordTouchBegan(_ sender: UIButton) {
         if viewModel.hasSelectedPasswordAttributes {
             randomPasswordFromViewModel()
@@ -88,7 +88,7 @@ class PasswordGeneratorViewController: UIViewController {
             presentAlertForEmptyAttributes()
         }
     }
-    
+
     private func randomPasswordFromViewModel() {
         if viewModel.hasSelectedPasswordAttributes {
             passwordString = viewModel.generateRandomPassword(length: passwordLength)
@@ -97,12 +97,12 @@ class PasswordGeneratorViewController: UIViewController {
             presentAlertForEmptyAttributes()
         }
     }
-    
+
     private func updateLabelsForPassword() {
         passwordLabel2.attributedText = passwordString
         passwordLengthLabel.text = "Password Length: \(passwordLength)"
     }
-    
+
     private func defaultPasswordSetup() {
         // Generate a default password when view loads
         passwordString = viewModel.generateRandomPassword(length: passwordLength)
@@ -114,11 +114,11 @@ class PasswordGeneratorViewController: UIViewController {
         // Update labels
         passwordLabel1.attributedText = passwordString
     }
-    
+
     private func updateLabelsWithAnimation() {
         generatePasswordButton.isEnabled = false
         updateLabelsForPassword()
-        
+
         UIView.animate(withDuration: 0.3,
                        delay: 0,
                        usingSpringWithDamping: 0.5,
@@ -131,14 +131,14 @@ class PasswordGeneratorViewController: UIViewController {
                         self.generatePasswordButton.isEnabled = true
                         self.passwordLabel1.attributedText = self.passwordLabel2.attributedText
                         performLayoutUpdatesForCompletion()
-                        
+
                         if self.generatePasswordButton.state == .highlighted {
                             self.randomPasswordFromViewModel()
                             self.updateLabelsForPassword()
                             animateWithReducedDuration()
                         }                        
         })
-        
+
         func animateWithReducedDuration() {
             UIView.animate(withDuration: 0.07,
                            delay: 0,
@@ -150,12 +150,12 @@ class PasswordGeneratorViewController: UIViewController {
                             self.generatePasswordButton.isEnabled = true
                             self.passwordLabel1.attributedText = self.passwordLabel2.attributedText
                             performLayoutUpdatesForCompletion()
-                            
+
                             guard self.viewModel.hasSelectedPasswordAttributes else {
                                 self.presentAlertForEmptyAttributes()
                                 return
                             }
-                            
+
                             if self.generatePasswordButton.state == .highlighted {
                                 self.randomPasswordFromViewModel()
                                 self.updateLabelsForPassword()
@@ -163,7 +163,7 @@ class PasswordGeneratorViewController: UIViewController {
                             }
             })
         }
-        
+
         func performLayoutUpdatesForAnimation() {
             self.passwordLabel1.alpha = 0
             self.passwordLabel1BottomConstraint.constant = 32
@@ -171,7 +171,7 @@ class PasswordGeneratorViewController: UIViewController {
             self.passwordLabel2BottomConstraint.constant = 0
             self.view.layoutIfNeeded()
         }
-        
+
         func performLayoutUpdatesForCompletion() {
             self.passwordLabel1.alpha = 1
             self.passwordLabel1BottomConstraint.constant = 0
@@ -180,23 +180,16 @@ class PasswordGeneratorViewController: UIViewController {
             self.view.layoutIfNeeded()
         }
     }
-    
+
     /// This function is used only for updating the switches to the initial default state
     private func updateSwitchesToInitialState() {
-        for attribute in viewModel.passwordAttributes {
-            switch attribute {
-            case .containsLowercaseLetters:
-                lowercaseLetterSwitch.setOn(true, animated: false)
-            case .containsUppercaseLetters:
-                uppercaseLetterSwitch.setOn(true, animated: false)
-            case .containsNumbers:
-                numberSwitch.setOn(true, animated: false)
-            case .containsSymbols:
-                symbolSwitch.setOn(true, animated: false)
+        for passwordSwitch in passwordSwitches {
+            if viewModel.passwordAttributes.contains(passwordSwitch.attributeType) {
+                passwordSwitch.setOn(true, animated: true)
             }
         }
     }
-    
+
     private func presentAlertForEmptyAttributes() {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: "Hold On", message: "You need at least 1 attribute selected to generate a password.", preferredStyle: UIAlertControllerStyle.alert)

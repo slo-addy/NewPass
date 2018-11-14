@@ -10,13 +10,13 @@ import UIKit
 
 class PasswordAttributeSwitch: UISwitch {
     
-    var attributeType: PasswordAttribute?
+    // Force unwrapped because all password switches must have an attribute assigned to them
+    var attributeType: PasswordAttribute!
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
+
         // All switches need to be off initially
         self.isOn = false
     }
 }
-
