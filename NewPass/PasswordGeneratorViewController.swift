@@ -63,15 +63,8 @@ class PasswordGeneratorViewController: UIViewController {
     }
 
     @IBAction func attributeSwitchDidChange(_ attributeSwitch: PasswordAttributeSwitch) {
-        viewModel.passwordAttributes.removeAll()
-        var array = [PasswordAttributeSwitch]()
-        for _ in passwordSwitches {
-            array = passwordSwitches.filter { $0.isOn }
-        }
-        array.forEach { s in
-            if let attribute = s.attributeType {
-                viewModel.passwordAttributes.append(attribute)
-            }
+        viewModel.passwordAttributes = passwordSwitches.filter { $0.isOn }.map { switchThatIsOn -> PasswordAttribute in
+            return switchThatIsOn.attributeType
         }
     }
 
