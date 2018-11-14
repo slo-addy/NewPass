@@ -129,7 +129,7 @@ class PasswordGeneratorViewController: UIViewController {
                             self.randomPasswordFromViewModel()
                             self.updateLabelsForPassword()
                             animateWithReducedDuration()
-                        }                        
+                        }
         })
 
         func animateWithReducedDuration() {
@@ -198,9 +198,12 @@ class PasswordGeneratorViewController: UIViewController {
 
 extension PasswordGeneratorViewController {
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
-        if motion == .motionShake {
+        switch motion {
+        case .motionShake:
             randomPasswordFromViewModel()
             updateLabelsWithAnimation()
+        default:
+            break
         }
     }
 }
