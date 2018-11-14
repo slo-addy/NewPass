@@ -9,7 +9,7 @@
 import UIKit
 
 class PasswordAttributeSwitch: UISwitch {
-    
+
     // Force unwrapped because all password switches must have an attribute assigned to them
     var attributeType: PasswordAttribute!
 

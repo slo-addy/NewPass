@@ -85,7 +85,7 @@ class PasswordGeneratorViewController: UIViewController {
     private func randomPasswordFromViewModel() {
         if viewModel.hasSelectedPasswordAttributes {
             passwordString = viewModel.generateRandomPassword(length: passwordLength)
-            HapticEngine.hapticTap(impactStyle: .light)
+            HapticEngine.shared.hapticTap(impactStyle: .light)
         } else {
             presentAlertForEmptyAttributes()
         }
@@ -191,7 +191,7 @@ class PasswordGeneratorViewController: UIViewController {
             }))
             self.present(alert, animated: true, completion: {
             })
-            HapticEngine.hapticWarning()
+            HapticEngine.shared.hapticWarning()
         }
     }
 }

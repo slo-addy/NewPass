@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 
 class PasswordGeneratorViewModel {
-    
+
+    let passwordGenerator = PasswordGenerator()
     var passwordLength: Int
     // Initial password attributes match default attributes
     var passwordAttributes: [PasswordAttribute]
@@ -24,7 +25,7 @@ class PasswordGeneratorViewModel {
     }
 
     func generateRandomPassword(length: Int) -> NSAttributedString {
-        let randomPassword = Password.randomPassword(with: passwordAttributes, length: length)
+        let randomPassword = passwordGenerator.randomPassword(with: passwordAttributes, length: length)
 
         return attributedPasswordString(from: randomPassword)
     }

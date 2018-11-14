@@ -9,13 +9,15 @@
 import UIKit
 
 class HapticEngine {
-    
-    static func hapticWarning() {
+
+    static let shared = HapticEngine()
+
+    func hapticWarning() {
         let warningNotificationFeedbackGenerator = UINotificationFeedbackGenerator()
         warningNotificationFeedbackGenerator.notificationOccurred(.error)
     }
-    
-    static func hapticTap(impactStyle: UIImpactFeedbackStyle) {
+
+    func hapticTap(impactStyle: UIImpactFeedbackStyle) {
         let generator = UIImpactFeedbackGenerator(style: impactStyle)
         generator.impactOccurred()
     }
