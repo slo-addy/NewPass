@@ -8,9 +8,7 @@
 
 import UIKit
 
-class HapticEngine {
-
-    static let shared = HapticEngine()
+struct HapticEngine {
 
     func hapticWarning() {
         let warningNotificationFeedbackGenerator = UINotificationFeedbackGenerator()

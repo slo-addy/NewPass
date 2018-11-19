@@ -46,7 +46,7 @@ class PasswordLabel: UILabel {
         if !menu.isMenuVisible {
             menu.setTargetRect(bounds, in: self)
             menu.setMenuVisible(true, animated: true)
-            HapticEngine.shared.hapticTap(impactStyle: .light)
+            HapticEngine().hapticTap(impactStyle: .light)
         }
     }
 
