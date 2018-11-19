@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_0" orientation="portrait">
+    <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,32 +15,26 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="PasswordGeneratorViewController" customModule="NewPass" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="szE-6Y-gZ0" userLabel="Outer Container View">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="yGf-Bb-xIM" userLabel="Inner Container View">
-                                        <rect key="frame" x="0.0" y="96" width="320" height="356"/>
+                                        <rect key="frame" x="0.0" y="201.66666666666669" width="414" height="520.33333333333326"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Password Length: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Co-qg-iHb">
-                                                <rect key="frame" x="84" y="278" width="152" height="16.5"/>
-                                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="14"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <view contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="exQ-vP-uMc">
-                                                <rect key="frame" x="16" y="20" width="288" height="32"/>
+                                                <rect key="frame" x="16" y="20.000000000000028" width="382" height="48"/>
                                                 <subviews>
                                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Qya-PP-pYb" customClass="PasswordLabel" customModule="NewPass" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="37" width="288" height="19"/>
+                                                        <rect key="frame" x="0.0" y="48" width="382" height="48"/>
                                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="16"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="a8i-8p-u4X" customClass="PasswordLabel" customModule="NewPass" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="5" width="288" height="19"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="48"/>
                                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="16"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -48,17 +42,19 @@
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="32" id="DMh-Jq-LdS"/>
+                                                    <constraint firstAttribute="height" constant="48" id="DMh-Jq-LdS"/>
                                                     <constraint firstItem="a8i-8p-u4X" firstAttribute="leading" secondItem="exQ-vP-uMc" secondAttribute="leading" id="Eof-7K-SCM"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Qya-PP-pYb" secondAttribute="bottom" constant="-24" id="IGi-m1-u48"/>
-                                                    <constraint firstAttribute="bottom" secondItem="a8i-8p-u4X" secondAttribute="bottom" constant="8" id="Lsk-pD-qzb"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Qya-PP-pYb" secondAttribute="bottom" constant="-48" id="IGi-m1-u48"/>
+                                                    <constraint firstAttribute="bottom" secondItem="a8i-8p-u4X" secondAttribute="bottom" id="Md8-zz-JNw"/>
+                                                    <constraint firstItem="Qya-PP-pYb" firstAttribute="height" secondItem="exQ-vP-uMc" secondAttribute="height" id="YUB-P4-61h"/>
                                                     <constraint firstItem="Qya-PP-pYb" firstAttribute="centerX" secondItem="exQ-vP-uMc" secondAttribute="centerX" id="hHl-X1-Qk6"/>
+                                                    <constraint firstItem="a8i-8p-u4X" firstAttribute="height" secondItem="exQ-vP-uMc" secondAttribute="height" id="hap-5M-pyG"/>
                                                     <constraint firstItem="Qya-PP-pYb" firstAttribute="width" secondItem="exQ-vP-uMc" secondAttribute="width" id="qiq-gQ-k6c"/>
                                                     <constraint firstAttribute="trailing" secondItem="a8i-8p-u4X" secondAttribute="trailing" id="xtu-Tc-W76"/>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sNl-OK-RZN">
-                                                <rect key="frame" x="66" y="104" width="188" height="148"/>
+                                                <rect key="frame" x="113" y="186.33333333333337" width="188" height="148"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="V8r-If-vMN">
                                                         <rect key="frame" x="0.0" y="0.0" width="188" height="31"/>
@@ -165,12 +161,24 @@
                                                 </constraints>
                                             </stackView>
                                             <slider opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="8" minValue="8" maxValue="32" translatesAutoresizingMaskIntoConstraints="NO" id="dVw-3Y-dlB">
-                                                <rect key="frame" x="97" y="302" width="126" height="31"/>
+                                                <rect key="frame" x="117" y="466.33333333333337" width="180" height="31"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="176" id="EhA-g2-EJo"/>
+                                                </constraints>
                                                 <color key="minimumTrackTintColor" red="0.12549019607843137" green="0.78431372549019607" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
                                                 <connections>
                                                     <action selector="passwordLengthSliderDidMove:" destination="BYZ-38-t0r" eventType="valueChanged" id="uEv-sa-qef"/>
                                                 </connections>
                                             </slider>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Password Length: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Co-qg-iHb">
+                                                <rect key="frame" x="119" y="442.33333333333337" width="176" height="16.333333333333314"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="176" id="ICs-6x-A9T"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="dVw-3Y-dlB" firstAttribute="centerX" secondItem="yGf-Bb-xIM" secondAttribute="centerX" id="8iG-OF-ve1"/>
@@ -180,18 +188,15 @@
                                             <constraint firstItem="sNl-OK-RZN" firstAttribute="centerY" secondItem="yGf-Bb-xIM" secondAttribute="centerY" id="N8C-CU-bbc"/>
                                             <constraint firstItem="1Co-qg-iHb" firstAttribute="centerX" secondItem="yGf-Bb-xIM" secondAttribute="centerX" id="PDv-Ny-FF1"/>
                                             <constraint firstItem="exQ-vP-uMc" firstAttribute="top" secondItem="yGf-Bb-xIM" secondAttribute="top" constant="20" id="Qdq-Dh-j8j"/>
-                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="436.32999999999998" id="ZKH-at-nxY"/>
-                                            <constraint firstAttribute="trailing" secondItem="dVw-3Y-dlB" secondAttribute="trailing" constant="99" id="cZG-0g-6bF"/>
                                             <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="dVw-3Y-dlB" secondAttribute="bottom" constant="43.333333333333258" id="dhl-Tw-Rvl"/>
                                             <constraint firstAttribute="trailing" secondItem="exQ-vP-uMc" secondAttribute="trailing" constant="16" id="iCL-fd-uN1"/>
                                             <constraint firstAttribute="bottom" secondItem="dVw-3Y-dlB" secondAttribute="bottom" priority="750" constant="43.5" id="l0q-rT-4fr"/>
-                                            <constraint firstItem="dVw-3Y-dlB" firstAttribute="leading" secondItem="yGf-Bb-xIM" secondAttribute="leading" constant="99" id="mPl-eg-paV"/>
                                             <constraint firstItem="exQ-vP-uMc" firstAttribute="leading" secondItem="yGf-Bb-xIM" secondAttribute="leading" constant="16" id="n4i-IS-wHe"/>
                                             <constraint firstAttribute="bottom" secondItem="dVw-3Y-dlB" secondAttribute="bottom" constant="24" id="y7s-II-qjL"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BwI-5b-HoJ">
-                                        <rect key="frame" x="20" y="460" width="280" height="48"/>
+                                        <rect key="frame" x="20" y="730" width="374" height="48"/>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.80000000000000004" blue="0.40000000000000002" alpha="0.79591181506849318" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="ihf-b0-DpZ"/>
@@ -205,7 +210,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="NewPass" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZw-Ph-LnC">
-                                        <rect key="frame" x="109.5" y="24" width="101.5" height="28"/>
+                                        <rect key="frame" x="156.33333333333334" y="24" width="101.33333333333334" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="28" id="GBl-62-lT2"/>
                                         </constraints>
@@ -244,7 +249,7 @@
                         <outlet property="lowercaseLetterSwitch" destination="OA6-SW-Lwf" id="00u-fG-eC0"/>
                         <outlet property="numberSwitch" destination="MFm-Ve-8Vl" id="z8s-xC-mgD"/>
                         <outlet property="passwordLabel1" destination="a8i-8p-u4X" id="rFL-ug-oWh"/>
-                        <outlet property="passwordLabel1BottomConstraint" destination="Lsk-pD-qzb" id="Gv5-fW-gqv"/>
+                        <outlet property="passwordLabel1BottomConstraint" destination="Md8-zz-JNw" id="nP6-dz-ywx"/>
                         <outlet property="passwordLabel2" destination="Qya-PP-pYb" id="eXh-BE-VPg"/>
                         <outlet property="passwordLabel2BottomConstraint" destination="IGi-m1-u48" id="oTu-ca-yJ0"/>
                         <outlet property="passwordLabelViewContainer" destination="exQ-vP-uMc" id="cHb-qb-gmU"/>
@@ -256,7 +261,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="34.782608695652179" y="32.142857142857139"/>
+            <point key="canvasLocation" x="33.75" y="31.690140845070424"/>
         </scene>
     </scenes>
 </document>
