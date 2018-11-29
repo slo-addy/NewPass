@@ -45,6 +45,7 @@ class PasswordGeneratorViewController: UIViewController {
         super.viewDidLoad()
 
         generatePasswordButton.addTarget(self, action: #selector(generatePasswordTouchBegan(_:)), for: .touchDown)
+        passwordLabel1.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(presentActionSheetForShare)))
 
         passwordSwitches = [lowercaseLetterSwitch, numberSwitch, symbolSwitch, uppercaseLetterSwitch]
 
@@ -80,6 +81,13 @@ class PasswordGeneratorViewController: UIViewController {
         } else {
             presentAlertForEmptyAttributes()
         }
+    }
+    
+    @objc private func presentActionSheetForShare() {
+        let items = [passwordLabel1.text ?? ""]
+        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        self.present(ac, animated: true, completion: nil)
+        HapticEngine().hapticTap(impactStyle: .light)
     }
 
     private func randomPasswordFromViewModel() {
