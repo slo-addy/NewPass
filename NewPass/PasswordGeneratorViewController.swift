@@ -84,7 +84,7 @@ class PasswordGeneratorViewController: UIViewController {
     }
     
     @objc private func presentActionSheetForShare() {
-        let items = [passwordLabel1.text ?? ""]
+        let items = [passwordString.string]
         let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
         self.present(ac, animated: true, completion: nil)
         HapticEngine().hapticTap(impactStyle: .light)
