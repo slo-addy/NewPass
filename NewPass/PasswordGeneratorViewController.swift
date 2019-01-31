@@ -23,9 +23,9 @@ class PasswordGeneratorViewController: UIViewController {
 
     @IBOutlet weak var passwordLabelViewContainer: UIView!
     // Animates from center to top
-    @IBOutlet weak var passwordLabel1: PasswordLabel!
+    @IBOutlet weak var passwordLabel1: UILabel!
     // Animates from bottom to center
-    @IBOutlet weak var passwordLabel2: PasswordLabel!
+    @IBOutlet weak var passwordLabel2: UILabel!
     @IBOutlet weak var passwordLabel1BottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var passwordLabel2BottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var passwordLengthLabel: UILabel!
