@@ -1,5 +1,5 @@
 //
-//  PasswordViewModel.swift
+//  PasswordLabelViewModel.swift
 //  NewPass
 //
 //  Created by Addison Francisco on 8/23/18.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class PasswordGeneratorViewModel {
+class PasswordLabelViewModel {
 
     let passwordGenerator = PasswordGenerator()
     var passwordLength: Int

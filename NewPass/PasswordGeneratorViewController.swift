@@ -10,7 +10,7 @@ import UIKit
 
 class PasswordGeneratorViewController: UIViewController {
     
-    private var viewModel = PasswordGeneratorViewModel()
+    private var viewModel = PasswordLabelViewModel()
 
     // Default password length to be 10 characters
     private var passwordLength = Constants.defaultPasswordLength
