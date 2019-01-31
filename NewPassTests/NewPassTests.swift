@@ -34,19 +34,34 @@ class NewPassTests: XCTestCase {
         XCTAssertTrue((randomPass.rangeOfCharacter(from: decimalCharacters) != nil))
     }
 
-    func testPasswordStringContainsAlphanumerics() {
+    func testPasswordStringContainsLowerCaseLetters() {
         let passwordGenerator = PasswordGenerator()
         let randomPass = passwordGenerator.randomPassword(with: [.containsLowercaseLetters], length: 10)
-        let alphanumericCharacters = CharacterSet.alphanumerics
 
-        XCTAssertTrue((randomPass.rangeOfCharacter(from: alphanumericCharacters) != nil))
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: CharacterSet.lowercaseLetters) != nil))
+    }
+
+    func testPasswordStringContainsUpperCaseLetters() {
+        let passwordGenerator = PasswordGenerator()
+        let randomPass = passwordGenerator.randomPassword(with: [.containsUppercaseLetters], length: 10)
+
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: CharacterSet.uppercaseLetters) != nil))
     }
 
     func testPasswordStringContainsSymbols() {
         let passwordGenerator = PasswordGenerator()
         let randomPass = passwordGenerator.randomPassword(with: [.containsSymbols], length: 10)
-        let symbolCharacters = CharacterSet.symbols
 
-        XCTAssertTrue((randomPass.rangeOfCharacter(from: symbolCharacters) != nil))
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: CharacterSet.symbols) != nil))
+    }
+
+    func testPasswordStringContainsAllAttributes() {
+        let passwordGenerator = PasswordGenerator()
+        let randomPass = passwordGenerator.randomPassword(with: [.containsNumbers, .containsSymbols, .containsLowercaseLetters, .containsUppercaseLetters], length: 10)
+
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: CharacterSet.decimalDigits) != nil))
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: CharacterSet.symbols) != nil))
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: CharacterSet.lowercaseLetters) != nil))
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: CharacterSet.uppercaseLetters) != nil))
     }
 }
