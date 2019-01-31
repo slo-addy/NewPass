@@ -8,16 +8,12 @@
 
 import UIKit
 
-struct Constants {
-    static let DEFAULT_PASSWORD_LENGTH = 10
-}
-
 class PasswordGeneratorViewController: UIViewController {
     
     private var viewModel = PasswordGeneratorViewModel()
 
     // Default password length to be 10 characters
-    private var passwordLength = Constants.DEFAULT_PASSWORD_LENGTH
+    private var passwordLength = Constants.defaultPasswordLength
     private var passwordString = NSAttributedString(string: "")
     private var passwordSwitches: [PasswordAttributeSwitch]!
 
