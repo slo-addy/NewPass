@@ -88,7 +88,7 @@ class PasswordGeneratorViewController: UIViewController {
 
     private func randomPasswordFromViewModel() {
         if viewModel.hasSelectedPasswordAttributes {
-            passwordString = viewModel.generateRandomPassword(length: passwordLength)
+            passwordString = viewModel.getRandomPassword(length: passwordLength)
             HapticEngine().hapticTap(impactStyle: .light)
         } else {
             presentAlertForEmptyAttributes()
@@ -102,7 +102,7 @@ class PasswordGeneratorViewController: UIViewController {
 
     private func defaultPasswordSetup() {
         // Generate a default password when view loads
-        passwordString = viewModel.generateRandomPassword(length: passwordLength)
+        passwordString = viewModel.getRandomPassword(length: passwordLength)
         // Update password attribute switches for default password
         updateSwitchesToInitialState()
         // Update password legth slider for default password

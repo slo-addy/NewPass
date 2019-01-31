@@ -29,7 +29,7 @@ class NewPassTests: XCTestCase {
     func testPasswordStringContainsNumbers() {
         let passwordGenerator = PasswordGenerator()
         let randomPass = passwordGenerator.randomPassword(with: [.containsNumbers], length: 10)
-        let decimalCharacters = CharacterSet.decimalDigits
+        let decimalCharacters = PasswordCharacterSet.numbers
 
         XCTAssertTrue((randomPass.rangeOfCharacter(from: decimalCharacters) != nil))
     }
@@ -38,30 +38,45 @@ class NewPassTests: XCTestCase {
         let passwordGenerator = PasswordGenerator()
         let randomPass = passwordGenerator.randomPassword(with: [.containsLowercaseLetters], length: 10)
 
-        XCTAssertTrue((randomPass.rangeOfCharacter(from: CharacterSet.lowercaseLetters) != nil))
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.alphabet) != nil))
     }
 
     func testPasswordStringContainsUpperCaseLetters() {
         let passwordGenerator = PasswordGenerator()
         let randomPass = passwordGenerator.randomPassword(with: [.containsUppercaseLetters], length: 10)
 
-        XCTAssertTrue((randomPass.rangeOfCharacter(from: CharacterSet.uppercaseLetters) != nil))
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.uppercaseAlphabet) != nil))
     }
 
     func testPasswordStringContainsSymbols() {
         let passwordGenerator = PasswordGenerator()
         let randomPass = passwordGenerator.randomPassword(with: [.containsSymbols], length: 10)
 
-        XCTAssertTrue((randomPass.rangeOfCharacter(from: CharacterSet.symbols) != nil))
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.symbols) != nil))
     }
 
     func testPasswordStringContainsAllAttributes() {
         let passwordGenerator = PasswordGenerator()
-        let randomPass = passwordGenerator.randomPassword(with: [.containsNumbers, .containsSymbols, .containsLowercaseLetters, .containsUppercaseLetters], length: 10)
+        let passwordAttributes: [PasswordAttribute] = [.containsNumbers, .containsSymbols, .containsLowercaseLetters, .containsUppercaseLetters]
+        var randomPass = passwordGenerator.randomPassword(with: passwordAttributes, length: 12)
 
-        XCTAssertTrue((randomPass.rangeOfCharacter(from: CharacterSet.decimalDigits) != nil))
-        XCTAssertTrue((randomPass.rangeOfCharacter(from: CharacterSet.symbols) != nil))
-        XCTAssertTrue((randomPass.rangeOfCharacter(from: CharacterSet.lowercaseLetters) != nil))
-        XCTAssertTrue((randomPass.rangeOfCharacter(from: CharacterSet.uppercaseLetters) != nil))
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.numbers) != nil))
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.symbols) != nil))
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.alphabet) != nil))
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.uppercaseAlphabet) != nil))
+
+        randomPass = passwordGenerator.randomPassword(with: passwordAttributes, length: 8)
+
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.numbers) != nil))
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.symbols) != nil))
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.alphabet) != nil))
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.uppercaseAlphabet) != nil))
+
+        randomPass = passwordGenerator.randomPassword(with: passwordAttributes, length: 4)
+
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.numbers) != nil))
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.symbols) != nil))
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.alphabet) != nil))
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.uppercaseAlphabet) != nil))
     }
 }

@@ -24,7 +24,7 @@ class PasswordLabelViewModel {
         self.passwordAttributes = passwordAttributes
     }
 
-    func generateRandomPassword(length: Int) -> NSAttributedString {
+    func getRandomPassword(length: Int) -> NSAttributedString {
         let randomPassword = passwordGenerator.randomPassword(with: passwordAttributes, length: length)
 
         return attributedPasswordString(from: randomPassword)
