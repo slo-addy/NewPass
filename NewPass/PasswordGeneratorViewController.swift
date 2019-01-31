@@ -9,33 +9,38 @@
 import UIKit
 
 class PasswordGeneratorViewController: UIViewController {
-    
-    private var viewModel = PasswordLabelViewModel()
 
+    // MARK: - Properties
+
+    private var viewModel = PasswordLabelViewModel()
     // Default password length to be 10 characters
     private var passwordLength = Constants.defaultPasswordLength
     private var passwordString = NSAttributedString(string: "")
     private var passwordSwitches: [PasswordAttributeSwitch]!
 
-    @IBOutlet weak var passwordLabelViewContainer: UIView!
-    // Animates from center to top
-    @IBOutlet weak var passwordLabel1: UILabel!
-    // Animates from bottom to center
-    @IBOutlet weak var passwordLabel2: UILabel!
-    @IBOutlet weak var passwordLabel1BottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var passwordLabel2BottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var passwordLengthLabel: UILabel!
-    @IBOutlet weak var passwordLengthSlider: UISlider!
-    @IBOutlet weak var lowercaseLetterSwitch: PasswordAttributeSwitch!
-    @IBOutlet weak var uppercaseLetterSwitch: PasswordAttributeSwitch!
-    @IBOutlet weak var numberSwitch: PasswordAttributeSwitch!
-    @IBOutlet weak var symbolSwitch: PasswordAttributeSwitch!
-    @IBOutlet weak var generatePasswordButton: UIButton!
-
     // Change status bar to light color for app's dark background
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+
+    // MARK: - Outlets
+
+    @IBOutlet weak private var passwordLabelViewContainer: UIView!
+    // Animates from center to top
+    @IBOutlet weak private var passwordLabel1: UILabel!
+    // Animates from bottom to center
+    @IBOutlet weak private var passwordLabel2: UILabel!
+    @IBOutlet weak private var passwordLabel1BottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak private var passwordLabel2BottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak private var passwordLengthLabel: UILabel!
+    @IBOutlet weak private var passwordLengthSlider: UISlider!
+    @IBOutlet weak private var lowercaseLetterSwitch: PasswordAttributeSwitch!
+    @IBOutlet weak private var uppercaseLetterSwitch: PasswordAttributeSwitch!
+    @IBOutlet weak private var numberSwitch: PasswordAttributeSwitch!
+    @IBOutlet weak private var symbolSwitch: PasswordAttributeSwitch!
+    @IBOutlet weak private var generatePasswordButton: UIButton!
+
+    // MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,18 +64,23 @@ class PasswordGeneratorViewController: UIViewController {
         defaultPasswordSetup()
     }
 
-    @IBAction func attributeSwitchDidChange(_ attributeSwitch: PasswordAttributeSwitch) {
+}
+
+// MARK: - Actions
+extension PasswordGeneratorViewController {
+
+    @IBAction private func attributeSwitchDidChange(_ attributeSwitch: PasswordAttributeSwitch) {
         viewModel.passwordAttributes = passwordSwitches.filter { $0.isOn }.map { switchThatIsOn -> PasswordAttribute in
             return switchThatIsOn.attributeType
         }
     }
 
-    @IBAction func passwordLengthSliderDidMove(_ sender: Any) {
+    @IBAction private func passwordLengthSliderDidMove(_ sender: Any) {
         passwordLength = Int(passwordLengthSlider.value)
         passwordLengthLabel.text = "Password Length: \(passwordLength)"
     }
 
-    @IBAction @objc func generatePasswordTouchBegan(_ sender: UIButton) {
+    @IBAction @objc private func generatePasswordTouchBegan(_ sender: UIButton) {
         if viewModel.hasSelectedPasswordAttributes {
             randomPasswordFromViewModel()
             updateLabelsWithAnimation()
@@ -78,13 +88,11 @@ class PasswordGeneratorViewController: UIViewController {
             presentAlertForEmptyAttributes()
         }
     }
-    
-    @objc private func presentActionSheetForShare() {
-        let items = [passwordString.string]
-        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
-        self.present(ac, animated: true, completion: nil)
-        HapticEngine().hapticTap(impactStyle: .light)
-    }
+
+}
+
+// MARK: - Password Fetcher
+extension PasswordGeneratorViewController {
 
     private func randomPasswordFromViewModel() {
         if viewModel.hasSelectedPasswordAttributes {
@@ -94,6 +102,11 @@ class PasswordGeneratorViewController: UIViewController {
             presentAlertForEmptyAttributes()
         }
     }
+
+}
+
+// MARK: - View Layout
+extension PasswordGeneratorViewController {
 
     private func updateLabelsForPassword() {
         passwordLabel2.attributedText = passwordString
@@ -187,6 +200,18 @@ class PasswordGeneratorViewController: UIViewController {
         }
     }
 
+}
+
+// MARK: - Alerts
+extension PasswordGeneratorViewController {
+
+    @objc private func presentActionSheetForShare() {
+        let items = [passwordString.string]
+        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        self.present(ac, animated: true, completion: nil)
+        HapticEngine().hapticTap(impactStyle: .light)
+    }
+
     private func presentAlertForEmptyAttributes() {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: "Hold On", message: "You need at least 1 attribute selected to generate a password.", preferredStyle: UIAlertControllerStyle.alert)
@@ -198,8 +223,10 @@ class PasswordGeneratorViewController: UIViewController {
             HapticEngine().hapticWarning()
         }
     }
+
 }
 
+// MARK: - Haptic Events
 extension PasswordGeneratorViewController {
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         switch motion {
@@ -210,4 +237,5 @@ extension PasswordGeneratorViewController {
             break
         }
     }
+
 }

@@ -11,7 +11,7 @@ import UIKit
 
 class PasswordLabelViewModel {
 
-    let passwordGenerator = PasswordGenerator()
+    private let passwordGenerator = PasswordGenerator()
     var passwordLength: Int
     // Initial password attributes match default attributes
     var passwordAttributes: [PasswordAttribute]
@@ -52,4 +52,5 @@ class PasswordLabelViewModel {
         }
         return attributedString
     }
+    
 }
