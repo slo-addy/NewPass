@@ -129,6 +129,8 @@ extension PasswordGeneratorViewController {
         generatePasswordButton.isEnabled = false
         updateLabelsForPassword()
 
+        // TODO:  Abstract this out into custom class
+
         UIView.animate(withDuration: 0.3,
                        delay: 0,
                        usingSpringWithDamping: 0.5,

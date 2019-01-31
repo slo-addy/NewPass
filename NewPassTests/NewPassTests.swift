@@ -11,14 +11,6 @@ import XCTest
 
 class NewPassTests: XCTestCase {
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
     func testPasswordMatchesGivenLength() {
         let passwordGenerator = PasswordGenerator()
         let randomPass = passwordGenerator.randomPassword(with: [.containsNumbers], length: 10)
