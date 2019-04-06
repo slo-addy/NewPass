@@ -13,9 +13,10 @@ struct Constants {
 }
 
 class PasswordGeneratorViewController: UIViewController {
-    
-    private var viewModel = PasswordGeneratorViewModel()
 
+    // MARK: - Properties
+
+    private var viewModel = PasswordGeneratorViewModel()
     // Default password length to be 10 characters
     private var passwordLength = Constants.DEFAULT_PASSWORD_LENGTH
     private var passwordString = NSAttributedString(string: "")
@@ -23,9 +24,9 @@ class PasswordGeneratorViewController: UIViewController {
 
     @IBOutlet weak var passwordLabelViewContainer: UIView!
     // Animates from center to top
-    @IBOutlet weak var passwordLabel1: PasswordLabel!
+    @IBOutlet weak var passwordLabel1: UILabel!
     // Animates from bottom to center
-    @IBOutlet weak var passwordLabel2: PasswordLabel!
+    @IBOutlet weak var passwordLabel2: UILabel!
     @IBOutlet weak var passwordLabel1BottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var passwordLabel2BottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var passwordLengthLabel: UILabel!
@@ -36,14 +37,16 @@ class PasswordGeneratorViewController: UIViewController {
     @IBOutlet weak var symbolSwitch: PasswordAttributeSwitch!
     @IBOutlet weak var generatePasswordButton: UIButton!
 
-    // Change status bar to light color for app's dark background
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
 
+    // MARK: - Override Methods
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        passwordLabel1.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(presentPasswordShare)))
         generatePasswordButton.addTarget(self, action: #selector(generatePasswordTouchBegan(_:)), for: .touchDown)
 
         passwordSwitches = [lowercaseLetterSwitch, numberSwitch, symbolSwitch, uppercaseLetterSwitch]
@@ -62,18 +65,33 @@ class PasswordGeneratorViewController: UIViewController {
         defaultPasswordSetup()
     }
 
-    @IBAction func attributeSwitchDidChange(_ attributeSwitch: PasswordAttributeSwitch) {
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+        switch motion {
+        case .motionShake:
+            randomPasswordFromViewModel()
+            updateLabelsWithAnimation()
+        default:
+            break
+        }
+    }
+}
+
+// MARK: - Private Methods
+
+extension PasswordGeneratorViewController {
+
+    @IBAction private func attributeSwitchDidChange(_ attributeSwitch: PasswordAttributeSwitch) {
         viewModel.passwordAttributes = passwordSwitches.filter { $0.isOn }.map { switchThatIsOn -> PasswordAttribute in
             return switchThatIsOn.attributeType
         }
     }
 
-    @IBAction func passwordLengthSliderDidMove(_ sender: Any) {
+    @IBAction private func passwordLengthSliderDidMove(_ sender: Any) {
         passwordLength = Int(passwordLengthSlider.value)
         passwordLengthLabel.text = "Password Length: \(passwordLength)"
     }
 
-    @IBAction @objc func generatePasswordTouchBegan(_ sender: UIButton) {
+    @IBAction @objc private func generatePasswordTouchBegan(_ sender: UIButton) {
         if viewModel.hasSelectedPasswordAttributes {
             randomPasswordFromViewModel()
             updateLabelsWithAnimation()
@@ -91,10 +109,7 @@ class PasswordGeneratorViewController: UIViewController {
         }
     }
 
-    private func updateLabelsForPassword() {
-        passwordLabel2.attributedText = passwordString
-        passwordLengthLabel.text = "Password Length: \(passwordLength)"
-    }
+    // MARK: View Layout
 
     private func defaultPasswordSetup() {
         // Generate a default password when view loads
@@ -106,6 +121,11 @@ class PasswordGeneratorViewController: UIViewController {
         passwordLengthLabel.text = "Password Length: \(passwordLength)"
         // Update labels
         passwordLabel1.attributedText = passwordString
+    }
+
+    private func updateLabelsForPassword() {
+        passwordLabel2.attributedText = passwordString
+        passwordLengthLabel.text = "Password Length: \(passwordLength)"
     }
 
     private func updateLabelsWithAnimation() {
@@ -182,28 +202,27 @@ class PasswordGeneratorViewController: UIViewController {
             }
         }
     }
-
-    private func presentAlertForEmptyAttributes() {
-        DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Hold On", message: "You need at least 1 attribute selected to generate a password.", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Got it", style: .default, handler: { _ in
-                self.dismiss(animated: true, completion: nil)
-            }))
-            self.present(alert, animated: true, completion: {
-            })
-            HapticEngine().hapticWarning()
-        }
-    }
 }
 
+// MARK: - Alerts
+
 extension PasswordGeneratorViewController {
-    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
-        switch motion {
-        case .motionShake:
-            randomPasswordFromViewModel()
-            updateLabelsWithAnimation()
-        default:
-            break
-        }
+    @objc private func presentPasswordShare() {
+        let items = [passwordString.string]
+        let vc = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        let excludedActivityTypes: [UIActivityType] = [.postToFacebook, .postToTwitter]
+
+        vc.excludedActivityTypes = excludedActivityTypes
+        present(vc, animated: true, completion: nil)
+    }
+
+    private func presentAlertForEmptyAttributes() {
+        let alert = UIAlertController(title: "Hold On", message: "You need at least 1 attribute selected to generate a password.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Got it", style: .default, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: {
+        })
+        HapticEngine().hapticWarning()
     }
 }
