@@ -11,14 +11,6 @@ import XCTest
 
 class NewPassTests: XCTestCase {
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
     func testPasswordMatchesGivenLength() {
         let passwordGenerator = PasswordGenerator()
         let randomPass = passwordGenerator.randomPassword(with: [.containsNumbers], length: 10)
@@ -29,24 +21,54 @@ class NewPassTests: XCTestCase {
     func testPasswordStringContainsNumbers() {
         let passwordGenerator = PasswordGenerator()
         let randomPass = passwordGenerator.randomPassword(with: [.containsNumbers], length: 10)
-        let decimalCharacters = CharacterSet.decimalDigits
+        let decimalCharacters = PasswordCharacterSet.numbers
 
         XCTAssertTrue((randomPass.rangeOfCharacter(from: decimalCharacters) != nil))
     }
 
-    func testPasswordStringContainsAlphanumerics() {
+    func testPasswordStringContainsLowerCaseLetters() {
         let passwordGenerator = PasswordGenerator()
         let randomPass = passwordGenerator.randomPassword(with: [.containsLowercaseLetters], length: 10)
-        let alphanumericCharacters = CharacterSet.alphanumerics
 
-        XCTAssertTrue((randomPass.rangeOfCharacter(from: alphanumericCharacters) != nil))
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.alphabet) != nil))
+    }
+
+    func testPasswordStringContainsUpperCaseLetters() {
+        let passwordGenerator = PasswordGenerator()
+        let randomPass = passwordGenerator.randomPassword(with: [.containsUppercaseLetters], length: 10)
+
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.uppercaseAlphabet) != nil))
     }
 
     func testPasswordStringContainsSymbols() {
         let passwordGenerator = PasswordGenerator()
         let randomPass = passwordGenerator.randomPassword(with: [.containsSymbols], length: 10)
-        let symbolCharacters = CharacterSet.symbols
 
-        XCTAssertTrue((randomPass.rangeOfCharacter(from: symbolCharacters) != nil))
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.symbols) != nil))
+    }
+
+    func testPasswordStringContainsAllAttributes() {
+        let passwordGenerator = PasswordGenerator()
+        let passwordAttributes: [PasswordAttribute] = [.containsNumbers, .containsSymbols, .containsLowercaseLetters, .containsUppercaseLetters]
+        var randomPass = passwordGenerator.randomPassword(with: passwordAttributes, length: 12)
+
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.numbers) != nil))
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.symbols) != nil))
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.alphabet) != nil))
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.uppercaseAlphabet) != nil))
+
+        randomPass = passwordGenerator.randomPassword(with: passwordAttributes, length: 8)
+
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.numbers) != nil))
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.symbols) != nil))
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.alphabet) != nil))
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.uppercaseAlphabet) != nil))
+
+        randomPass = passwordGenerator.randomPassword(with: passwordAttributes, length: 4)
+
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.numbers) != nil))
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.symbols) != nil))
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.alphabet) != nil))
+        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordCharacterSet.uppercaseAlphabet) != nil))
     }
 }

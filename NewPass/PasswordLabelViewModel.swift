@@ -1,5 +1,5 @@
 //
-//  PasswordViewModel.swift
+//  PasswordLabelViewModel.swift
 //  NewPass
 //
 //  Created by Addison Francisco on 8/23/18.
@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-class PasswordGeneratorViewModel {
+class PasswordLabelViewModel {
 
-    let passwordGenerator = PasswordGenerator()
+    private let passwordGenerator = PasswordGenerator()
     var passwordLength: Int
     // Initial password attributes match default attributes
     var passwordAttributes: [PasswordAttribute]
@@ -19,12 +19,12 @@ class PasswordGeneratorViewModel {
         return !passwordAttributes.isEmpty
     }
 
-    init(passwordLength: Int = Constants.DEFAULT_PASSWORD_LENGTH, passwordAttributes: [PasswordAttribute] = [.containsLowercaseLetters, .containsUppercaseLetters, .containsNumbers]) {
+    init(passwordLength: Int = Constants.defaultPasswordLength, passwordAttributes: [PasswordAttribute] = Constants.defaultPasswordAttributes) {
         self.passwordLength = passwordLength
         self.passwordAttributes = passwordAttributes
     }
 
-    func generateRandomPassword(length: Int) -> NSAttributedString {
+    func getRandomPassword(length: Int) -> NSAttributedString {
         let randomPassword = passwordGenerator.randomPassword(with: passwordAttributes, length: length)
 
         return attributedPasswordString(from: randomPassword)
@@ -52,4 +52,5 @@ class PasswordGeneratorViewModel {
         }
         return attributedString
     }
+    
 }

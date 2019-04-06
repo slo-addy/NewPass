@@ -8,17 +8,13 @@
 
 import UIKit
 
-struct Constants {
-    static let DEFAULT_PASSWORD_LENGTH = 10
-}
-
 class PasswordGeneratorViewController: UIViewController {
 
-    // MARK: - Properties
+    // MARK: Properties
 
-    private var viewModel = PasswordGeneratorViewModel()
+    private var viewModel = PasswordLabelViewModel()
     // Default password length to be 10 characters
-    private var passwordLength = Constants.DEFAULT_PASSWORD_LENGTH
+    private var passwordLength = Constants.defaultPasswordLength
     private var passwordString = NSAttributedString(string: "")
     private var passwordSwitches: [PasswordAttributeSwitch]!
 
@@ -100,9 +96,14 @@ extension PasswordGeneratorViewController {
         }
     }
 
+}
+
+// MARK: - Password Fetcher
+extension PasswordGeneratorViewController {
+
     private func randomPasswordFromViewModel() {
         if viewModel.hasSelectedPasswordAttributes {
-            passwordString = viewModel.generateRandomPassword(length: passwordLength)
+            passwordString = viewModel.getRandomPassword(length: passwordLength)
             HapticEngine().hapticTap(impactStyle: .light)
         } else {
             presentAlertForEmptyAttributes()
@@ -113,7 +114,7 @@ extension PasswordGeneratorViewController {
 
     private func defaultPasswordSetup() {
         // Generate a default password when view loads
-        passwordString = viewModel.generateRandomPassword(length: passwordLength)
+        passwordString = viewModel.getRandomPassword(length: passwordLength)
         // Update password attribute switches for default password
         updateSwitchesToInitialState()
         // Update password legth slider for default password
@@ -131,6 +132,8 @@ extension PasswordGeneratorViewController {
     private func updateLabelsWithAnimation() {
         generatePasswordButton.isEnabled = false
         updateLabelsForPassword()
+
+        // TODO:  Abstract this out into custom class
 
         UIView.animate(withDuration: 0.3,
                        delay: 0,
@@ -179,7 +182,7 @@ extension PasswordGeneratorViewController {
 
         func performLayoutUpdatesForAnimation() {
             self.passwordLabel1.alpha = 0
-            self.passwordLabel1BottomConstraint.constant = 32
+            self.passwordLabel1BottomConstraint.constant = self.passwordLabelViewContainer.frame.height
             self.passwordLabel2.alpha = 1
             self.passwordLabel2BottomConstraint.constant = 0
             self.view.layoutIfNeeded()
@@ -189,7 +192,7 @@ extension PasswordGeneratorViewController {
             self.passwordLabel1.alpha = 1
             self.passwordLabel1BottomConstraint.constant = 0
             self.passwordLabel2.alpha = 0
-            self.passwordLabel2BottomConstraint.constant = -48
+            self.passwordLabel2BottomConstraint.constant = 0 - self.passwordLabelViewContainer.frame.height
             self.view.layoutIfNeeded()
         }
     }
@@ -202,6 +205,7 @@ extension PasswordGeneratorViewController {
             }
         }
     }
+
 }
 
 // MARK: - Activity & Alert Views
@@ -225,4 +229,5 @@ extension PasswordGeneratorViewController {
         })
         HapticEngine().hapticWarning()
     }
+
 }
