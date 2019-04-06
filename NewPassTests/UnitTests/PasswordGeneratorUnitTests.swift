@@ -1,5 +1,5 @@
 //
-//  NewPassTests.swift
+//  PasswordGeneratorUnitTests.swift
 //  NewPassTests
 //
 //  Created by Addison Francisco on 11/4/18.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import NewPass
 
-class NewPassTests: XCTestCase {
+class PasswordGeneratorUnitTests: XCTestCase {
 
     func testPasswordMatchesGivenLength() {
         let passwordGenerator = PasswordGenerator()
