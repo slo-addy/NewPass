@@ -204,7 +204,7 @@ extension PasswordGeneratorViewController {
     }
 }
 
-// MARK: - Alerts
+// MARK: - Activity & Alert Views
 
 extension PasswordGeneratorViewController {
     @objc private func presentPasswordShare() {
