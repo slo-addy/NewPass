@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CD5D82DA63DDAC38561DF476 /* Pods_NewPassTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC2D77E99E9992122B4FB159 /* Pods_NewPassTests.framework */; };
 		E507AB9521333B3E000D5E4D /* HapticEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507AB9421333B3E000D5E4D /* HapticEngine.swift */; };
 		E512151920FE74940073D4E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E512151820FE74940073D4E4 /* AppDelegate.swift */; };
 		E512151E20FE74940073D4E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E512151C20FE74940073D4E4 /* Main.storyboard */; };
@@ -34,9 +33,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		50DB2AAE7B171612AA148270 /* Pods-NewPassTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewPassTests.release.xcconfig"; path = "Target Support Files/Pods-NewPassTests/Pods-NewPassTests.release.xcconfig"; sourceTree = "<group>"; };
-		A55B8D7F6FF0F13FCBECBB9B /* Pods-NewPassTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewPassTests.debug.xcconfig"; path = "Target Support Files/Pods-NewPassTests/Pods-NewPassTests.debug.xcconfig"; sourceTree = "<group>"; };
-		CC2D77E99E9992122B4FB159 /* Pods_NewPassTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewPassTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E507AB9421333B3E000D5E4D /* HapticEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticEngine.swift; sourceTree = "<group>"; };
 		E512151520FE74940073D4E4 /* NewPass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewPass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E512151820FE74940073D4E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -68,39 +64,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD5D82DA63DDAC38561DF476 /* Pods_NewPassTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1BC7BA262754A9D28370B320 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				A55B8D7F6FF0F13FCBECBB9B /* Pods-NewPassTests.debug.xcconfig */,
-				50DB2AAE7B171612AA148270 /* Pods-NewPassTests.release.xcconfig */,
-			);
-			name = Pods;
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		6C234E8077540BA6A5225A86 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				CC2D77E99E9992122B4FB159 /* Pods_NewPassTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		E512150C20FE74940073D4E4 = {
 			isa = PBXGroup;
 			children = (
 				E512151720FE74940073D4E4 /* NewPass */,
 				E56DBC3A21901641001D66AD /* NewPassTests */,
 				E512151620FE74940073D4E4 /* Products */,
-				1BC7BA262754A9D28370B320 /* Pods */,
-				6C234E8077540BA6A5225A86 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -182,11 +157,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E56DBC4221901641001D66AD /* Build configuration list for PBXNativeTarget "NewPassTests" */;
 			buildPhases = (
-				4EA6CE3A2F361B0A4BE62100 /* [CP] Check Pods Manifest.lock */,
 				E56DBC3521901641001D66AD /* Sources */,
 				E56DBC3621901641001D66AD /* Frameworks */,
 				E56DBC3721901641001D66AD /* Resources */,
-				D1287CD8EBA6304D85323975 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -256,53 +229,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		4EA6CE3A2F361B0A4BE62100 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NewPassTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D1287CD8EBA6304D85323975 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NewPassTests/Pods-NewPassTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/iOSSnapshotTestCase/FBSnapshotTestCase.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSnapshotTestCase.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NewPassTests/Pods-NewPassTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E512151120FE74940073D4E4 /* Sources */ = {
@@ -520,7 +446,6 @@
 		};
 		E56DBC4021901641001D66AD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A55B8D7F6FF0F13FCBECBB9B /* Pods-NewPassTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -544,7 +469,6 @@
 		};
 		E56DBC4121901641001D66AD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 50DB2AAE7B171612AA148270 /* Pods-NewPassTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
