@@ -12,15 +12,13 @@ import UIKit
 class PasswordLabelViewModel {
 
     private let passwordGenerator = PasswordGenerator()
-    var passwordLength: Int
     // Initial password attributes match default attributes
     var passwordAttributes: [PasswordAttribute]
     var hasSelectedPasswordAttributes: Bool {
         return !passwordAttributes.isEmpty
     }
 
-    init(passwordLength: Int = Constants.defaultPasswordLength, passwordAttributes: [PasswordAttribute] = Constants.defaultPasswordAttributes) {
-        self.passwordLength = passwordLength
+    init(passwordAttributes: [PasswordAttribute] = Constants.defaultPasswordAttributes) {
         self.passwordAttributes = passwordAttributes
     }
 

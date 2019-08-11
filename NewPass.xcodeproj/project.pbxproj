@@ -17,6 +17,7 @@
 		E528F005212F249F0007FEF7 /* PasswordLabelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E528F004212F249F0007FEF7 /* PasswordLabelViewModel.swift */; };
 		E558546C210925D6007E5B37 /* PasswordAttributeSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E558546B210925D6007E5B37 /* PasswordAttributeSwitch.swift */; };
 		E5621193218B6DE100F2928F /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5621192218B6DE100F2928F /* UIView+Utils.swift */; };
+		E591EDF822FF70CD00820231 /* PasswordLabelViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E591EDF722FF70CD00820231 /* PasswordLabelViewModelTests.swift */; };
 		E59CDBBC2202893C007DC84E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59CDBBB2202893C007DC84E /* Constants.swift */; };
 		E5D89757225959DB00426AB1 /* PasswordGeneratorUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D89756225959DB00426AB1 /* PasswordGeneratorUnitTests.swift */; };
 		E5F04346211F8D9100952E72 /* PasswordCharacterSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F04345211F8D9100952E72 /* PasswordCharacterSet.swift */; };
@@ -47,6 +48,7 @@
 		E5621192218B6DE100F2928F /* UIView+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
 		E56DBC3921901641001D66AD /* NewPassTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewPassTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E56DBC3D21901641001D66AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E591EDF722FF70CD00820231 /* PasswordLabelViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordLabelViewModelTests.swift; sourceTree = "<group>"; };
 		E59CDBBB2202893C007DC84E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E5D89756225959DB00426AB1 /* PasswordGeneratorUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratorUnitTests.swift; sourceTree = "<group>"; };
 		E5F04345211F8D9100952E72 /* PasswordCharacterSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordCharacterSet.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				E5D89756225959DB00426AB1 /* PasswordGeneratorUnitTests.swift */,
+				E591EDF722FF70CD00820231 /* PasswordLabelViewModelTests.swift */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E5D89757225959DB00426AB1 /* PasswordGeneratorUnitTests.swift in Sources */,
+				E591EDF822FF70CD00820231 /* PasswordLabelViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
