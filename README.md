@@ -5,7 +5,7 @@
 
 A simple iOS app for quickly creating secure passwords.
 
-<img src="https://i.imgur.com/SqJ4728.png" width="358" heigth="640" />
+<img src="https://i.imgur.com/8Ahr42d.png" width="358" heigth="640" />
 
 ## Features
 
