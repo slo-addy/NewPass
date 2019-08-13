@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>NewPass - Unit Tests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>NewPass.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -18,6 +23,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>E512151420FE74940073D4E4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E56DBC3821901641001D66AD</key>
 		<dict>
 			<key>primary</key>
 			<true/>

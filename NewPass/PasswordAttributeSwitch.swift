@@ -19,4 +19,5 @@ class PasswordAttributeSwitch: UISwitch {
         // All switches need to be off initially
         self.isOn = false
     }
+    
 }

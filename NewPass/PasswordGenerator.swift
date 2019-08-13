@@ -77,4 +77,5 @@ struct PasswordGenerator {
         }
         return true
     }
+    
 }
