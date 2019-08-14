@@ -11,7 +11,7 @@ A simple iOS app for quickly creating secure passwords.
 
 - [x] Effortlessly generate secure passwords
 - [x] Easy password attributes selection
-- [x] Copy generated passwords to clipboard
+- [x] Copy and share generated passwords
 - [x] Haptic feedback
 - [x] Shake to generate
 
