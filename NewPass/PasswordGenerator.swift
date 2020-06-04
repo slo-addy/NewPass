@@ -61,12 +61,12 @@ final class PasswordGenerator {
         for attribute in attributes {
             if passwordString.rangeOfCharacter(from: attribute.characterSet) != nil {
                 continue
-            }
-            else {
+            } else {
                 return false
             }
         }
+
         return true
     }
-    
+
 }

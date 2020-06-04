@@ -11,7 +11,7 @@ import UIKit
 
 struct PasswordLabelViewModel {
 
-    #warning("Remove tight coupling to PasswordGenerator")
+    // TODO: Remove tight coupling to PasswordGenerator
     private let passwordGenerator = PasswordGenerator()
     // Initial password attributes match default attributes
     var passwordAttributes: [PasswordAttribute]
@@ -33,23 +33,22 @@ struct PasswordLabelViewModel {
         let symbolCharColor = [NSAttributedStringKey.foregroundColor: UIColor(red: 237/255, green: 117/255, blue: 99/255, alpha: 1)]
         let numberCharColor = [NSAttributedStringKey.foregroundColor: UIColor(red: 74/255, green: 196/255, blue: 230/255, alpha: 1)]
         let alphabetCharColor = [NSAttributedStringKey.foregroundColor: UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)]
-
         let attributedString = NSMutableAttributedString()
+
         for s in passwordString.unicodeScalars {
             let char: NSAttributedString
-            
+
             if PasswordAttribute.numbers.characterSet.contains(s) {
                 char = NSAttributedString(string: "\(s)", attributes: numberCharColor)
-            }
-            else if PasswordAttribute.symbols.characterSet.contains(s) {
+            } else if PasswordAttribute.symbols.characterSet.contains(s) {
                 char = NSAttributedString(string: "\(s)", attributes: symbolCharColor)
-            }
-            else {
+            } else {
                 char = NSAttributedString(string: "\(s)", attributes: alphabetCharColor)
             }
             attributedString.append(char)
         }
+
         return attributedString
     }
-    
+
 }

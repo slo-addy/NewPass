@@ -12,7 +12,7 @@ class PasswordGeneratorViewController: UIViewController {
 
     private var viewModel = PasswordLabelViewModel()
     // Default password length to be 10 characters
-    #warning("Move passwordLength and passwordString into view model")
+    // TODO: Move passwordLength and passwordString into view model
     private var passwordLength = Constants.defaultPasswordLength
     private var passwordString = NSAttributedString(string: "")
     private var passwordSwitches: [PasswordAttributeSwitch]!
@@ -98,7 +98,7 @@ extension PasswordGeneratorViewController {
 }
 
 // MARK: - Password Fetcher
-#warning("Remove extensions if using MARK")
+// TODO: Remove extensions if using MARK
 extension PasswordGeneratorViewController {
 
     private func randomPasswordFromViewModel() {
@@ -133,7 +133,7 @@ extension PasswordGeneratorViewController {
         generatePasswordButton.isEnabled = false
         updateLabelsForPassword()
 
-        // TODO:  Abstract this out into custom class
+        // TODO: Abstract this out into custom class
 
         UIView.animate(withDuration: 0.3,
                        delay: 0,
@@ -197,7 +197,7 @@ extension PasswordGeneratorViewController {
         }
     }
 
-    #warning("Move this up to defaultPasswordSetup")
+    // TODO: Move this up to defaultPasswordSetup
     /// This function is used only for updating the switches to the initial default state
     private func updateSwitchesToInitialState() {
         for passwordSwitch in passwordSwitches {
@@ -223,7 +223,9 @@ extension PasswordGeneratorViewController {
     }
 
     private func presentAlertForEmptyAttributes() {
-        let alert = UIAlertController(title: "Hold On", message: "You need at least 1 attribute selected to generate a password.", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Hold On",
+                                      message: "You need at least 1 attribute selected to generate a password.",
+                                      preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Got it", style: .default, handler: { _ in
             self.dismiss(animated: true, completion: nil)
         }))
