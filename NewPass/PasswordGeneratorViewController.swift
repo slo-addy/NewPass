@@ -36,11 +36,18 @@ class PasswordGeneratorViewController: UIViewController {
         return .lightContent
     }
 
-    // MARK: - Override Methods
+    // MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        configureViews()
+        configureInitialState()
+    }
+
+    // MARK: View Layout
+
+    private func configureViews() {
         passwordLabel1.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(presentPasswordShare)))
         generatePasswordButton.addTarget(self, action: #selector(generatePasswordTouchBegan(_:)), for: .touchDown)
 
@@ -55,72 +62,21 @@ class PasswordGeneratorViewController: UIViewController {
         // Roundify view corners
         passwordLabelViewContainer.roundify(cornerRadius: 6)
         generatePasswordButton.roundify(cornerRadius: 6)
-
-        // Configure default password and update views
-        defaultPasswordSetup()
     }
 
-    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
-        switch motion {
-        case .motionShake:
-            randomPasswordFromViewModel()
-            updateLabelsWithAnimation()
-        default:
-            break
-        }
-    }
-}
-
-// MARK: - Private Methods
-
-extension PasswordGeneratorViewController {
-
-    @IBAction private func attributeSwitchDidChange(_ attributeSwitch: PasswordAttributeSwitch) {
-        viewModel.passwordAttributes = passwordSwitches.filter { $0.isOn }.map { switchThatIsOn -> PasswordAttribute in
-            return switchThatIsOn.attributeType
-        }
-    }
-
-    @IBAction private func passwordLengthSliderDidMove(_ sender: Any) {
-        passwordLength = Int(passwordLengthSlider.value)
-        passwordLengthLabel.text = "Password Length: \(passwordLength)"
-    }
-
-    @IBAction @objc private func generatePasswordTouchBegan(_ sender: UIButton) {
-        if viewModel.hasSelectedPasswordAttributes {
-            randomPasswordFromViewModel()
-            updateLabelsWithAnimation()
-        } else {
-            presentAlertForEmptyAttributes()
-        }
-    }
-
-}
-
-// MARK: - Password Fetcher
-// TODO: Remove extensions if using MARK
-extension PasswordGeneratorViewController {
-
-    private func randomPasswordFromViewModel() {
-        if viewModel.hasSelectedPasswordAttributes {
-            passwordString = viewModel.getRandomPassword(length: passwordLength)
-            HapticEngine().hapticTap(impactStyle: .light)
-        } else {
-            presentAlertForEmptyAttributes()
-        }
-    }
-
-    // MARK: View Layout
-
-    private func defaultPasswordSetup() {
-        // Generate a default password when view loads
+    /// Sets default view states and generates initial password
+    private func configureInitialState() {
         passwordString = viewModel.getRandomPassword(length: passwordLength)
-        // Update password attribute switches for default password
-        updateSwitchesToInitialState()
-        // Update password legth slider for default password
+
+        for passwordSwitch in passwordSwitches {
+            if viewModel.passwordAttributes.contains(passwordSwitch.attributeType) {
+                passwordSwitch.setOn(true, animated: true)
+            }
+        }
+
         passwordLengthSlider.setValue(Float(passwordLength), animated: true)
         passwordLengthLabel.text = "Password Length: \(passwordLength)"
-        // Update labels
+
         passwordLabel1.attributedText = passwordString
     }
 
@@ -197,26 +153,43 @@ extension PasswordGeneratorViewController {
         }
     }
 
-    // TODO: Move this up to defaultPasswordSetup
-    /// This function is used only for updating the switches to the initial default state
-    private func updateSwitchesToInitialState() {
-        for passwordSwitch in passwordSwitches {
-            if viewModel.passwordAttributes.contains(passwordSwitch.attributeType) {
-                passwordSwitch.setOn(true, animated: true)
-            }
+	// MARK: - Actions
+
+    @IBAction private func attributeSwitchDidChange(_ attributeSwitch: PasswordAttributeSwitch) {
+        viewModel.passwordAttributes = passwordSwitches.filter { $0.isOn }.map { switchThatIsOn -> PasswordAttribute in
+            return switchThatIsOn.attributeType
         }
     }
 
-}
+    @IBAction private func passwordLengthSliderDidMove(_ sender: Any) {
+        passwordLength = Int(passwordLengthSlider.value)
+        passwordLengthLabel.text = "Password Length: \(passwordLength)"
+    }
 
-// MARK: - Activity & Alert Views
+    @IBAction private func generatePasswordTouchBegan(_ sender: UIButton) {
+        if viewModel.hasSelectedPasswordAttributes {
+            randomPasswordFromViewModel()
+            updateLabelsWithAnimation()
+        } else {
+            presentAlertForEmptyAttributes()
+        }
+    }
 
-extension PasswordGeneratorViewController {
+    private func randomPasswordFromViewModel() {
+        if viewModel.hasSelectedPasswordAttributes {
+            passwordString = viewModel.getRandomPassword(length: passwordLength)
+            HapticEngine().hapticTap(impactStyle: .light)
+        } else {
+            presentAlertForEmptyAttributes()
+        }
+    }
+
+	// MARK: - Activity & Alert Views
 
     @objc private func presentPasswordShare() {
         let items = [passwordString.string]
         let vc = UIActivityViewController(activityItems: items, applicationActivities: nil)
-        let excludedActivityTypes: [UIActivityType] = [.postToFacebook, .postToTwitter]
+        let excludedActivityTypes: [UIActivity.ActivityType] = [.postToFacebook, .postToTwitter]
 
         vc.excludedActivityTypes = excludedActivityTypes
         present(vc, animated: true, completion: nil)
@@ -225,13 +198,27 @@ extension PasswordGeneratorViewController {
     private func presentAlertForEmptyAttributes() {
         let alert = UIAlertController(title: "Hold On",
                                       message: "You need at least 1 attribute selected to generate a password.",
-                                      preferredStyle: UIAlertControllerStyle.alert)
+                                      preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Got it", style: .default, handler: { _ in
             self.dismiss(animated: true, completion: nil)
         }))
         self.present(alert, animated: true, completion: {
         })
         HapticEngine().hapticWarning()
+    }
+
+}
+
+extension PasswordGeneratorViewController {
+
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        switch motion {
+        case .motionShake:
+            randomPasswordFromViewModel()
+            updateLabelsWithAnimation()
+        default:
+            break
+        }
     }
 
 }
