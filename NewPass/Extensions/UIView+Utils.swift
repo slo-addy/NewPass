@@ -6,12 +6,13 @@
 //  Copyright © 2018 Addison Francisco. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 extension UIView {
+
     func roundify(cornerRadius: CGFloat) {
-        self.layer.cornerRadius = cornerRadius
-        self.clipsToBounds = true
+        layer.cornerRadius = cornerRadius
+        clipsToBounds = true
     }
+
 }

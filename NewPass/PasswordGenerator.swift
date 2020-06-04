@@ -8,35 +8,37 @@
 
 import Foundation
 
-struct PasswordGenerator {
+final class PasswordGenerator {
 
     func randomPassword(with attributes: [PasswordAttribute], length: Int) -> String {
         // Create an initial string of password characters based on attributes
         let passwordString = constructedPasswordString(using: attributes)
         // Randomize password string characters
         let randomPassword = randomize(string: passwordString, length: length, attributes: attributes)
+
         return randomPassword
     }
 
     private func constructedPasswordString(using attributes: [PasswordAttribute]) -> String {
         var constructedPasswordString = ""
-        for attribute in attributes {
-            let lowercasedAlphabet = PasswordAttribute.containsLowercaseLetters.rawValue
-            let uppercasedAlphabet = PasswordAttribute.containsUppercaseLetters.rawValue
-            let numbers = PasswordAttribute.containsNumbers.rawValue
-            let symbols = PasswordAttribute.containsSymbols.rawValue
+        let lowercasedAlphabet = PasswordAttribute.lowercaseLetters.rawValue
+        let uppercasedAlphabet = PasswordAttribute.uppercaseLetters.rawValue
+        let numbers = PasswordAttribute.numbers.rawValue
+        let symbols = PasswordAttribute.symbols.rawValue
 
+        for attribute in attributes {
             switch attribute {
-            case .containsNumbers:
+            case .numbers:
                 constructedPasswordString += randomize(string: numbers)
-            case .containsSymbols:
+            case .symbols:
                 constructedPasswordString += randomize(string: symbols)
-            case .containsLowercaseLetters:
+            case .lowercaseLetters:
                 constructedPasswordString += randomize(string: lowercasedAlphabet)
-            case .containsUppercaseLetters:
+            case .uppercaseLetters:
                 constructedPasswordString += randomize(string: uppercasedAlphabet)
             }
         }
+
         return constructedPasswordString
     }
 
@@ -44,35 +46,24 @@ struct PasswordGenerator {
         var randomString: String = ""
 
         while randomString.count < length {
-            let randomValue = arc4random_uniform(UInt32(string.count))
-            randomString += "\(string[string.index(string.startIndex, offsetBy: Int(randomValue))])"
+            let randomizedOffset = arc4random_uniform(UInt32(string.count))
+            randomString += "\(string[string.index(string.startIndex, offsetBy: Int(randomizedOffset))])"
         }
 
         if !allAttributeCharsPresent(for: randomString, attributes: attributes) && !attributes.isEmpty {
             randomString = randomize(string: string, length: length, attributes: attributes)
         }
+
         return randomString
     }
 
     private func allAttributeCharsPresent(for passwordString: String, attributes: [PasswordAttribute]) -> Bool {
         for attribute in attributes {
-            switch attribute {
-            case .containsLowercaseLetters:
-                if passwordString.rangeOfCharacter(from: PasswordCharacterSet.alphabet) != nil {
-                    continue
-                } else { return false }
-            case .containsNumbers:
-                if passwordString.rangeOfCharacter(from: PasswordCharacterSet.numbers) != nil {
-                    continue
-                } else { return false }
-            case .containsSymbols:
-                if passwordString.rangeOfCharacter(from: PasswordCharacterSet.symbols) != nil {
-                    continue
-                } else { return false }
-            case .containsUppercaseLetters:
-                if passwordString.rangeOfCharacter(from: PasswordCharacterSet.uppercaseAlphabet) != nil {
-                    continue
-                } else { return false }
+            if passwordString.rangeOfCharacter(from: attribute.characterSet) != nil {
+                continue
+            }
+            else {
+                return false
             }
         }
         return true
