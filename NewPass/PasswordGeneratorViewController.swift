@@ -10,10 +10,9 @@ import UIKit
 
 class PasswordGeneratorViewController: UIViewController {
 
-    // MARK: Properties
-
     private var viewModel = PasswordLabelViewModel()
     // Default password length to be 10 characters
+    #warning("Move passwordLength and passwordString into view model")
     private var passwordLength = Constants.defaultPasswordLength
     private var passwordString = NSAttributedString(string: "")
     private var passwordSwitches: [PasswordAttributeSwitch]!
@@ -48,10 +47,10 @@ class PasswordGeneratorViewController: UIViewController {
         passwordSwitches = [lowercaseLetterSwitch, numberSwitch, symbolSwitch, uppercaseLetterSwitch]
 
         // Assign attributes to password switches
-        lowercaseLetterSwitch.attributeType = .containsLowercaseLetters
-        uppercaseLetterSwitch.attributeType = .containsUppercaseLetters
-        numberSwitch.attributeType = .containsNumbers
-        symbolSwitch.attributeType = .containsSymbols
+        lowercaseLetterSwitch.attributeType = .lowercaseLetters
+        uppercaseLetterSwitch.attributeType = .uppercaseLetters
+        numberSwitch.attributeType = .numbers
+        symbolSwitch.attributeType = .symbols
 
         // Roundify view corners
         passwordLabelViewContainer.roundify(cornerRadius: 6)
@@ -99,6 +98,7 @@ extension PasswordGeneratorViewController {
 }
 
 // MARK: - Password Fetcher
+#warning("Remove extensions if using MARK")
 extension PasswordGeneratorViewController {
 
     private func randomPasswordFromViewModel() {
@@ -197,6 +197,7 @@ extension PasswordGeneratorViewController {
         }
     }
 
+    #warning("Move this up to defaultPasswordSetup")
     /// This function is used only for updating the switches to the initial default state
     private func updateSwitchesToInitialState() {
         for passwordSwitch in passwordSwitches {
@@ -211,6 +212,7 @@ extension PasswordGeneratorViewController {
 // MARK: - Activity & Alert Views
 
 extension PasswordGeneratorViewController {
+
     @objc private func presentPasswordShare() {
         let items = [passwordString.string]
         let vc = UIActivityViewController(activityItems: items, applicationActivities: nil)

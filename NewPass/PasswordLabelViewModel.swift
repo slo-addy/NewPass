@@ -9,8 +9,9 @@
 import Foundation
 import UIKit
 
-class PasswordLabelViewModel {
+struct PasswordLabelViewModel {
 
+    #warning("Remove tight coupling to PasswordGenerator")
     private let passwordGenerator = PasswordGenerator()
     // Initial password attributes match default attributes
     var passwordAttributes: [PasswordAttribute]
@@ -37,10 +38,10 @@ class PasswordLabelViewModel {
         for s in passwordString.unicodeScalars {
             let char: NSAttributedString
             
-            if PasswordCharacterSet.numbers.contains(s) {
+            if PasswordAttribute.numbers.characterSet.contains(s) {
                 char = NSAttributedString(string: "\(s)", attributes: numberCharColor)
             }
-            else if PasswordCharacterSet.symbols.contains(s) {
+            else if PasswordAttribute.symbols.characterSet.contains(s) {
                 char = NSAttributedString(string: "\(s)", attributes: symbolCharColor)
             }
             else {

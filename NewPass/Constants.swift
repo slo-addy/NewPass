@@ -9,6 +9,8 @@
 import Foundation
 
 struct Constants {
+
     static let defaultPasswordLength: Int = 10
-    static let defaultPasswordAttributes: [PasswordAttribute] = [.containsLowercaseLetters, .containsUppercaseLetters, .containsNumbers]
+    static let defaultPasswordAttributes: [PasswordAttribute] = [.lowercaseLetters, .uppercaseLetters, .numbers]
+
 }
