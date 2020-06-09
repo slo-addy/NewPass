@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -170,8 +168,8 @@
                                                     <action selector="passwordLengthSliderDidMove:" destination="BYZ-38-t0r" eventType="valueChanged" id="uEv-sa-qef"/>
                                                 </connections>
                                             </slider>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Password Length: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Co-qg-iHb">
-                                                <rect key="frame" x="119" y="442.33333333333337" width="176" height="16.333333333333314"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Password Length: 10" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Co-qg-iHb">
+                                                <rect key="frame" x="127" y="442.33333333333337" width="176" height="16.333333333333314"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="176" id="ICs-6x-A9T"/>
                                                 </constraints>
@@ -186,12 +184,12 @@
                                             <constraint firstItem="dVw-3Y-dlB" firstAttribute="top" secondItem="1Co-qg-iHb" secondAttribute="bottom" constant="7.6666666666666856" id="HAt-34-Jif"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="356" id="HZg-9o-aBo"/>
                                             <constraint firstItem="sNl-OK-RZN" firstAttribute="centerY" secondItem="yGf-Bb-xIM" secondAttribute="centerY" id="N8C-CU-bbc"/>
-                                            <constraint firstItem="1Co-qg-iHb" firstAttribute="centerX" secondItem="yGf-Bb-xIM" secondAttribute="centerX" id="PDv-Ny-FF1"/>
                                             <constraint firstItem="exQ-vP-uMc" firstAttribute="top" secondItem="yGf-Bb-xIM" secondAttribute="top" constant="20" id="Qdq-Dh-j8j"/>
                                             <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="dVw-3Y-dlB" secondAttribute="bottom" constant="43.333333333333258" id="dhl-Tw-Rvl"/>
                                             <constraint firstAttribute="trailing" secondItem="exQ-vP-uMc" secondAttribute="trailing" constant="16" id="iCL-fd-uN1"/>
                                             <constraint firstAttribute="bottom" secondItem="dVw-3Y-dlB" secondAttribute="bottom" priority="750" constant="43.5" id="l0q-rT-4fr"/>
                                             <constraint firstItem="exQ-vP-uMc" firstAttribute="leading" secondItem="yGf-Bb-xIM" secondAttribute="leading" constant="16" id="n4i-IS-wHe"/>
+                                            <constraint firstItem="1Co-qg-iHb" firstAttribute="leading" secondItem="dVw-3Y-dlB" secondAttribute="leading" constant="8" id="qJ9-Mz-nsx"/>
                                             <constraint firstAttribute="bottom" secondItem="dVw-3Y-dlB" secondAttribute="bottom" constant="24" id="y7s-II-qjL"/>
                                         </constraints>
                                     </view>

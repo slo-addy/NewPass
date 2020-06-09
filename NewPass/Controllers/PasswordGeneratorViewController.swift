@@ -10,7 +10,7 @@ import UIKit
 
 class PasswordGeneratorViewController: UIViewController {
 
-    private var viewModel = PasswordLabelViewModel()
+    private var viewModel = PasswordViewModel()
     // Default password length to be 10 characters
     // TODO: Move passwordLength and passwordString into view model
     private var passwordLength = Constants.defaultPasswordLength
@@ -184,11 +184,12 @@ class PasswordGeneratorViewController: UIViewController {
         }
     }
 
-	// MARK: - Activity & Alert Views
+	// MARK: - Share Activity
 
     @objc private func presentPasswordShare() {
         let items = [passwordString.string]
         let vc = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        // Because why...
         let excludedActivityTypes: [UIActivity.ActivityType] = [.postToFacebook, .postToTwitter]
 
         vc.excludedActivityTypes = excludedActivityTypes
@@ -196,14 +197,14 @@ class PasswordGeneratorViewController: UIViewController {
     }
 
     private func presentAlertForEmptyAttributes() {
-        let alert = UIAlertController(title: "Hold On",
-                                      message: "You need at least 1 attribute selected to generate a password.",
-                                      preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Got it", style: .default, handler: { _ in
-            self.dismiss(animated: true, completion: nil)
-        }))
-        self.present(alert, animated: true, completion: {
-        })
+        let alertViewController = NPAlertViewController(title: "Hold On",
+                                                        message: "You need at least one attribute selected to generate a password.",
+                                                        buttonTitle: "Okay")
+        alertViewController.modalPresentationStyle = .overFullScreen
+        alertViewController.modalTransitionStyle = .crossDissolve
+        alertViewController.view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+
+        self.present(alertViewController, animated: true)
         HapticEngine().hapticWarning()
     }
 

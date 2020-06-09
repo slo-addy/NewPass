@@ -13,11 +13,17 @@
 		E512152020FE74950073D4E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E512151F20FE74950073D4E4 /* Assets.xcassets */; };
 		E512152320FE74950073D4E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E512152120FE74950073D4E4 /* LaunchScreen.storyboard */; };
 		E512152F20FE786B0073D4E4 /* PasswordGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E512152E20FE786B0073D4E4 /* PasswordGenerator.swift */; };
-		E528F005212F249F0007FEF7 /* PasswordLabelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E528F004212F249F0007FEF7 /* PasswordLabelViewModel.swift */; };
-		E5495CCD2488DF6A001A9AAB /* PasswordGeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E512152A20FE76270073D4E4 /* PasswordGeneratorViewController.swift */; };
+		E528F005212F249F0007FEF7 /* PasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E528F004212F249F0007FEF7 /* PasswordViewModel.swift */; };
 		E558546C210925D6007E5B37 /* PasswordAttributeSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E558546B210925D6007E5B37 /* PasswordAttributeSwitch.swift */; };
-		E5621193218B6DE100F2928F /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5621192218B6DE100F2928F /* UIView+Utils.swift */; };
+		E5621193218B6DE100F2928F /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5621192218B6DE100F2928F /* UIView+Extensions.swift */; };
+		E5911348248B131400EAF79E /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5911347248B131400EAF79E /* UIFont+Extensions.swift */; };
 		E59CDBBC2202893C007DC84E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59CDBBB2202893C007DC84E /* Constants.swift */; };
+		E5AC4A332489A9A500BFAC91 /* PasswordGeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E512152A20FE76270073D4E4 /* PasswordGeneratorViewController.swift */; };
+		E5CA9E822489C97900AF1016 /* NPAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CA9E812489C97900AF1016 /* NPAlertViewController.swift */; };
+		E5CA9E872489CCE500AF1016 /* NPContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CA9E862489CCE500AF1016 /* NPContainerView.swift */; };
+		E5CA9E8A2489CE4000AF1016 /* NPTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CA9E892489CE4000AF1016 /* NPTitleLabel.swift */; };
+		E5CA9E8D2489CEF700AF1016 /* NPBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CA9E8C2489CEF700AF1016 /* NPBodyLabel.swift */; };
+		E5CA9E912489CFDF00AF1016 /* NPButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CA9E902489CFDF00AF1016 /* NPButton.swift */; };
 		E5D89757225959DB00426AB1 /* PasswordGeneratorUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D89756225959DB00426AB1 /* PasswordGeneratorUnitTests.swift */; };
 		E5F04346211F8D9100952E72 /* PasswordAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F04345211F8D9100952E72 /* PasswordAttribute.swift */; };
 /* End PBXBuildFile section */
@@ -42,12 +48,18 @@
 		E512152420FE74950073D4E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E512152A20FE76270073D4E4 /* PasswordGeneratorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratorViewController.swift; sourceTree = "<group>"; };
 		E512152E20FE786B0073D4E4 /* PasswordGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGenerator.swift; sourceTree = "<group>"; };
-		E528F004212F249F0007FEF7 /* PasswordLabelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordLabelViewModel.swift; sourceTree = "<group>"; };
+		E528F004212F249F0007FEF7 /* PasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewModel.swift; sourceTree = "<group>"; };
 		E558546B210925D6007E5B37 /* PasswordAttributeSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordAttributeSwitch.swift; sourceTree = "<group>"; };
-		E5621192218B6DE100F2928F /* UIView+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
+		E5621192218B6DE100F2928F /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		E56DBC3921901641001D66AD /* NewPassTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewPassTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E56DBC3D21901641001D66AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E5911347248B131400EAF79E /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		E59CDBBB2202893C007DC84E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E5CA9E812489C97900AF1016 /* NPAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NPAlertViewController.swift; sourceTree = "<group>"; };
+		E5CA9E862489CCE500AF1016 /* NPContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NPContainerView.swift; sourceTree = "<group>"; };
+		E5CA9E892489CE4000AF1016 /* NPTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NPTitleLabel.swift; sourceTree = "<group>"; };
+		E5CA9E8C2489CEF700AF1016 /* NPBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NPBodyLabel.swift; sourceTree = "<group>"; };
+		E5CA9E902489CFDF00AF1016 /* NPButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NPButton.swift; sourceTree = "<group>"; };
 		E5D89756225959DB00426AB1 /* PasswordGeneratorUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratorUnitTests.swift; sourceTree = "<group>"; };
 		E5F04345211F8D9100952E72 /* PasswordAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordAttribute.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,27 +103,41 @@
 		E512151720FE74940073D4E4 /* NewPass */ = {
 			isa = PBXGroup;
 			children = (
-				E512151820FE74940073D4E4 /* AppDelegate.swift */,
-				E59CDBBB2202893C007DC84E /* Constants.swift */,
-				E558546B210925D6007E5B37 /* PasswordAttributeSwitch.swift */,
-				E5F04345211F8D9100952E72 /* PasswordAttribute.swift */,
-				E512152E20FE786B0073D4E4 /* PasswordGenerator.swift */,
-				E512152A20FE76270073D4E4 /* PasswordGeneratorViewController.swift */,
-				E528F004212F249F0007FEF7 /* PasswordLabelViewModel.swift */,
-				E507AB9421333B3E000D5E4D /* HapticEngine.swift */,
 				E5621191218B6DB700F2928F /* Extensions */,
+				E5CA9E832489CC5C00AF1016 /* Controllers */,
+				E5CA9E852489CCBF00AF1016 /* Custom Views */,
+				E5169539248FFF8A009E8F34 /* Models */,
+				E5AC4A312489A5B800BFAC91 /* Support */,
+				E5AC4A302489A59100BFAC91 /* Utilities */,
 				E512151C20FE74940073D4E4 /* Main.storyboard */,
-				E512151F20FE74950073D4E4 /* Assets.xcassets */,
-				E512152120FE74950073D4E4 /* LaunchScreen.storyboard */,
 				E512152420FE74950073D4E4 /* Info.plist */,
 			);
 			path = NewPass;
 			sourceTree = "<group>";
 		};
+		E5169539248FFF8A009E8F34 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E5F04345211F8D9100952E72 /* PasswordAttribute.swift */,
+				E528F004212F249F0007FEF7 /* PasswordViewModel.swift */,
+				E512152E20FE786B0073D4E4 /* PasswordGenerator.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E516953A248FFFCE009E8F34 /* Switches */ = {
+			isa = PBXGroup;
+			children = (
+				E558546B210925D6007E5B37 /* PasswordAttributeSwitch.swift */,
+			);
+			path = Switches;
+			sourceTree = "<group>";
+		};
 		E5621191218B6DB700F2928F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				E5621192218B6DE100F2928F /* UIView+Utils.swift */,
+				E5621192218B6DE100F2928F /* UIView+Extensions.swift */,
+				E5911347248B131400EAF79E /* UIFont+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -123,6 +149,78 @@
 				E56DBC3D21901641001D66AD /* Info.plist */,
 			);
 			path = NewPassTests;
+			sourceTree = "<group>";
+		};
+		E5AC4A302489A59100BFAC91 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				E59CDBBB2202893C007DC84E /* Constants.swift */,
+				E507AB9421333B3E000D5E4D /* HapticEngine.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		E5AC4A312489A5B800BFAC91 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				E512151820FE74940073D4E4 /* AppDelegate.swift */,
+				E512151F20FE74950073D4E4 /* Assets.xcassets */,
+				E512152120FE74950073D4E4 /* LaunchScreen.storyboard */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		E5CA9E832489CC5C00AF1016 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E5CA9E842489CC7A00AF1016 /* NPAlertViewController */,
+				E512152A20FE76270073D4E4 /* PasswordGeneratorViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		E5CA9E842489CC7A00AF1016 /* NPAlertViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E5CA9E812489C97900AF1016 /* NPAlertViewController.swift */,
+			);
+			path = NPAlertViewController;
+			sourceTree = "<group>";
+		};
+		E5CA9E852489CCBF00AF1016 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				E5CA9E8F2489CFC700AF1016 /* Buttons */,
+				E5CA9E882489CE1B00AF1016 /* Labels */,
+				E516953A248FFFCE009E8F34 /* Switches */,
+				E5CA9E8E2489CFC000AF1016 /* Views */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		E5CA9E882489CE1B00AF1016 /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				E5CA9E892489CE4000AF1016 /* NPTitleLabel.swift */,
+				E5CA9E8C2489CEF700AF1016 /* NPBodyLabel.swift */,
+			);
+			path = Labels;
+			sourceTree = "<group>";
+		};
+		E5CA9E8E2489CFC000AF1016 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E5CA9E862489CCE500AF1016 /* NPContainerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E5CA9E8F2489CFC700AF1016 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				E5CA9E902489CFDF00AF1016 /* NPButton.swift */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 		E5D89755225958C300426AB1 /* UnitTests */ = {
@@ -258,13 +356,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				E558546C210925D6007E5B37 /* PasswordAttributeSwitch.swift in Sources */,
+				E5CA9E8A2489CE4000AF1016 /* NPTitleLabel.swift in Sources */,
+				E5CA9E8D2489CEF700AF1016 /* NPBodyLabel.swift in Sources */,
 				E512152F20FE786B0073D4E4 /* PasswordGenerator.swift in Sources */,
 				E507AB9521333B3E000D5E4D /* HapticEngine.swift in Sources */,
 				E512151920FE74940073D4E4 /* AppDelegate.swift in Sources */,
 				E5F04346211F8D9100952E72 /* PasswordAttribute.swift in Sources */,
-				E5621193218B6DE100F2928F /* UIView+Utils.swift in Sources */,
-				E5495CCD2488DF6A001A9AAB /* PasswordGeneratorViewController.swift in Sources */,
-				E528F005212F249F0007FEF7 /* PasswordLabelViewModel.swift in Sources */,
+				E5CA9E822489C97900AF1016 /* NPAlertViewController.swift in Sources */,
+				E5621193218B6DE100F2928F /* UIView+Extensions.swift in Sources */,
+				E5CA9E912489CFDF00AF1016 /* NPButton.swift in Sources */,
+				E5AC4A332489A9A500BFAC91 /* PasswordGeneratorViewController.swift in Sources */,
+				E528F005212F249F0007FEF7 /* PasswordViewModel.swift in Sources */,
+				E5CA9E872489CCE500AF1016 /* NPContainerView.swift in Sources */,
+				E5911348248B131400EAF79E /* UIFont+Extensions.swift in Sources */,
 				E59CDBBC2202893C007DC84E /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -426,8 +530,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Addison Francisco (RXSU9NYHLN)";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FK4RW7EF3V;
 				INFOPLIST_FILE = NewPass/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -437,7 +541,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.addmancorp.NewPass;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = NewPassDevelopmentProfile;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
