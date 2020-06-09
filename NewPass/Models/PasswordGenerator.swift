@@ -10,7 +10,7 @@ import Foundation
 
 final class PasswordGenerator {
 
-    func randomPassword(with attributes: [PasswordAttribute], length: Int) -> String {
+    func generate(with attributes: [PasswordAttribute], length: Int) -> String {
         // Create an initial string of password characters based on attributes
         let passwordString = constructedPasswordString(using: attributes)
         // Randomize password string characters
