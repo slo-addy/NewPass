@@ -9,41 +9,53 @@
 import Foundation
 import UIKit
 
-struct PasswordViewModel {
+class PasswordViewModel {
 
-    // TODO: Remove tight coupling to PasswordGenerator
     private let passwordGenerator = PasswordGenerator()
+    private(set) var passwordLength: Int
+    private(set) var passwordString: String = ""
+    private(set) var passwordAttributes: [PasswordAttribute]
 
-    var passwordAttributes: [PasswordAttribute]
     var hasSelectedPasswordAttributes: Bool {
         return !passwordAttributes.isEmpty
     }
 
-    init(passwordAttributes: [PasswordAttribute] = Constants.defaultPasswordAttributes) {
-        self.passwordAttributes = passwordAttributes
+    var styledPassword: NSAttributedString {
+        return attributedPasswordString(from: passwordString)
     }
 
-    func getRandomPassword(length: Int) -> NSAttributedString {
-        let randomPassword = passwordGenerator.generate(with: passwordAttributes, length: length)
+    init(passwordAttributes: [PasswordAttribute], passwordLength: Int) {
+        self.passwordAttributes = passwordAttributes
+        self.passwordLength = passwordLength
+    }
 
-        return attributedPasswordString(from: randomPassword)
+    func update(attributes: [PasswordAttribute]) {
+        passwordAttributes = attributes
+    }
+
+    func update(length: Int) {
+        passwordLength = length
+    }
+
+    func fetchNewPassword() {
+        passwordString = passwordGenerator.generate(with: passwordAttributes, length: passwordLength)
     }
 
     private func attributedPasswordString(from passwordString: String) -> NSAttributedString {
-        let symbolCharColor = [NSAttributedString.Key.foregroundColor: UIColor(red: 237/255, green: 117/255, blue: 99/255, alpha: 1)]
-        let numberCharColor = [NSAttributedString.Key.foregroundColor: UIColor(red: 74/255, green: 196/255, blue: 230/255, alpha: 1)]
-        let alphabetCharColor = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        let symbolCharColor = [NSAttributedString.Key.foregroundColor: Constants.Colors.symbol]
+        let numberCharColor = [NSAttributedString.Key.foregroundColor: Constants.Colors.number]
+        let alphabetCharColor = [NSAttributedString.Key.foregroundColor: Constants.Colors.alphabet]
         let attributedString = NSMutableAttributedString()
 
-        for s in passwordString.unicodeScalars {
+        for element in passwordString.unicodeScalars {
             let char: NSAttributedString
 
-            if PasswordAttribute.numbers.characterSet.contains(s) {
-                char = NSAttributedString(string: "\(s)", attributes: numberCharColor)
-            } else if PasswordAttribute.symbols.characterSet.contains(s) {
-                char = NSAttributedString(string: "\(s)", attributes: symbolCharColor)
+            if PasswordAttribute.numbers.characterSet.contains(element) {
+                char = NSAttributedString(string: "\(element)", attributes: numberCharColor)
+            } else if PasswordAttribute.symbols.characterSet.contains(element) {
+                char = NSAttributedString(string: "\(element)", attributes: symbolCharColor)
             } else {
-                char = NSAttributedString(string: "\(s)", attributes: alphabetCharColor)
+                char = NSAttributedString(string: "\(element)", attributes: alphabetCharColor)
             }
             attributedString.append(char)
         }

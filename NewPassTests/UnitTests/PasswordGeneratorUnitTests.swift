@@ -12,62 +12,63 @@ import XCTest
 class PasswordGeneratorUnitTests: XCTestCase {
 
     func testPasswordMatchesGivenLength() {
-        let passwordGenerator = PasswordGenerator()
-        let randomPass = passwordGenerator.generate(with: [.numbers], length: 10)
+        let sut = PasswordGenerator()
+        let passwordString = sut.generate(with: [.numbers], length: 10)
 
-        XCTAssertTrue(randomPass.count == 10)
+        XCTAssertTrue(passwordString.count == 10)
     }
 
     func testPasswordStringContainsNumbers() {
-        let passwordGenerator = PasswordGenerator()
-        let randomPass = passwordGenerator.generate(with: [.numbers], length: 10)
+        let sut = PasswordGenerator()
+        let passwordString = sut.generate(with: [.numbers], length: 10)
 
-        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordAttribute.numbers.characterSet) != nil))
+        XCTAssertTrue((passwordString.rangeOfCharacter(from: PasswordAttribute.numbers.characterSet) != nil))
     }
 
     func testPasswordStringContainsLowerCaseLetters() {
-        let passwordGenerator = PasswordGenerator()
-        let randomPass = passwordGenerator.generate(with: [.lowercaseLetters], length: 10)
+        let sut = PasswordGenerator()
+        let passwordString = sut.generate(with: [.lowercaseLetters], length: 10)
 
-        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordAttribute.lowercaseLetters.characterSet) != nil))
+        XCTAssertTrue((passwordString.rangeOfCharacter(from: PasswordAttribute.lowercaseLetters.characterSet) != nil))
     }
 
     func testPasswordStringContainsUpperCaseLetters() {
-        let passwordGenerator = PasswordGenerator()
-        let randomPass = passwordGenerator.generate(with: [.uppercaseLetters], length: 10)
+        let sut = PasswordGenerator()
+        let passwordString = sut.generate(with: [.uppercaseLetters], length: 10)
 
-        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordAttribute.uppercaseLetters.characterSet) != nil))
+        XCTAssertTrue((passwordString.rangeOfCharacter(from: PasswordAttribute.uppercaseLetters.characterSet) != nil))
     }
 
     func testPasswordStringContainsSymbols() {
-        let passwordGenerator = PasswordGenerator()
-        let randomPass = passwordGenerator.generate(with: [.symbols], length: 10)
+        let sut = PasswordGenerator()
+        let passwordString = sut.generate(with: [.symbols], length: 10)
 
-        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordAttribute.symbols.characterSet) != nil))
+        XCTAssertTrue((passwordString.rangeOfCharacter(from: PasswordAttribute.symbols.characterSet) != nil))
     }
 
     func testPasswordStringContainsAllAttributes() {
-        let passwordGenerator = PasswordGenerator()
+        let sut = PasswordGenerator()
         let passwordAttributes: [PasswordAttribute] = [.numbers, .symbols, .lowercaseLetters, .uppercaseLetters]
-        var randomPass = passwordGenerator.generate(with: passwordAttributes, length: 12)
+        var passwordString = sut.generate(with: passwordAttributes, length: 12)
 
-        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordAttribute.numbers.characterSet) != nil))
-        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordAttribute.symbols.characterSet) != nil))
-        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordAttribute.lowercaseLetters.characterSet) != nil))
-        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordAttribute.uppercaseLetters.characterSet) != nil))
+        XCTAssertTrue((passwordString.rangeOfCharacter(from: PasswordAttribute.numbers.characterSet) != nil))
+        XCTAssertTrue((passwordString.rangeOfCharacter(from: PasswordAttribute.symbols.characterSet) != nil))
+        XCTAssertTrue((passwordString.rangeOfCharacter(from: PasswordAttribute.lowercaseLetters.characterSet) != nil))
+        XCTAssertTrue((passwordString.rangeOfCharacter(from: PasswordAttribute.uppercaseLetters.characterSet) != nil))
 
-        randomPass = passwordGenerator.generate(with: passwordAttributes, length: 8)
+        passwordString = sut.generate(with: passwordAttributes, length: 8)
 
-        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordAttribute.numbers.characterSet) != nil))
-        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordAttribute.symbols.characterSet) != nil))
-        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordAttribute.lowercaseLetters.characterSet) != nil))
-        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordAttribute.uppercaseLetters.characterSet) != nil))
+        XCTAssertTrue((passwordString.rangeOfCharacter(from: PasswordAttribute.numbers.characterSet) != nil))
+        XCTAssertTrue((passwordString.rangeOfCharacter(from: PasswordAttribute.symbols.characterSet) != nil))
+        XCTAssertTrue((passwordString.rangeOfCharacter(from: PasswordAttribute.lowercaseLetters.characterSet) != nil))
+        XCTAssertTrue((passwordString.rangeOfCharacter(from: PasswordAttribute.uppercaseLetters.characterSet) != nil))
 
-        randomPass = passwordGenerator.generate(with: passwordAttributes, length: 4)
+        passwordString = sut.generate(with: passwordAttributes, length: 4)
 
-        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordAttribute.numbers.characterSet) != nil))
-        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordAttribute.symbols.characterSet) != nil))
-        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordAttribute.lowercaseLetters.characterSet) != nil))
-        XCTAssertTrue((randomPass.rangeOfCharacter(from: PasswordAttribute.uppercaseLetters.characterSet) != nil))
+        XCTAssertTrue((passwordString.rangeOfCharacter(from: PasswordAttribute.numbers.characterSet) != nil))
+        XCTAssertTrue((passwordString.rangeOfCharacter(from: PasswordAttribute.symbols.characterSet) != nil))
+        XCTAssertTrue((passwordString.rangeOfCharacter(from: PasswordAttribute.lowercaseLetters.characterSet) != nil))
+        XCTAssertTrue((passwordString.rangeOfCharacter(from: PasswordAttribute.uppercaseLetters.characterSet) != nil))
     }
+
 }

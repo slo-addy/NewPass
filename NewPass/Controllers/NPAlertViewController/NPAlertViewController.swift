@@ -19,6 +19,7 @@ class NPAlertViewController: UIViewController {
     var alertTitle: String?
     var message: String?
     var buttonTitle: String?
+    var buttonHandler: (() -> Void)?
 
     // MARK: - Initialization
 
@@ -91,6 +92,7 @@ class NPAlertViewController: UIViewController {
     @objc
     private func didTouchUp() {
         actionButton.alpha = 1.0
+        buttonHandler?()
         dismiss(animated: true)
     }
 

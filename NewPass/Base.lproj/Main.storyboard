@@ -246,10 +246,10 @@
                         <outlet property="generatePasswordButton" destination="BwI-5b-HoJ" id="f6G-tW-wue"/>
                         <outlet property="lowercaseLetterSwitch" destination="OA6-SW-Lwf" id="00u-fG-eC0"/>
                         <outlet property="numberSwitch" destination="MFm-Ve-8Vl" id="z8s-xC-mgD"/>
-                        <outlet property="passwordLabel1" destination="a8i-8p-u4X" id="rFL-ug-oWh"/>
-                        <outlet property="passwordLabel1BottomConstraint" destination="Md8-zz-JNw" id="nP6-dz-ywx"/>
-                        <outlet property="passwordLabel2" destination="Qya-PP-pYb" id="eXh-BE-VPg"/>
-                        <outlet property="passwordLabel2BottomConstraint" destination="IGi-m1-u48" id="oTu-ca-yJ0"/>
+                        <outlet property="passwordFadeInLabel" destination="Qya-PP-pYb" id="cGw-WT-ISv"/>
+                        <outlet property="passwordFadeInLabelBottomConstraint" destination="IGi-m1-u48" id="rjX-Vk-QvV"/>
+                        <outlet property="passwordFadeOutLabel" destination="a8i-8p-u4X" id="5JY-XF-xoS"/>
+                        <outlet property="passwordFadeOutLabelBottomConstraint" destination="Md8-zz-JNw" id="7CU-yM-hgr"/>
                         <outlet property="passwordLabelViewContainer" destination="exQ-vP-uMc" id="cHb-qb-gmU"/>
                         <outlet property="passwordLengthLabel" destination="1Co-qg-iHb" id="wBl-X0-XVP"/>
                         <outlet property="passwordLengthSlider" destination="dVw-3Y-dlB" id="tGk-YD-TKq"/>

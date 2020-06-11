@@ -10,20 +10,17 @@ import UIKit
 
 class PasswordGeneratorViewController: UIViewController {
 
-    private var viewModel = PasswordViewModel()
-    // Default password length to be 10 characters
-    // TODO: Move passwordLength and passwordString into view model
-    private var passwordLength = Constants.defaultPasswordLength
-    private var passwordString = NSAttributedString(string: "")
+    private var viewModel = PasswordViewModel(passwordAttributes: Constants.defaultPasswordAttributes,
+                                              passwordLength: Constants.defaultPasswordLength)
     private var passwordSwitches: [PasswordAttributeSwitch]!
 
     @IBOutlet weak var passwordLabelViewContainer: UIView!
     // Animates from center to top
-    @IBOutlet weak var passwordLabel1: UILabel!
+    @IBOutlet weak var passwordFadeOutLabel: UILabel!
+    @IBOutlet weak var passwordFadeOutLabelBottomConstraint: NSLayoutConstraint!
     // Animates from bottom to center
-    @IBOutlet weak var passwordLabel2: UILabel!
-    @IBOutlet weak var passwordLabel1BottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var passwordLabel2BottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var passwordFadeInLabel: UILabel!
+    @IBOutlet weak var passwordFadeInLabelBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var passwordLengthLabel: UILabel!
     @IBOutlet weak var passwordLengthSlider: UISlider!
     @IBOutlet weak var lowercaseLetterSwitch: PasswordAttributeSwitch!
@@ -48,25 +45,23 @@ class PasswordGeneratorViewController: UIViewController {
     // MARK: View Layout
 
     private func configureViews() {
-        passwordLabel1.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(presentPasswordShare)))
+        passwordFadeOutLabel.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(presentPasswordShare)))
         generatePasswordButton.addTarget(self, action: #selector(generatePasswordTouchBegan(_:)), for: .touchDown)
 
         passwordSwitches = [lowercaseLetterSwitch, numberSwitch, symbolSwitch, uppercaseLetterSwitch]
 
-        // Assign attributes to password switches
         lowercaseLetterSwitch.attributeType = .lowercaseLetters
         uppercaseLetterSwitch.attributeType = .uppercaseLetters
         numberSwitch.attributeType = .numbers
         symbolSwitch.attributeType = .symbols
 
-        // Roundify view corners
         passwordLabelViewContainer.roundify(cornerRadius: 6)
         generatePasswordButton.roundify(cornerRadius: 6)
     }
 
     /// Sets default view states and generates initial password
     private func configureInitialState() {
-        passwordString = viewModel.getRandomPassword(length: passwordLength)
+        viewModel.fetchNewPassword()
 
         for passwordSwitch in passwordSwitches {
             if viewModel.passwordAttributes.contains(passwordSwitch.attributeType) {
@@ -74,81 +69,56 @@ class PasswordGeneratorViewController: UIViewController {
             }
         }
 
-        passwordLengthSlider.setValue(Float(passwordLength), animated: true)
-        passwordLengthLabel.text = "Password Length: \(passwordLength)"
-
-        passwordLabel1.attributedText = passwordString
+        passwordLengthSlider.setValue(Float(viewModel.passwordLength), animated: true)
+        passwordLengthLabel.text = "Password Length: \(viewModel.passwordLength)"
+        passwordFadeOutLabel.attributedText = viewModel.styledPassword
     }
 
-    private func updateLabelsForPassword() {
-        passwordLabel2.attributedText = passwordString
-        passwordLengthLabel.text = "Password Length: \(passwordLength)"
-    }
+    /// Animates the `passwordFadeOutLabel` up out of view and `passwordFadeInLabel` up (from bottom) in to view.
+    /// This is a recursive function that will perform a faster animation and continue generating passwords if
+    /// the user keeps holding down the `generatePasswordButton`.
+    ///
+    /// - parameters:
+    /// 	- withFastAnimation: Determines if faster animation should be configured
+    ///
+    private func animateLabelUpdates(withFastAnimation: Bool = false) {
+        // Label with new password that will animate into view
+        passwordFadeInLabel.attributedText = viewModel.styledPassword
 
-    private func updateLabelsWithAnimation() {
-        generatePasswordButton.isEnabled = false
-        updateLabelsForPassword()
-
-        // TODO: Abstract this out into custom class
-
-        UIView.animate(withDuration: 0.3,
+        UIView.animate(withDuration: withFastAnimation ? 0.07 : 0.32,
                        delay: 0,
-                       usingSpringWithDamping: 0.5,
+                       usingSpringWithDamping: withFastAnimation ? 0.1 : 0.5,
                        initialSpringVelocity: 5,
                        options: [],
-                       animations: {
-                        performLayoutUpdatesForAnimation()
-        },
+                       animations: { performLayoutUpdatesForAnimation() },
                        completion: { _ in
                         self.generatePasswordButton.isEnabled = true
-                        self.passwordLabel1.attributedText = self.passwordLabel2.attributedText
+                        self.passwordFadeOutLabel.attributedText = self.passwordFadeInLabel.attributedText
                         performLayoutUpdatesForCompletion()
 
                         if self.generatePasswordButton.state == .highlighted {
-                            self.randomPasswordFromViewModel()
-                            self.updateLabelsForPassword()
-                            animateWithReducedDuration()
+                            self.fetchNewPassword()
+                            if self.viewModel.hasSelectedPasswordAttributes {
+                            	self.animateLabelUpdates(withFastAnimation: true)
+                            }
                         }
         })
 
-        func animateWithReducedDuration() {
-            UIView.animate(withDuration: 0.07,
-                           delay: 0,
-                           options: [],
-                           animations: {
-                            performLayoutUpdatesForAnimation()
-            },
-                           completion: { _ in
-                            self.generatePasswordButton.isEnabled = true
-                            self.passwordLabel1.attributedText = self.passwordLabel2.attributedText
-                            performLayoutUpdatesForCompletion()
-
-                            guard self.viewModel.hasSelectedPasswordAttributes else {
-                                self.presentAlertForEmptyAttributes()
-                                return
-                            }
-
-                            if self.generatePasswordButton.state == .highlighted {
-                                self.randomPasswordFromViewModel()
-                                self.updateLabelsForPassword()
-                                animateWithReducedDuration()
-                            }
-            })
-        }
-
+        /// Animates the old password out of view and new password in to view
         func performLayoutUpdatesForAnimation() {
-            self.passwordLabel1.alpha = 0
-            self.passwordLabel1BottomConstraint.constant = self.passwordLabelViewContainer.frame.height
-            self.passwordLabel2.alpha = 1
-            self.passwordLabel2BottomConstraint.constant = 0
+            self.passwordFadeOutLabel.alpha = 0
+            self.passwordFadeOutLabelBottomConstraint.constant = self.passwordLabelViewContainer.frame.height
+            self.passwordFadeInLabel.alpha = 1
+            self.passwordFadeInLabelBottomConstraint.constant = 0
             self.view.layoutIfNeeded()
         }
 
+        /// Reposition labels to prepare for next animation
         func performLayoutUpdatesForCompletion() {
-            self.passwordLabel1.alpha = 1
-            self.passwordLabel1BottomConstraint.constant = 0
-            self.passwordLabel2.alpha = 0
-            self.passwordLabel2BottomConstraint.constant = 0 - self.passwordLabelViewContainer.frame.height
+            self.passwordFadeOutLabel.alpha = 1
+            self.passwordFadeOutLabelBottomConstraint.constant = 0
+            self.passwordFadeInLabel.alpha = 0
+            self.passwordFadeInLabelBottomConstraint.constant = 0 - self.passwordLabelViewContainer.frame.height
             self.view.layoutIfNeeded()
         }
     }
@@ -156,29 +126,29 @@ class PasswordGeneratorViewController: UIViewController {
 	// MARK: - Actions
 
     @IBAction private func attributeSwitchDidChange(_ attributeSwitch: PasswordAttributeSwitch) {
-        viewModel.passwordAttributes = passwordSwitches.filter { $0.isOn }.map { switchThatIsOn -> PasswordAttribute in
+        let attributes = passwordSwitches.filter { $0.isOn }.map { switchThatIsOn -> PasswordAttribute in
             return switchThatIsOn.attributeType
         }
+
+        viewModel.update(attributes: attributes)
     }
 
-    @IBAction private func passwordLengthSliderDidMove(_ sender: Any) {
-        passwordLength = Int(passwordLengthSlider.value)
-        passwordLengthLabel.text = "Password Length: \(passwordLength)"
+    @IBAction private func passwordLengthSliderDidMove(_ sender: UISlider) {
+        viewModel.update(length: Int(passwordLengthSlider.value))
+        passwordLengthLabel.text = "Password Length: \(viewModel.passwordLength)"
     }
 
     @IBAction private func generatePasswordTouchBegan(_ sender: UIButton) {
-        if viewModel.hasSelectedPasswordAttributes {
-            randomPasswordFromViewModel()
-            updateLabelsWithAnimation()
-        } else {
-            presentAlertForEmptyAttributes()
-        }
+        fetchNewPassword()
+        animateLabelUpdates()
     }
 
-    private func randomPasswordFromViewModel() {
+    private func fetchNewPassword() {
+        generatePasswordButton.isEnabled = false
+
         if viewModel.hasSelectedPasswordAttributes {
-            passwordString = viewModel.getRandomPassword(length: passwordLength)
-            HapticEngine().hapticTap(impactStyle: .light)
+			HapticEngine().hapticTap()
+            viewModel.fetchNewPassword()
         } else {
             presentAlertForEmptyAttributes()
         }
@@ -187,7 +157,7 @@ class PasswordGeneratorViewController: UIViewController {
 	// MARK: - Share Activity
 
     @objc private func presentPasswordShare() {
-        let items = [passwordString.string]
+        let items = [viewModel.styledPassword.string]
         let vc = UIActivityViewController(activityItems: items, applicationActivities: nil)
         // Because why...
         let excludedActivityTypes: [UIActivity.ActivityType] = [.postToFacebook, .postToTwitter]
@@ -203,6 +173,9 @@ class PasswordGeneratorViewController: UIViewController {
         alertViewController.modalPresentationStyle = .overFullScreen
         alertViewController.modalTransitionStyle = .crossDissolve
         alertViewController.view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        alertViewController.buttonHandler = {
+            self.generatePasswordButton.isEnabled = true
+        }
 
         self.present(alertViewController, animated: true)
         HapticEngine().hapticWarning()
@@ -215,8 +188,8 @@ extension PasswordGeneratorViewController {
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         switch motion {
         case .motionShake:
-            randomPasswordFromViewModel()
-            updateLabelsWithAnimation()
+            fetchNewPassword()
+            animateLabelUpdates()
         default:
             break
         }
