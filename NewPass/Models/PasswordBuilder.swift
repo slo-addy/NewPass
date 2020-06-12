@@ -1,5 +1,5 @@
 //
-//  PasswordGenerator.swift
+//  PasswordBuilder.swift
 //  NewPass
 //
 //  Created by Addison Francisco on 7/17/18.
@@ -8,34 +8,36 @@
 
 import Foundation
 
-final class PasswordGenerator {
+final class PasswordBuilder {
 
-    func generate(with attributes: [PasswordAttribute], length: Int) -> String {
+    /// Returns a randomized password string containing characters matching the given attributes.
+	///
+    /// - parameters:
+    /// 	- attributes: The type of characters that will be within constructed password
+    ///		- length: length of password
+    ///
+    func build(with attributes: [PasswordAttribute], length: Int) -> String {
         // Create an initial string of password characters based on attributes
-        let passwordString = constructedPasswordString(using: attributes)
+        let passwordString = constructPasswordString(using: attributes)
         // Randomize password string characters
         let randomPassword = randomize(string: passwordString, length: length, attributes: attributes)
 
         return randomPassword
     }
 
-    private func constructedPasswordString(using attributes: [PasswordAttribute]) -> String {
+    private func constructPasswordString(using attributes: [PasswordAttribute]) -> String {
         var constructedPasswordString = ""
-        let lowercasedAlphabet = PasswordAttribute.lowercaseLetters.rawValue
-        let uppercasedAlphabet = PasswordAttribute.uppercaseLetters.rawValue
-        let numbers = PasswordAttribute.numbers.rawValue
-        let symbols = PasswordAttribute.symbols.rawValue
 
         for attribute in attributes {
             switch attribute {
             case .numbers:
-                constructedPasswordString += randomize(string: numbers)
+                constructedPasswordString += PasswordAttribute.numbers.rawValue
             case .symbols:
-                constructedPasswordString += randomize(string: symbols)
+                constructedPasswordString += PasswordAttribute.symbols.rawValue
             case .lowercaseLetters:
-                constructedPasswordString += randomize(string: lowercasedAlphabet)
+                constructedPasswordString += PasswordAttribute.lowercaseLetters.rawValue
             case .uppercaseLetters:
-                constructedPasswordString += randomize(string: uppercasedAlphabet)
+                constructedPasswordString += PasswordAttribute.uppercaseLetters.rawValue
             }
         }
 

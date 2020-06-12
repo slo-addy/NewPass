@@ -19,6 +19,7 @@ class NPAlertViewController: UIViewController {
     var alertTitle: String?
     var message: String?
     var buttonTitle: String?
+    var buttonHandler: (() -> Void)?
 
     // MARK: - Initialization
 
@@ -83,17 +84,6 @@ class NPAlertViewController: UIViewController {
         ])
     }
 
-    @objc
-    private func didTouchDown() {
-        actionButton.alpha = 0.5
-    }
-
-    @objc
-    private func didTouchUp() {
-        actionButton.alpha = 1.0
-        dismiss(animated: true)
-    }
-
     func configureMessageLabel() {
         messageLabel.text = message
         messageLabel.numberOfLines = 4
@@ -104,6 +94,21 @@ class NPAlertViewController: UIViewController {
             messageLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -padding),
             messageLabel.bottomAnchor.constraint(equalTo: actionButton.topAnchor, constant: -12)
         ])
+    }
+
+    // MARK: - Actions
+
+    @objc
+    private func didTouchDown() {
+        actionButton.alpha = 0.7
+    }
+
+    @objc
+    private func didTouchUp() {
+        actionButton.alpha = 1.0
+        buttonHandler?()
+
+        dismiss(animated: true)
     }
 
 }
