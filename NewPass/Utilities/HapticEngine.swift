@@ -16,7 +16,7 @@ struct HapticEngine {
     }
 
     func hapticTap() {
-        var generator = UIImpactFeedbackGenerator(style: .light)
+        let generator = UIImpactFeedbackGenerator(style: .light)
         generator.impactOccurred()
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PasswordAttributeSwitch: UISwitch {
+class NPAttributeSwitch: UISwitch {
 
     // Force unwrapped because all password switches must have an attribute assigned to them
     var attributeType: PasswordAttribute!
@@ -16,7 +16,7 @@ class PasswordAttributeSwitch: UISwitch {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
-        // All switches need to be off initially
+        // Make sure all switches are initially off so they can be animated on when view appears
         self.isOn = false
     }
 

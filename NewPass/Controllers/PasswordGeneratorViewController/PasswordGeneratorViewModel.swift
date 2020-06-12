@@ -1,5 +1,5 @@
 //
-//  PasswordViewModel.swift
+//  PasswordGeneratorViewModel.swift
 //  NewPass
 //
 //  Created by Addison Francisco on 8/23/18.
@@ -9,17 +9,19 @@
 import Foundation
 import UIKit
 
-class PasswordViewModel {
+final class PasswordGeneratorViewModel {
 
-    private let passwordGenerator = PasswordGenerator()
+    private let passwordBuilder = PasswordBuilder()
+    private var passwordString: String = ""
     private(set) var passwordLength: Int
-    private(set) var passwordString: String = ""
     private(set) var passwordAttributes: [PasswordAttribute]
 
+    /// Determines if the user has selected at least one attribute
     var hasSelectedPasswordAttributes: Bool {
         return !passwordAttributes.isEmpty
     }
 
+    /// The password string with color attributes applied
     var styledPassword: NSAttributedString {
         return attributedPasswordString(from: passwordString)
     }
@@ -29,16 +31,25 @@ class PasswordViewModel {
         self.passwordLength = passwordLength
     }
 
+    /// Updates the model's password attributes. These changes will be applied to the next
+    /// password that is generated. This does not affect the currently stored password.
     func update(attributes: [PasswordAttribute]) {
         passwordAttributes = attributes
     }
 
+    /// Updates the model's password length. These changes will be applied to the next
+    /// password that is generated and will not affect the currently stored password.
     func update(length: Int) {
         passwordLength = length
     }
 
+    /// Requests a newly built password using the stored `passwordAttributes` and `length`
     func fetchNewPassword() {
-        passwordString = passwordGenerator.generate(with: passwordAttributes, length: passwordLength)
+        guard hasSelectedPasswordAttributes else {
+            return
+        }
+
+        passwordString = passwordBuilder.build(with: passwordAttributes, length: passwordLength)
     }
 
     private func attributedPasswordString(from passwordString: String) -> NSAttributedString {

@@ -8,25 +8,23 @@
 
 import UIKit
 
-class PasswordGeneratorViewController: UIViewController {
+final class PasswordGeneratorViewController: UIViewController {
 
-    private var viewModel = PasswordViewModel(passwordAttributes: Constants.defaultPasswordAttributes,
-                                              passwordLength: Constants.defaultPasswordLength)
-    private var passwordSwitches: [PasswordAttributeSwitch]!
+    private var viewModel = PasswordGeneratorViewModel(passwordAttributes: Constants.defaultPasswordAttributes,
+                                                       passwordLength: Constants.defaultPasswordLength)
+    private var passwordSwitches: [NPAttributeSwitch]!
 
     @IBOutlet weak var passwordLabelViewContainer: UIView!
-    // Animates from center to top
     @IBOutlet weak var passwordFadeOutLabel: UILabel!
     @IBOutlet weak var passwordFadeOutLabelBottomConstraint: NSLayoutConstraint!
-    // Animates from bottom to center
     @IBOutlet weak var passwordFadeInLabel: UILabel!
     @IBOutlet weak var passwordFadeInLabelBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var passwordLengthLabel: UILabel!
     @IBOutlet weak var passwordLengthSlider: UISlider!
-    @IBOutlet weak var lowercaseLetterSwitch: PasswordAttributeSwitch!
-    @IBOutlet weak var uppercaseLetterSwitch: PasswordAttributeSwitch!
-    @IBOutlet weak var numberSwitch: PasswordAttributeSwitch!
-    @IBOutlet weak var symbolSwitch: PasswordAttributeSwitch!
+    @IBOutlet weak var lowercaseLetterSwitch: NPAttributeSwitch!
+    @IBOutlet weak var uppercaseLetterSwitch: NPAttributeSwitch!
+    @IBOutlet weak var numberSwitch: NPAttributeSwitch!
+    @IBOutlet weak var symbolSwitch: NPAttributeSwitch!
     @IBOutlet weak var generatePasswordButton: UIButton!
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -45,17 +43,16 @@ class PasswordGeneratorViewController: UIViewController {
     // MARK: View Layout
 
     private func configureViews() {
+        passwordLabelViewContainer.roundify(cornerRadius: 6)
         passwordFadeOutLabel.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(presentPasswordShare)))
-        generatePasswordButton.addTarget(self, action: #selector(generatePasswordTouchBegan(_:)), for: .touchDown)
-
-        passwordSwitches = [lowercaseLetterSwitch, numberSwitch, symbolSwitch, uppercaseLetterSwitch]
 
         lowercaseLetterSwitch.attributeType = .lowercaseLetters
         uppercaseLetterSwitch.attributeType = .uppercaseLetters
         numberSwitch.attributeType = .numbers
         symbolSwitch.attributeType = .symbols
+        passwordSwitches = [lowercaseLetterSwitch, numberSwitch, symbolSwitch, uppercaseLetterSwitch]
 
-        passwordLabelViewContainer.roundify(cornerRadius: 6)
+        generatePasswordButton.addTarget(self, action: #selector(generatePasswordTouchBegan(_:)), for: .touchDown)
         generatePasswordButton.roundify(cornerRadius: 6)
     }
 
@@ -97,6 +94,7 @@ class PasswordGeneratorViewController: UIViewController {
                         performLayoutUpdatesForCompletion()
 
                         if self.generatePasswordButton.state == .highlighted {
+							// Fetch new password in case user made changes during last animation
                             self.fetchNewPassword()
                             if self.viewModel.hasSelectedPasswordAttributes {
                             	self.animateLabelUpdates(withFastAnimation: true)
@@ -125,7 +123,7 @@ class PasswordGeneratorViewController: UIViewController {
 
 	// MARK: - Actions
 
-    @IBAction private func attributeSwitchDidChange(_ attributeSwitch: PasswordAttributeSwitch) {
+    @IBAction private func attributeSwitchDidChange(_ attributeSwitch: NPAttributeSwitch) {
         let attributes = passwordSwitches.filter { $0.isOn }.map { switchThatIsOn -> PasswordAttribute in
             return switchThatIsOn.attributeType
         }
