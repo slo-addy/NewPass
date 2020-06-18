@@ -12,7 +12,7 @@ final class PasswordGeneratorViewController: UIViewController {
 
     private var viewModel = PasswordGeneratorViewModel(passwordAttributes: Constants.defaultPasswordAttributes,
                                                        passwordLength: Constants.defaultPasswordLength)
-    private var passwordSwitches: [NPAttributeSwitch]!
+    private var attributeToggleButtons: [NPAttributeToggleButton]!
 
     @IBOutlet weak var passwordLabelViewContainer: UIView!
     @IBOutlet weak var passwordFadeOutLabel: UILabel!
@@ -21,10 +21,10 @@ final class PasswordGeneratorViewController: UIViewController {
     @IBOutlet weak var passwordFadeInLabelBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var passwordLengthLabel: UILabel!
     @IBOutlet weak var passwordLengthSlider: UISlider!
-    @IBOutlet weak var lowercaseLetterSwitch: NPAttributeSwitch!
-    @IBOutlet weak var uppercaseLetterSwitch: NPAttributeSwitch!
-    @IBOutlet weak var numberSwitch: NPAttributeSwitch!
-    @IBOutlet weak var symbolSwitch: NPAttributeSwitch!
+    @IBOutlet weak var lowercaseLetterToggle: NPAttributeToggleButton!
+    @IBOutlet weak var uppercaseLetterToggle: NPAttributeToggleButton!
+    @IBOutlet weak var numberToggle: NPAttributeToggleButton!
+    @IBOutlet weak var symbolToggle: NPAttributeToggleButton!
     @IBOutlet weak var generatePasswordButton: UIButton!
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -46,11 +46,11 @@ final class PasswordGeneratorViewController: UIViewController {
         passwordLabelViewContainer.roundify(cornerRadius: 6)
         passwordFadeOutLabel.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(presentPasswordShare)))
 
-        lowercaseLetterSwitch.attributeType = .lowercaseLetters
-        uppercaseLetterSwitch.attributeType = .uppercaseLetters
-        numberSwitch.attributeType = .numbers
-        symbolSwitch.attributeType = .symbols
-        passwordSwitches = [lowercaseLetterSwitch, numberSwitch, symbolSwitch, uppercaseLetterSwitch]
+        lowercaseLetterToggle.attributeType = .lowercaseLetters
+        uppercaseLetterToggle.attributeType = .uppercaseLetters
+        numberToggle.attributeType = .numbers
+        symbolToggle.attributeType = .symbols
+        attributeToggleButtons = [lowercaseLetterToggle, uppercaseLetterToggle, numberToggle, symbolToggle]
 
         generatePasswordButton.addTarget(self, action: #selector(generatePasswordTouchBegan(_:)), for: .touchDown)
         generatePasswordButton.roundify(cornerRadius: 6)
@@ -58,11 +58,11 @@ final class PasswordGeneratorViewController: UIViewController {
 
     /// Sets default view states and generates initial password
     private func configureInitialState() {
-        viewModel.fetchNewPassword()
+	    viewModel.fetchNewPassword()
 
-        for passwordSwitch in passwordSwitches {
-            if viewModel.passwordAttributes.contains(passwordSwitch.attributeType) {
-                passwordSwitch.setOn(true, animated: true)
+        for attributeToggle in attributeToggleButtons {
+            if viewModel.passwordAttributes.contains(attributeToggle.attributeType) {
+                attributeToggle.isSelected = true
             }
         }
 
@@ -123,9 +123,9 @@ final class PasswordGeneratorViewController: UIViewController {
 
 	// MARK: - Actions
 
-    @IBAction private func attributeSwitchDidChange(_ attributeSwitch: NPAttributeSwitch) {
-        let attributes = passwordSwitches.filter { $0.isOn }.map { switchThatIsOn -> PasswordAttribute in
-            return switchThatIsOn.attributeType
+    @IBAction private func attributeButtonWasToggled(_ attributeToggle: NPAttributeToggleButton) {
+        let attributes = attributeToggleButtons.filter { $0.isSelected }.map { selectedToggle -> PasswordAttribute in
+            return selectedToggle.attributeType
         }
 
         viewModel.update(attributes: attributes)
@@ -145,7 +145,7 @@ final class PasswordGeneratorViewController: UIViewController {
         generatePasswordButton.isEnabled = false
 
         if viewModel.hasSelectedPasswordAttributes {
-			HapticEngine().hapticTap()
+            HapticEngine().hapticTap(style: .light)
             viewModel.fetchNewPassword()
         } else {
             presentAlertForEmptyAttributes()

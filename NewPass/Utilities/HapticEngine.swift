@@ -15,8 +15,8 @@ struct HapticEngine {
         warningNotificationFeedbackGenerator.notificationOccurred(.error)
     }
 
-    func hapticTap() {
-        let generator = UIImpactFeedbackGenerator(style: .light)
+    func hapticTap(style: UIImpactFeedbackGenerator.FeedbackStyle) {
+        let generator = UIImpactFeedbackGenerator(style: style)
         generator.impactOccurred()
     }
 }

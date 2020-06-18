@@ -19,6 +19,7 @@
 		E5911348248B131400EAF79E /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5911347248B131400EAF79E /* UIFont+Extensions.swift */; };
 		E59CDBBC2202893C007DC84E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59CDBBB2202893C007DC84E /* Constants.swift */; };
 		E5AC4A332489A9A500BFAC91 /* PasswordGeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E512152A20FE76270073D4E4 /* PasswordGeneratorViewController.swift */; };
+		E5C33C372494188200FBAC47 /* NPAttributeToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C33C362494188200FBAC47 /* NPAttributeToggleButton.swift */; };
 		E5C5EF972492BD6300CC17C6 /* PasswordViewModelUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E567BAAB2491DEF200243987 /* PasswordViewModelUnitTests.swift */; };
 		E5CA9E822489C97900AF1016 /* NPAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CA9E812489C97900AF1016 /* NPAlertViewController.swift */; };
 		E5CA9E872489CCE500AF1016 /* NPContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CA9E862489CCE500AF1016 /* NPContainerView.swift */; };
@@ -57,6 +58,7 @@
 		E56DBC3D21901641001D66AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5911347248B131400EAF79E /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		E59CDBBB2202893C007DC84E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E5C33C362494188200FBAC47 /* NPAttributeToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NPAttributeToggleButton.swift; sourceTree = "<group>"; };
 		E5CA9E812489C97900AF1016 /* NPAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NPAlertViewController.swift; sourceTree = "<group>"; };
 		E5CA9E862489CCE500AF1016 /* NPContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NPContainerView.swift; sourceTree = "<group>"; };
 		E5CA9E892489CE4000AF1016 /* NPTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NPTitleLabel.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				E5CA9E902489CFDF00AF1016 /* NPButton.swift */,
+				E5C33C362494188200FBAC47 /* NPAttributeToggleButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				E5621193218B6DE100F2928F /* UIView+Extensions.swift in Sources */,
 				E5CA9E912489CFDF00AF1016 /* NPButton.swift in Sources */,
 				E5AC4A332489A9A500BFAC91 /* PasswordGeneratorViewController.swift in Sources */,
+				E5C33C372494188200FBAC47 /* NPAttributeToggleButton.swift in Sources */,
 				E528F005212F249F0007FEF7 /* PasswordGeneratorViewModel.swift in Sources */,
 				E5CA9E872489CCE500AF1016 /* NPContainerView.swift in Sources */,
 				E5911348248B131400EAF79E /* UIFont+Extensions.swift in Sources */,
