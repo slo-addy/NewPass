@@ -11,23 +11,6 @@ import XCTest
 
 class PasswordViewModelUnitTests: XCTestCase {
 
-    func extractColors(from attributedString: NSAttributedString) -> [UIColor?] {
-        var colorResults = [UIColor?]()
-
-        attributedString.enumerateAttributes(in: NSRange(location: 0, length: attributedString.string.count)) { attributes, _, _ in
-            attributes.forEach { key, value in
-                switch key {
-                case NSAttributedString.Key.foregroundColor:
-                    colorResults.append(value as? UIColor)
-                default:
-                    assert(key == NSAttributedString.Key.paragraphStyle, "Unknown attribute found in the attributed string")
-                }
-            }
-        }
-
-        return colorResults
-    }
-
     func testDeterminesIfNoAttributesAreSelected() {
         let sut = PasswordGeneratorViewModel(passwordAttributes: [.uppercaseLetters], passwordLength: 32)
         XCTAssertEqual(sut.hasSelectedPasswordAttributes, true)
@@ -85,4 +68,24 @@ class PasswordViewModelUnitTests: XCTestCase {
         XCTAssertTrue(result.allSatisfy([Constants.Colors.alphabet, Constants.Colors.number, Constants.Colors.symbol].contains))
     }
 
+}
+
+extension PasswordViewModelUnitTests {
+    
+    func extractColors(from attributedString: NSAttributedString) -> [UIColor?] {
+        var colorResults = [UIColor?]()
+
+        attributedString.enumerateAttributes(in: NSRange(location: 0, length: attributedString.string.count)) { attributes, _, _ in
+            attributes.forEach { key, value in
+                switch key {
+                case NSAttributedString.Key.foregroundColor:
+                    colorResults.append(value as? UIColor)
+                default:
+                    assert(key == NSAttributedString.Key.paragraphStyle, "Unknown attribute found in the attributed string")
+                }
+            }
+        }
+
+        return colorResults
+    }
 }

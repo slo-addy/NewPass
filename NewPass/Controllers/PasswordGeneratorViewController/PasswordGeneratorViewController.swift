@@ -14,18 +14,18 @@ final class PasswordGeneratorViewController: UIViewController {
                                                        passwordLength: Constants.defaultPasswordLength)
     private var passwordSwitches: [NPAttributeSwitch]!
 
-    @IBOutlet weak var passwordLabelViewContainer: UIView!
-    @IBOutlet weak var passwordFadeOutLabel: UILabel!
-    @IBOutlet weak var passwordFadeOutLabelBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var passwordFadeInLabel: UILabel!
-    @IBOutlet weak var passwordFadeInLabelBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var passwordLengthLabel: UILabel!
-    @IBOutlet weak var passwordLengthSlider: UISlider!
-    @IBOutlet weak var lowercaseLetterSwitch: NPAttributeSwitch!
-    @IBOutlet weak var uppercaseLetterSwitch: NPAttributeSwitch!
-    @IBOutlet weak var numberSwitch: NPAttributeSwitch!
-    @IBOutlet weak var symbolSwitch: NPAttributeSwitch!
-    @IBOutlet weak var generatePasswordButton: UIButton!
+    @IBOutlet private weak var passwordLabelViewContainer: UIView!
+    @IBOutlet private weak var passwordFadeOutLabel: UILabel!
+    @IBOutlet private weak var passwordFadeOutLabelBottomConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var passwordFadeInLabel: UILabel!
+    @IBOutlet private weak var passwordFadeInLabelBottomConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var passwordLengthLabel: UILabel!
+    @IBOutlet private weak var passwordLengthSlider: UISlider!
+    @IBOutlet private weak var lowercaseLetterSwitch: NPAttributeSwitch!
+    @IBOutlet private weak var uppercaseLetterSwitch: NPAttributeSwitch!
+    @IBOutlet private weak var numberSwitch: NPAttributeSwitch!
+    @IBOutlet private weak var symbolSwitch: NPAttributeSwitch!
+    @IBOutlet private weak var generatePasswordButton: UIButton!
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -158,24 +158,21 @@ final class PasswordGeneratorViewController: UIViewController {
         let items = [viewModel.styledPassword.string]
         let vc = UIActivityViewController(activityItems: items, applicationActivities: nil)
         // Because why...
-        let excludedActivityTypes: [UIActivity.ActivityType] = [.postToFacebook, .postToTwitter]
-
-        vc.excludedActivityTypes = excludedActivityTypes
+        vc.excludedActivityTypes = [.postToFacebook, .postToTwitter]
         present(vc, animated: true, completion: nil)
     }
 
     private func presentAlertForEmptyAttributes() {
         let alertViewController = NPAlertViewController(title: "Hold On",
                                                         message: "You need at least one attribute selected to generate a password.",
-                                                        buttonTitle: "Okay")
+                                                        buttonTitle: "Okay") {
+            self.generatePasswordButton.isEnabled = true
+        }
         alertViewController.modalPresentationStyle = .overFullScreen
         alertViewController.modalTransitionStyle = .crossDissolve
         alertViewController.view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-        alertViewController.buttonHandler = {
-            self.generatePasswordButton.isEnabled = true
-        }
 
-        self.present(alertViewController, animated: true)
+        present(alertViewController, animated: true)
         HapticEngine().hapticWarning()
     }
 

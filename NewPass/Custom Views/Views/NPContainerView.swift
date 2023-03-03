@@ -21,7 +21,7 @@ class NPAlertContainerView: UIView {
 
     private func configure() {
         backgroundColor = UIColor(red: 43/255, green: 43/255, blue: 43/255, alpha: 1)
-        layer.cornerRadius = 16
+        roundify(cornerRadius: 16)
         translatesAutoresizingMaskIntoConstraints = false
     }
 

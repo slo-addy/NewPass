@@ -49,7 +49,7 @@ final class PasswordGeneratorViewModel {
             return
         }
 
-        passwordString = passwordBuilder.build(with: passwordAttributes, length: passwordLength)
+        passwordString = passwordBuilder.build(with: passwordAttributes, passwordLength: passwordLength)
     }
 
     private func attributedPasswordString(from passwordString: String) -> NSAttributedString {

@@ -11,7 +11,7 @@ import UIKit
 
 struct Constants {
 
-    static let defaultPasswordLength: Int = 10
+    static let defaultPasswordLength: Int = 12
     static let defaultPasswordAttributes: [PasswordAttribute] = [.lowercaseLetters, .uppercaseLetters, .numbers]
 
     struct Colors {

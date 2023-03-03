@@ -10,20 +10,19 @@ import UIKit
 
 class NPAlertViewController: UIViewController {
 
-    let containerView = NPAlertContainerView()
-    let titleLabel = NPTitleLabel(textAlignment: .center, fontSize: 20)
-    let messageLabel = NPBodyLabel(textAlignment: .center)
-    let actionButton = NPButton(backgroundColor: .systemPink, title: "Ok")
-    let padding: CGFloat = 20
-
-    var alertTitle: String?
-    var message: String?
-    var buttonTitle: String?
-    var buttonHandler: (() -> Void)?
+    private let containerView = NPAlertContainerView()
+    private let titleLabel = NPTitleLabel(textAlignment: .center, fontSize: 20)
+    private let messageLabel = NPBodyLabel(textAlignment: .center)
+    private let actionButton = NPButton(backgroundColor: .systemPink, title: "Ok")
+    private let padding: CGFloat = 20
+    private var alertTitle: String?
+    private var message: String?
+    private var buttonTitle: String?
+    private var buttonHandler: (() -> Void)?
 
     // MARK: - Initialization
 
-    init(title: String, message: String, buttonTitle: String) {
+    init(title: String, message: String, buttonTitle: String, buttonHandler: (() -> Void)?) {
         super.init(nibName: nil, bundle: nil)
         self.alertTitle = title
         self.message = message

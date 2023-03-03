@@ -14,13 +14,13 @@ final class PasswordBuilder {
 	///
     /// - parameters:
     /// 	- attributes: The type of characters that will be within constructed password
-    ///		- length: length of password
+    ///		- passwordLength: length of password
     ///
-    func build(with attributes: [PasswordAttribute], length: Int) -> String {
+    func build(with attributes: [PasswordAttribute], passwordLength: Int) -> String {
         // Create an initial string of password characters based on attributes
         let passwordString = constructPasswordString(using: attributes)
         // Randomize password string characters
-        let randomPassword = randomize(string: passwordString, length: length, attributes: attributes)
+        let randomPassword = randomizeCharacters(in: passwordString, passwordLength: passwordLength, attributes: attributes)
 
         return randomPassword
     }
@@ -43,17 +43,25 @@ final class PasswordBuilder {
 
         return constructedPasswordString
     }
+    
+    private func randomizeCharacters(in string: String, passwordLength: Int, attributes: [PasswordAttribute]) -> String {
+        var randomBytes = [UInt8](repeating: 0, count: passwordLength)
+        let status = SecRandomCopyBytes(kSecRandomDefault, randomBytes.count, &randomBytes)
 
-    private func randomize(string: String, length: Int = 26, attributes: [PasswordAttribute] = []) -> String {
-        var randomString: String = ""
-
-        while randomString.count < length {
-            let randomizedOffset = arc4random_uniform(UInt32(string.count))
-            randomString += "\(string[string.index(string.startIndex, offsetBy: Int(randomizedOffset))])"
+        guard status == errSecSuccess else {
+            return ""
         }
 
-        if !allAttributeCharsPresent(for: randomString, attributes: attributes) && !attributes.isEmpty {
-            randomString = randomize(string: string, length: length, attributes: attributes)
+        var randomString = ""
+
+        for byte in randomBytes {
+            let randomIndex = Int(byte) % string.count
+            let index = string.index(string.startIndex, offsetBy: randomIndex)
+            randomString += String(string[index])
+        }
+
+        if allAttributeCharsPresent(for: randomString, attributes: attributes) == false {
+            randomString = randomizeCharacters(in: string, passwordLength: passwordLength, attributes: attributes)
         }
 
         return randomString
