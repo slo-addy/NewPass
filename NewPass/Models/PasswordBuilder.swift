@@ -68,15 +68,6 @@ final class PasswordBuilder {
     }
 
     private func allAttributeCharsPresent(for passwordString: String, attributes: [PasswordAttribute]) -> Bool {
-        for attribute in attributes {
-            if passwordString.rangeOfCharacter(from: attribute.characterSet) != nil {
-                continue
-            } else {
-                return false
-            }
-        }
-
-        return true
+        attributes.allSatisfy { passwordString.rangeOfCharacter(from: $0.characterSet) != nil }
     }
-
 }

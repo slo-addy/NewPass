@@ -158,7 +158,7 @@
                                                     <constraint firstItem="6qT-xO-QgX" firstAttribute="centerX" secondItem="sNl-OK-RZN" secondAttribute="centerX" id="ejJ-BJ-He3"/>
                                                 </constraints>
                                             </stackView>
-                                            <slider opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="8" minValue="8" maxValue="32" translatesAutoresizingMaskIntoConstraints="NO" id="dVw-3Y-dlB">
+                                            <slider opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="12" minValue="8" maxValue="32" translatesAutoresizingMaskIntoConstraints="NO" id="dVw-3Y-dlB">
                                                 <rect key="frame" x="117" y="466.33333333333337" width="180" height="31"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="176" id="EhA-g2-EJo"/>
@@ -168,7 +168,7 @@
                                                     <action selector="passwordLengthSliderDidMove:" destination="BYZ-38-t0r" eventType="valueChanged" id="uEv-sa-qef"/>
                                                 </connections>
                                             </slider>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Password Length: 10" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Co-qg-iHb">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Password Length: 12" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Co-qg-iHb">
                                                 <rect key="frame" x="127" y="442.33333333333337" width="176" height="16.333333333333314"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="176" id="ICs-6x-A9T"/>
@@ -181,6 +181,7 @@
                                         <constraints>
                                             <constraint firstItem="dVw-3Y-dlB" firstAttribute="centerX" secondItem="yGf-Bb-xIM" secondAttribute="centerX" id="8iG-OF-ve1"/>
                                             <constraint firstItem="sNl-OK-RZN" firstAttribute="centerX" secondItem="yGf-Bb-xIM" secondAttribute="centerX" id="A0X-Fq-ect"/>
+                                            <constraint firstAttribute="trailing" secondItem="1Co-qg-iHb" secondAttribute="trailing" constant="111" id="GJN-rC-MBx"/>
                                             <constraint firstItem="dVw-3Y-dlB" firstAttribute="top" secondItem="1Co-qg-iHb" secondAttribute="bottom" constant="7.6666666666666856" id="HAt-34-Jif"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="356" id="HZg-9o-aBo"/>
                                             <constraint firstItem="sNl-OK-RZN" firstAttribute="centerY" secondItem="yGf-Bb-xIM" secondAttribute="centerY" id="N8C-CU-bbc"/>
@@ -189,7 +190,7 @@
                                             <constraint firstAttribute="trailing" secondItem="exQ-vP-uMc" secondAttribute="trailing" constant="16" id="iCL-fd-uN1"/>
                                             <constraint firstAttribute="bottom" secondItem="dVw-3Y-dlB" secondAttribute="bottom" priority="750" constant="43.5" id="l0q-rT-4fr"/>
                                             <constraint firstItem="exQ-vP-uMc" firstAttribute="leading" secondItem="yGf-Bb-xIM" secondAttribute="leading" constant="16" id="n4i-IS-wHe"/>
-                                            <constraint firstItem="1Co-qg-iHb" firstAttribute="leading" secondItem="dVw-3Y-dlB" secondAttribute="leading" constant="8" id="qJ9-Mz-nsx"/>
+                                            <constraint firstItem="1Co-qg-iHb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dVw-3Y-dlB" secondAttribute="leading" id="qJ9-Mz-nsx"/>
                                             <constraint firstAttribute="bottom" secondItem="dVw-3Y-dlB" secondAttribute="bottom" constant="24" id="y7s-II-qjL"/>
                                         </constraints>
                                     </view>

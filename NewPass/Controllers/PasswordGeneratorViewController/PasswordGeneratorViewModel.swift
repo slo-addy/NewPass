@@ -10,45 +10,35 @@ import Foundation
 import UIKit
 
 final class PasswordGeneratorViewModel {
-
-    private let passwordBuilder = PasswordBuilder()
-    private var passwordString: String = ""
-    private(set) var passwordLength: Int
-    private(set) var passwordAttributes: [PasswordAttribute]
-
+    
+    var passwordLength: Int
+    var passwordAttributes: [PasswordAttribute]
+    
     /// Determines if the user has selected at least one attribute
     var hasSelectedPasswordAttributes: Bool {
-        return !passwordAttributes.isEmpty
+        passwordAttributes.isEmpty == false
     }
 
+#warning("TODO: View logic should be moved")
     /// The password string with color attributes applied
     var styledPassword: NSAttributedString {
-        return attributedPasswordString(from: passwordString)
+        attributedPasswordString(from: passwordString)
     }
+    
+#warning("TODO: Abstract type for builder")
+    private let passwordBuilder = PasswordBuilder()
+    private var passwordString: String = ""
 
     init(passwordAttributes: [PasswordAttribute], passwordLength: Int) {
         self.passwordAttributes = passwordAttributes
         self.passwordLength = passwordLength
     }
 
-    /// Updates the model's password attributes. These changes will be applied to the next
-    /// password that is generated. This does not affect the currently stored password.
-    func update(attributes: [PasswordAttribute]) {
-        passwordAttributes = attributes
-    }
-
-    /// Updates the model's password length. These changes will be applied to the next
-    /// password that is generated and will not affect the currently stored password.
-    func update(length: Int) {
-        passwordLength = length
-    }
-
-    /// Requests a newly built password using the stored `passwordAttributes` and `length`
-    func fetchNewPassword() {
+    /// Requests a newly built password using the stored `passwordAttributes` and `passwordLength`
+    func generatePassword() {
         guard hasSelectedPasswordAttributes else {
             return
         }
-
         passwordString = passwordBuilder.build(with: passwordAttributes, passwordLength: passwordLength)
     }
 

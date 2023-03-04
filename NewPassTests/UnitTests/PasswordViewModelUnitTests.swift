@@ -15,7 +15,7 @@ class PasswordViewModelUnitTests: XCTestCase {
         let sut = PasswordGeneratorViewModel(passwordAttributes: [.uppercaseLetters], passwordLength: 32)
         XCTAssertEqual(sut.hasSelectedPasswordAttributes, true)
 
-        sut.update(attributes: [])
+        sut.passwordAttributes = []
         XCTAssertEqual(sut.hasSelectedPasswordAttributes, false)
     }
 
@@ -23,7 +23,7 @@ class PasswordViewModelUnitTests: XCTestCase {
         let sut = PasswordGeneratorViewModel(passwordAttributes: [.lowercaseLetters], passwordLength: 32)
         XCTAssertEqual(sut.passwordAttributes, [.lowercaseLetters])
 
-        sut.update(attributes: [.uppercaseLetters])
+        sut.passwordAttributes = [.uppercaseLetters]
         XCTAssertEqual(sut.passwordAttributes, [.uppercaseLetters])
     }
 
@@ -31,13 +31,13 @@ class PasswordViewModelUnitTests: XCTestCase {
         let sut = PasswordGeneratorViewModel(passwordAttributes: [.lowercaseLetters], passwordLength: 32)
         XCTAssertEqual(sut.passwordLength, 32)
 
-        sut.update(length: 8)
+        sut.passwordLength = 8
         XCTAssertEqual(sut.passwordLength, 8)
     }
 
     func testPasswordColorsAreCorrectWhenAlphabetCharactersAreUsed() {
         let sut = PasswordGeneratorViewModel(passwordAttributes: [.lowercaseLetters, .uppercaseLetters], passwordLength: 8)
-        sut.fetchNewPassword()
+        sut.generatePassword()
 
         let result = extractColors(from: sut.styledPassword)
         XCTAssertTrue(result.contains(Constants.Colors.alphabet))
@@ -45,7 +45,7 @@ class PasswordViewModelUnitTests: XCTestCase {
 
     func testPasswordColorsAreCorrectWhenNumberCharactersAreUsed() {
         let sut = PasswordGeneratorViewModel(passwordAttributes: [.numbers], passwordLength: 8)
-        sut.fetchNewPassword()
+        sut.generatePassword()
 
         let result = extractColors(from: sut.styledPassword)
         XCTAssertTrue(result.contains(Constants.Colors.number))
@@ -53,7 +53,7 @@ class PasswordViewModelUnitTests: XCTestCase {
 
     func testPasswordColorsAreCorrectWhenSymbolCharactersAreUsed() {
         let sut = PasswordGeneratorViewModel(passwordAttributes: [.symbols], passwordLength: 8)
-        sut.fetchNewPassword()
+        sut.generatePassword()
 
         let result = extractColors(from: sut.styledPassword)
         XCTAssertTrue(result.contains(Constants.Colors.symbol))
@@ -62,7 +62,7 @@ class PasswordViewModelUnitTests: XCTestCase {
     func testPasswordColorsAreCorrectWhenAllCharacterTypesAreUsed() {
         let sut = PasswordGeneratorViewModel(passwordAttributes: [.uppercaseLetters, .lowercaseLetters, .numbers, .symbols],
                                              passwordLength: 8)
-        sut.fetchNewPassword()
+        sut.generatePassword()
 
         let result = extractColors(from: sut.styledPassword)
         XCTAssertTrue(result.allSatisfy([Constants.Colors.alphabet, Constants.Colors.number, Constants.Colors.symbol].contains))
