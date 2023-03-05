@@ -76,13 +76,16 @@ final class PasswordGeneratorViewController: UIViewController {
     /// 	- withFastAnimation: Determines if faster animation should be configured
     ///
     private func animatePasswordGeneration(withFastAnimation: Bool = false) {
-        guard viewModel.hasSelectedPasswordAttributes else {
-            presentAlertForEmptyAttributes()
+        HapticEngine().hapticTap()
+        
+        do {
+            try viewModel.generatePassword()
+        }
+        catch {
+            presentErrorAlert(error as? PasswordGenerationError ?? .unknown)
+            generatePasswordButton.isEnabled = true
             return
         }
-        
-        HapticEngine().hapticTap()
-        viewModel.generatePassword()
         
         // Label with new password that will animate into view
         passwordFadeInLabel.attributedText = viewModel.styledPassword
@@ -92,15 +95,12 @@ final class PasswordGeneratorViewController: UIViewController {
                        usingSpringWithDamping: withFastAnimation ? 0.1 : 0.5,
                        initialSpringVelocity: 5,
                        animations: { performLayoutUpdatesForAnimation() }) { _ in
+            self.generatePasswordButton.isEnabled = true
             self.passwordFadeOutLabel.attributedText = self.passwordFadeInLabel.attributedText
+            
             performLayoutUpdatesForCompletion()
             
             if self.generatePasswordButton.state == .highlighted {
-                guard self.viewModel.hasSelectedPasswordAttributes else {
-                    self.presentAlertForEmptyAttributes()
-                    return
-                }
-                
                 self.animatePasswordGeneration(withFastAnimation: true)
             }
         }
@@ -141,9 +141,10 @@ final class PasswordGeneratorViewController: UIViewController {
     }
 
     @IBAction private func generatePasswordTouchBegan(_ sender: UIButton) {
+        generatePasswordButton.isEnabled = false
         animatePasswordGeneration()
     }
-
+    
 	// MARK: - Share Activity
 
     @objc private func presentPasswordShare() {
@@ -153,10 +154,12 @@ final class PasswordGeneratorViewController: UIViewController {
         vc.excludedActivityTypes = [.postToFacebook, .postToTwitter]
         present(vc, animated: true, completion: nil)
     }
+    
+    // MARK: - Error Handling
 
-    private func presentAlertForEmptyAttributes() {
-        let alertViewController = NPAlertViewController(title: "Hold On",
-                                                        message: "You need at least one attribute selected to generate a password.",
+    private func presentErrorAlert(_ error: PasswordGenerationError) {
+        let alertViewController = NPAlertViewController(title: error == .noAttributes ? "Hold On" : "Uh Oh",
+                                                        message: error.description,
                                                         buttonTitle: "Okay") {
             self.generatePasswordButton.isEnabled = true
         }

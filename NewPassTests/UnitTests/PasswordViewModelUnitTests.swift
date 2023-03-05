@@ -10,71 +10,92 @@ import XCTest
 @testable import NewPass
 
 class PasswordViewModelUnitTests: XCTestCase {
-
-    func testDeterminesIfNoAttributesAreSelected() {
-        let sut = PasswordGeneratorViewModel(passwordAttributes: [.uppercaseLetters], passwordLength: 32)
+    
+    func testDeterminesIfNoAttributesAreSelected() throws {
+        let sut = PasswordGeneratorViewModel(passwordAttributes: [.uppercaseLetters],
+                                             passwordLength: Constants.defaultPasswordLength)
         XCTAssertEqual(sut.hasSelectedPasswordAttributes, true)
-
+        
         sut.passwordAttributes = []
         XCTAssertEqual(sut.hasSelectedPasswordAttributes, false)
     }
-
-    func testPasswordAttributesAreUpdated() {
-        let sut = PasswordGeneratorViewModel(passwordAttributes: [.lowercaseLetters], passwordLength: 32)
+    
+    func testThrowsNoAttributesErrorWhenGeneratingPasswordWithNoAttributesSelected() throws {
+        let sut = PasswordGeneratorViewModel(passwordAttributes: [],
+                                             passwordLength: Constants.defaultPasswordLength)
+        
+        XCTAssertThrowsError(try sut.generatePassword()) { error in
+            XCTAssertEqual(error as? PasswordGenerationError, .noAttributes)
+        }
+    }
+    
+    func testPasswordAttributesAreUpdated() throws {
+        let sut = PasswordGeneratorViewModel(passwordAttributes: [.lowercaseLetters],
+                                             passwordLength: Constants.defaultPasswordLength)
         XCTAssertEqual(sut.passwordAttributes, [.lowercaseLetters])
-
+        
         sut.passwordAttributes = [.uppercaseLetters]
         XCTAssertEqual(sut.passwordAttributes, [.uppercaseLetters])
     }
-
-    func testPasswordLengthIsUpdated() {
-        let sut = PasswordGeneratorViewModel(passwordAttributes: [.lowercaseLetters], passwordLength: 32)
-        XCTAssertEqual(sut.passwordLength, 32)
-
-        sut.passwordLength = 8
-        XCTAssertEqual(sut.passwordLength, 8)
+    
+    func testPasswordLengthIsUpdated() throws {
+        let sut = PasswordGeneratorViewModel(passwordAttributes: [.lowercaseLetters],
+                                             passwordLength: Constants.maxPasswordLength)
+        XCTAssertEqual(sut.passwordLength, Constants.maxPasswordLength)
+        
+        sut.passwordLength = Constants.minPasswordLength
+        XCTAssertEqual(sut.passwordLength, Constants.minPasswordLength)
     }
-
-    func testPasswordColorsAreCorrectWhenAlphabetCharactersAreUsed() {
-        let sut = PasswordGeneratorViewModel(passwordAttributes: [.lowercaseLetters, .uppercaseLetters], passwordLength: 8)
-        sut.generatePassword()
-
+    
+    func testPasswordColorsAreCorrectWhenAlphabetCharactersAreUsed() throws {
+        let sut = PasswordGeneratorViewModel(passwordAttributes: [.lowercaseLetters, .uppercaseLetters],
+                                             passwordLength: Constants.defaultPasswordLength)
+        try sut.generatePassword()
+        
         let result = extractColors(from: sut.styledPassword)
         XCTAssertTrue(result.contains(Constants.Colors.alphabet))
     }
-
-    func testPasswordColorsAreCorrectWhenNumberCharactersAreUsed() {
-        let sut = PasswordGeneratorViewModel(passwordAttributes: [.numbers], passwordLength: 8)
-        sut.generatePassword()
-
+    
+    func testPasswordColorsAreCorrectWhenNumberCharactersAreUsed() throws {
+        let sut = PasswordGeneratorViewModel(passwordAttributes: [.numbers],
+                                             passwordLength: Constants.defaultPasswordLength)
+        try sut.generatePassword()
+        
         let result = extractColors(from: sut.styledPassword)
         XCTAssertTrue(result.contains(Constants.Colors.number))
     }
-
-    func testPasswordColorsAreCorrectWhenSymbolCharactersAreUsed() {
-        let sut = PasswordGeneratorViewModel(passwordAttributes: [.symbols], passwordLength: 8)
-        sut.generatePassword()
-
+    
+    func testPasswordColorsAreCorrectWhenSymbolCharactersAreUsed() throws {
+        let sut = PasswordGeneratorViewModel(passwordAttributes: [.symbols],
+                                             passwordLength: Constants.defaultPasswordLength)
+        try sut.generatePassword()
+        
         let result = extractColors(from: sut.styledPassword)
         XCTAssertTrue(result.contains(Constants.Colors.symbol))
     }
-
-    func testPasswordColorsAreCorrectWhenAllCharacterTypesAreUsed() {
-        let sut = PasswordGeneratorViewModel(passwordAttributes: [.uppercaseLetters, .lowercaseLetters, .numbers, .symbols],
-                                             passwordLength: 8)
-        sut.generatePassword()
-
+    
+    func testPasswordColorsAreCorrectWhenAllCharacterTypesAreUsed() throws {
+        let passwordAttributes: [PasswordAttribute] = [
+            .uppercaseLetters,
+            .lowercaseLetters,
+            .numbers,
+            .symbols
+        ]
+        let sut = PasswordGeneratorViewModel(passwordAttributes: passwordAttributes,
+                                             passwordLength: Constants.defaultPasswordLength)
+        try sut.generatePassword()
+        
         let result = extractColors(from: sut.styledPassword)
         XCTAssertTrue(result.allSatisfy([Constants.Colors.alphabet, Constants.Colors.number, Constants.Colors.symbol].contains))
     }
-
+    
 }
 
 extension PasswordViewModelUnitTests {
     
     func extractColors(from attributedString: NSAttributedString) -> [UIColor?] {
         var colorResults = [UIColor?]()
-
+        
         attributedString.enumerateAttributes(in: NSRange(location: 0, length: attributedString.string.count)) { attributes, _, _ in
             attributes.forEach { key, value in
                 switch key {
@@ -85,7 +106,7 @@ extension PasswordViewModelUnitTests {
                 }
             }
         }
-
+        
         return colorResults
     }
 }

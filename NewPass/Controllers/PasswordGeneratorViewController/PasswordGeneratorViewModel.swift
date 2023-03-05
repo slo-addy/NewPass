@@ -9,6 +9,20 @@
 import Foundation
 import UIKit
 
+enum PasswordGenerationError: Error {
+    case noAttributes
+    case unknown
+    
+    var description: String {
+        switch self {
+        case .noAttributes:
+            return "You need at least one attribute selected to generate a password."
+        case .unknown:
+            return "Something went wrong. Give it another try."
+        }
+    }
+}
+
 final class PasswordGeneratorViewModel {
     
     var passwordLength: Int
@@ -19,14 +33,12 @@ final class PasswordGeneratorViewModel {
         passwordAttributes.isEmpty == false
     }
 
-#warning("TODO: View logic should be moved")
     /// The password string with color attributes applied
     var styledPassword: NSAttributedString {
         attributedPasswordString(from: passwordString)
     }
     
-#warning("TODO: Abstract type for builder")
-    private let passwordBuilder = PasswordBuilder()
+    private let passwordBuilder: RandomPasswordGenerating = PasswordBuilder()
     private var passwordString: String = ""
 
     init(passwordAttributes: [PasswordAttribute], passwordLength: Int) {
@@ -35,11 +47,13 @@ final class PasswordGeneratorViewModel {
     }
 
     /// Requests a newly built password using the stored `passwordAttributes` and `passwordLength`
-    func generatePassword() {
+    func generatePassword() throws {
         guard hasSelectedPasswordAttributes else {
-            return
+            throw PasswordGenerationError.noAttributes
         }
-        passwordString = passwordBuilder.build(with: passwordAttributes, passwordLength: passwordLength)
+        
+        let request = PasswordBuildRequest(passwordAttributes: passwordAttributes, passwordLength: passwordLength)
+        passwordString = passwordBuilder.build(with: request)
     }
 
     private func attributedPasswordString(from passwordString: String) -> NSAttributedString {

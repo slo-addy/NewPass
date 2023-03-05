@@ -10,61 +10,100 @@ import XCTest
 @testable import NewPass
 
 class PasswordBuilderUnitTests: XCTestCase {
-
+    
+    let sut = PasswordBuilder()
+    
+    func testBuildWithEmptyAttributesReturnsEmptyString() {
+        let passwordRequest = PasswordBuildRequest(passwordAttributes: [],
+                                                   passwordLength: Constants.defaultPasswordLength)
+        let passwordString = sut.build(with: passwordRequest)
+        
+        XCTAssertTrue(passwordString.isEmpty)
+    }
+    
+    func testBuildWithShortPasswordLengthReturnsEmptyString() {
+        let passwordRequest = PasswordBuildRequest(passwordAttributes: [.lowercaseLetters],
+                                                   passwordLength: Constants.minPasswordLength - 1)
+        let passwordString = sut.build(with: passwordRequest)
+        
+        XCTAssertTrue(passwordString.isEmpty)
+    }
+    
+    func testBuildWithValidAttributesAndLengthReturnsNonEmptyString() {
+        let passwordRequest = PasswordBuildRequest(passwordAttributes: [.lowercaseLetters],
+                                                   passwordLength: Constants.minPasswordLength)
+        let passwordString = sut.build(with: passwordRequest)
+        
+        XCTAssertFalse(passwordString.isEmpty)
+    }
+    
     func testPasswordMatchesGivenLength() {
-        let sut = PasswordBuilder()
-        let passwordString = sut.build(with: [.numbers], passwordLength: 10)
-
+        let passwordRequest = PasswordBuildRequest(passwordAttributes: [.numbers], passwordLength: 10)
+        let passwordString = sut.build(with: passwordRequest)
+        
         XCTAssertEqual(passwordString.count, 10)
     }
-
+    
     func testPasswordStringContainsNumbers() {
-        let sut = PasswordBuilder()
-        let passwordString = sut.build(with: [.numbers], passwordLength: 10)
-
+        let passwordRequest = PasswordBuildRequest(passwordAttributes: [.numbers],
+                                                   passwordLength: Constants.defaultPasswordLength)
+        let passwordString = sut.build(with: passwordRequest)
+        
         XCTAssertNotEqual(passwordString.rangeOfCharacter(from: PasswordAttribute.numbers.characterSet), nil)
     }
-
+    
     func testPasswordStringContainsLowerCaseLetters() {
-        let sut = PasswordBuilder()
-        let passwordString = sut.build(with: [.lowercaseLetters], passwordLength: 10)
-
+        let passwordRequest = PasswordBuildRequest(passwordAttributes: [.lowercaseLetters],
+                                                   passwordLength: Constants.defaultPasswordLength)
+        let passwordString = sut.build(with: passwordRequest)
+        
         XCTAssertNotEqual(passwordString.rangeOfCharacter(from: PasswordAttribute.lowercaseLetters.characterSet), nil)
     }
-
+    
     func testPasswordStringContainsUpperCaseLetters() {
-        let sut = PasswordBuilder()
-        let passwordString = sut.build(with: [.uppercaseLetters], passwordLength: 10)
-
+        let passwordRequest = PasswordBuildRequest(passwordAttributes: [.uppercaseLetters],
+                                                   passwordLength: Constants.defaultPasswordLength)
+        let passwordString = sut.build(with: passwordRequest)
+        
         XCTAssertNotEqual(passwordString.rangeOfCharacter(from: PasswordAttribute.uppercaseLetters.characterSet), nil)
     }
-
+    
     func testPasswordStringContainsSymbols() {
-        let sut = PasswordBuilder()
-        let passwordString = sut.build(with: [.symbols], passwordLength: 10)
-
+        let passwordRequest = PasswordBuildRequest(passwordAttributes: [.symbols],
+                                                   passwordLength: Constants.defaultPasswordLength)
+        let passwordString = sut.build(with: passwordRequest)
+        
         XCTAssertNotEqual(passwordString.rangeOfCharacter(from: PasswordAttribute.symbols.characterSet), nil)
     }
-
+    
     func testPasswordStringContainsAllAttributes() {
-        let sut = PasswordBuilder()
-        let passwordAttributes: [PasswordAttribute] = [.numbers, .symbols, .lowercaseLetters, .uppercaseLetters]
-        var passwordString = sut.build(with: passwordAttributes, passwordLength: 12)
-
+        let passwordAttributes: [PasswordAttribute] = [
+            .numbers,
+            .symbols,
+            .lowercaseLetters,
+            .uppercaseLetters
+        ]
+        let passwordRequest = PasswordBuildRequest(passwordAttributes: passwordAttributes,
+                                                   passwordLength: Constants.maxPasswordLength)
+        
+        var passwordString = sut.build(with: passwordRequest)
+        
         XCTAssertNotEqual(passwordString.rangeOfCharacter(from: PasswordAttribute.numbers.characterSet), nil)
         XCTAssertNotEqual(passwordString.rangeOfCharacter(from: PasswordAttribute.symbols.characterSet), nil)
         XCTAssertNotEqual(passwordString.rangeOfCharacter(from: PasswordAttribute.lowercaseLetters.characterSet), nil)
         XCTAssertNotEqual(passwordString.rangeOfCharacter(from: PasswordAttribute.uppercaseLetters.characterSet), nil)
-
-        passwordString = sut.build(with: passwordAttributes, passwordLength: 8)
-
+        
+        passwordString = sut.build(with: PasswordBuildRequest(passwordAttributes: passwordAttributes,
+                                                              passwordLength: Constants.defaultPasswordLength))
+        
         XCTAssertNotEqual(passwordString.rangeOfCharacter(from: PasswordAttribute.numbers.characterSet), nil)
         XCTAssertNotEqual(passwordString.rangeOfCharacter(from: PasswordAttribute.symbols.characterSet), nil)
         XCTAssertNotEqual(passwordString.rangeOfCharacter(from: PasswordAttribute.lowercaseLetters.characterSet), nil)
         XCTAssertNotEqual(passwordString.rangeOfCharacter(from: PasswordAttribute.uppercaseLetters.characterSet), nil)
-
-        passwordString = sut.build(with: passwordAttributes, passwordLength: 4)
-
+        
+        passwordString = sut.build(with: PasswordBuildRequest(passwordAttributes: passwordAttributes,
+                                                              passwordLength: Constants.minPasswordLength))
+        
         XCTAssertNotEqual(passwordString.rangeOfCharacter(from: PasswordAttribute.numbers.characterSet), nil)
         XCTAssertNotEqual(passwordString.rangeOfCharacter(from: PasswordAttribute.symbols.characterSet), nil)
         XCTAssertNotEqual(passwordString.rangeOfCharacter(from: PasswordAttribute.lowercaseLetters.characterSet), nil)
