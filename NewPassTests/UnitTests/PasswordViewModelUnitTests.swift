@@ -11,6 +11,14 @@ import XCTest
 
 class PasswordViewModelUnitTests: XCTestCase {
     
+    func testPasswordLengthTextUpdatesWhenPasswordLengthIsUpdated() throws {
+        let sut = PasswordGeneratorViewModel(passwordLength: Constants.minPasswordLength)
+        XCTAssertEqual(sut.passwordLengthText, "Password Length: \(Constants.minPasswordLength)")
+        
+        sut.passwordLength = Constants.maxPasswordLength
+        XCTAssertEqual(sut.passwordLengthText, "Password Length: \(Constants.maxPasswordLength)")
+    }
+    
     func testDeterminesIfNoAttributesAreSelected() throws {
         let sut = PasswordGeneratorViewModel(passwordAttributes: [.uppercaseLetters],
                                              passwordLength: Constants.defaultPasswordLength)

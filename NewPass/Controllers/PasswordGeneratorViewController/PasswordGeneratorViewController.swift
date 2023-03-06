@@ -10,8 +10,7 @@ import UIKit
 
 final class PasswordGeneratorViewController: UIViewController {
     
-    private var viewModel = PasswordGeneratorViewModel(passwordAttributes: Constants.defaultPasswordAttributes,
-                                                       passwordLength: Constants.defaultPasswordLength)
+    private var viewModel = PasswordGeneratorViewModel()
     private var passwordSwitches: [NPAttributeSwitch]!
     
     @IBOutlet private weak var passwordLabelViewContainer: UIView!
@@ -44,7 +43,8 @@ final class PasswordGeneratorViewController: UIViewController {
     
     private func configureViews() {
         passwordLabelViewContainer.roundify(cornerRadius: 6)
-        passwordFadeOutLabel.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(presentPasswordShare)))
+        passwordFadeOutLabel.addGestureRecognizer(UILongPressGestureRecognizer(target: self,
+                                                                               action: #selector(presentPasswordShare)))
         
         lowercaseLetterSwitch.attributeType = .lowercaseLetters
         uppercaseLetterSwitch.attributeType = .uppercaseLetters
@@ -64,8 +64,8 @@ final class PasswordGeneratorViewController: UIViewController {
         }
         
         passwordLengthSlider.setValue(Float(viewModel.passwordLength), animated: true)
-        passwordLengthLabel.text = "Password Length: \(viewModel.passwordLength)"
-        passwordFadeOutLabel.text = "Tap Below or Shake"
+        passwordLengthLabel.text = viewModel.passwordLengthText
+        passwordFadeOutLabel.text = viewModel.placeholderPasswordText
     }
     
     /// Animates the `passwordFadeOutLabel` up out of view and `passwordFadeInLabel` up (from bottom) in to view.
