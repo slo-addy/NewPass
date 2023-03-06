@@ -24,24 +24,28 @@ enum PasswordGenerationError: Error {
 }
 
 final class PasswordGeneratorViewModel {
-    
+
+    let placeholderPasswordText = "Tap Below or Shake"
     var passwordLength: Int
     var passwordAttributes: [PasswordAttribute]
     
-    /// Determines if the user has selected at least one attribute
     var hasSelectedPasswordAttributes: Bool {
         passwordAttributes.isEmpty == false
     }
 
-    /// The password string with color attributes applied
     var styledPassword: NSAttributedString {
         attributedPasswordString(from: passwordString)
+    }
+    
+    var passwordLengthText: String {
+        "Password Length: \(passwordLength)"
     }
     
     private let passwordBuilder: RandomPasswordGenerating = PasswordBuilder()
     private var passwordString: String = ""
 
-    init(passwordAttributes: [PasswordAttribute], passwordLength: Int) {
+    init(passwordAttributes: [PasswordAttribute] = Constants.defaultPasswordAttributes,
+         passwordLength: Int = Constants.defaultPasswordLength) {
         self.passwordAttributes = passwordAttributes
         self.passwordLength = passwordLength
     }
